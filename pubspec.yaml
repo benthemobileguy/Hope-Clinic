@@ -59,6 +59,7 @@ flutter:
   assets:
     - images/
     - fonts/
+    - svg/
 
   fonts:
     - family: Lato

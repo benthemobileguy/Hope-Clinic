@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hope_clinic/screens/welcome-screen.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -7,7 +8,6 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
-  PrefManager prefManager = PrefManager();
   List<bool> isCustomised;
   Animation<double> animation;
   AnimationController _controller;
@@ -15,15 +15,18 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       body: Center(
           child: ScaleTransition(
             scale: _animation,
             alignment: Alignment.center,
-            child: new Image.asset(
-              'assets/images/logo.jpg',
-              fit: BoxFit.cover,
-              width: 300,
+            child: Hero(
+              tag: "logo",
+              child: new Image.asset(
+                'images/logo.png',
+                fit: BoxFit.cover,
+                width: 300,
+              ),
             ),
           )),
     );
@@ -51,10 +54,9 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   void checkLoginState() async {
-    Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) =>
-            ));
+    Navigator.pushReplacement(context,
+        MaterialPageRoute(builder: (context)
+        => WelcomeScreen()));
 
   }
 }
