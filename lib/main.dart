@@ -2,36 +2,25 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hope_clinic/bloc/index.dart';
+import 'package:hope_clinic/screens/splash-screen.dart';
 import 'package:hope_clinic/theme/style.dart';
 import 'package:provider/provider.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 
 Future<void> main() async {
   // Register all the models and services before the app starts
 
+  await DotEnv().load('.env');
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((_) {
     runZoned<Future<Null>>(() async {
-      WidgetsFlutterBinding.ensureInitialized();
-      await Firebase.initializeApp();
       runApp(new MyApp());
     },);
   });
 }
 
-class MyApp extends StatefulWidget {
-
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
+class MyApp extends StatelessWidget {
   @override
 
   Widget build(BuildContext context) {
@@ -40,14 +29,13 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       child: GestureDetector(
         behavior: HitTestBehavior.translucent,
         child: MaterialApp(
-          title: 'Hope Chiropractic Health Clinic',
+          title: 'Hope Chiropratic Health Clinic',
           theme: appTheme,
-          initialRoute: '/',
           debugShowCheckedModeBanner: false,
+          home: SplashScreen(),
           navigatorObservers: [],
         ),
       ),
     );
   }
-
 }

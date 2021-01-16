@@ -11,7 +11,7 @@ ThemeData appTheme = new ThemeData(
   textSelectionHandleColor: Colors.orange,
   primaryColor: primaryColor,
   primaryColorDark: primaryColorDark,
-  fontFamily: "Inter",
+  fontFamily: "Lato",
   primarySwatch: MaterialColor(
     HexColor.getColorFromHex("#09125D"),
     primarySwatch,
@@ -23,7 +23,7 @@ TextStyle onboardingInfoTextStyle = TextStyle(
   fontSize: 14.5,
   letterSpacing: 0.2,
   fontWeight: FontWeight.w400,
-  fontFamily: 'Inter',
+  fontFamily: 'Lato',
   color: HexColor("#808080"),
 );
 

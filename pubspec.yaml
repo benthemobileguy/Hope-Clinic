@@ -24,6 +24,7 @@ dev_dependencies:
     sdk: flutter
   #Flutter Dependencies here
   hexcolor: ^1.0.2
+  flutter_dotenv: ^2.1.0
   flutter_svg: ^0.18.0
   flushbar: ^1.10.4
   google_maps_flutter: ^1.0.2
