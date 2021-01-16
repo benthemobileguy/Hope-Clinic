@@ -2,14 +2,9 @@ import 'package:flutter/material.dart';
 
 
 class MainBloc with
-    ChangeNotifier,
-    ProfileBloc,
-    RideHailingBloc,
-    ResponseCodesBloc{
+    ChangeNotifier{
 
   String _bearerToken;
-  Address pickUpAddress;
-  Address destinationAddress;
 
 
   String get bearerToken {
@@ -20,13 +15,5 @@ class MainBloc with
     _bearerToken = token;
   }
 
-  void updatePickupAddress(Address pickup){
-    pickUpAddress = pickup;
-    notifyListeners();
-  }
-  void updateDestinationAddress(Address destination){
-    destinationAddress = destination;
-    notifyListeners();
-  }
 }
 
