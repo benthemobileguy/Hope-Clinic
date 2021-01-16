@@ -51,19 +51,10 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   void checkLoginState() async {
-    String launchStatus = await prefManager
-        .getFirstTimeLaunch();
-    if (launchStatus != "launched"){
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) =>OnboardingScreen()));
-    }
-    else {
-      Navigator.pushReplacement(
+    Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) =>Base()),
-      );
-    }
+        MaterialPageRoute(builder: (context) =>
+            ));
 
   }
 }
