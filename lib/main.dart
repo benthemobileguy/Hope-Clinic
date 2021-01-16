@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hope_clinic/bloc/index.dart';
+import 'package:hope_clinic/theme/style.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -41,7 +43,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
           title: 'Hope Chiropractic Health Clinic',
           theme: appTheme,
           initialRoute: '/',
-          routes: routes,
           debugShowCheckedModeBanner: false,
           navigatorObservers: [],
         ),
