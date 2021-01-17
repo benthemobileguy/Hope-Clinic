@@ -33,7 +33,7 @@ TextStyle inputTextStyle = TextStyle(
 );
 TextStyle subheadingTextStyle = TextStyle(
     color: Colors.redAccent,
-    fontFamily: 'Gilroy',
+    fontFamily: 'Lato',
     fontSize: 14.0,
     fontWeight: FontWeight.w400);
 Map<int, Color> primarySwatch = {

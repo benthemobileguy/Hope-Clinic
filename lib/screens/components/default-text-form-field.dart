@@ -49,6 +49,7 @@ class DefaultTextFormField extends StatelessWidget {
     return Container(
       height: 60,
       child: TextFormField(
+        cursorColor: Colors.grey,
         controller: controller,
         onChanged: this.onChanged,
         textCapitalization: textCapitalization!=
