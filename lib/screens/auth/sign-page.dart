@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:hope_clinic/screens/components/default-text-form-field.dart';
 import 'package:hope_clinic/utils/color.dart';
 import 'package:hope_clinic/utils/validator.dart';
-class LoginPage extends StatefulWidget {
+class SignInPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginPageState extends State<SignInPage> {
   FocusNode emailFocus = new FocusNode(), passwordFocus = new FocusNode();
   String _email, _password;
   @override

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hope_clinic/screens/auth/login-page.dart';
-import 'package:hope_clinic/screens/auth/register-page.dart';
+import 'package:hope_clinic/screens/auth/sign-page.dart';
+import 'package:hope_clinic/screens/auth/sign-up-page.dart';
 import 'package:hope_clinic/screens/components/main-button.dart';
 import 'package:hope_clinic/theme/style.dart';
 import 'package:hope_clinic/utils/color.dart';
@@ -50,7 +50,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 onPressed: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context)
-                      => RegisterPage()));
+                      => SignUpPage()));
                 },
               ),
             ),
@@ -74,7 +74,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 onPressed: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context)
-                      => LoginPage()));
+                      => SignInPage()));
                 },
               ),
             ),

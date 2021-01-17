@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-class RegisterPage extends StatefulWidget {
+class SignUpPage extends StatefulWidget {
   @override
   _RegisterPageState createState() => _RegisterPageState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _RegisterPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Container();
