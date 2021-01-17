@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hope_clinic/utils/color.dart';
-final Color primaryColor = HexColor("FA8128");
+final Color primaryColor = HexColor("#077965");
 final Color primaryColorDark = HexColor("#000000");
 final Color customGreen = HexColor("#0AC690");
-final Color accentColor = HexColor("#FA8128");
+final Color accentColor = HexColor("#D7F4EF");
 final Color textColor = HexColor("#1A1A1A");
 final Color hintColor = HexColor("#C4C4C4");
 
