@@ -48,7 +48,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   ),
                 ),
                 onPressed: () {
-                  Navigator.pushReplacement(context,
+                  Navigator.push(context,
                       MaterialPageRoute(builder: (context)
                       => RegisterPage()));
                 },
@@ -72,7 +72,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   ),
                 ),
                 onPressed: () {
-                  Navigator.pushReplacement(context,
+                  Navigator.push(context,
                       MaterialPageRoute(builder: (context)
                       => LoginPage()));
                 },
