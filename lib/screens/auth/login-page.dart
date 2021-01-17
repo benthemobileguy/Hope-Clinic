@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hope_clinic/screens/components/default-text-form-field.dart';
 import 'package:hope_clinic/utils/color.dart';
 class LoginPage extends StatefulWidget {
   @override
@@ -6,6 +7,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  FocusNode emailFocus = new FocusNode(), passwordFocus = new FocusNode();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -53,6 +55,27 @@ class _LoginPageState extends State<LoginPage> {
                   color: HexColor("#444444"),
                   fontWeight: FontWeight.w700,
                 ),
+              ),
+              Container(
+                child: DefaultTextFormField(
+                  hintText: "Email or Phone Number",
+                  keyboardType: TextInputType.emailAddress,
+                  focus: emailFocus,
+                  validator: (val) {
+                    if (!validateEmail(val)) {
+                      return 'Please enter a valid email address';
+                    }
+                    return null;
+                  },
+                  nextFocus: passwordFocus,
+                  onChanged: (text) {
+                    setState(() {
+                      _email = text;
+                    });
+                  },
+                ),
+                padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 0.0),
+                margin: EdgeInsets.only(bottom: 20.0),
               ),
             ],
           ),

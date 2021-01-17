@@ -26,7 +26,16 @@ TextStyle onboardingInfoTextStyle = TextStyle(
   fontFamily: 'Lato',
   color: HexColor("#808080"),
 );
-
+TextStyle inputTextStyle = TextStyle(
+  fontSize: 15.0,
+  fontWeight: FontWeight.w400,
+  color: HexColor('#222121'),
+);
+TextStyle subheadingTextStyle = TextStyle(
+    color: Colors.redAccent,
+    fontFamily: 'Gilroy',
+    fontSize: 14.0,
+    fontWeight: FontWeight.w400);
 Map<int, Color> primarySwatch = {
   50: Color.fromRGBO(9, 18, 93, .1),
   100: Color.fromRGBO(9, 18, 93, .2),
