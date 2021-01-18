@@ -11,6 +11,7 @@ class SignUpPage extends StatefulWidget {
 
 class _RegisterPageState extends State<SignUpPage> {
   String buttonText = 'Next';
+  int sexBtnIndex = -1;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -113,40 +114,106 @@ class _RegisterPageState extends State<SignUpPage> {
                 SizedBox(
                   height: 10,
                 ),
-                Container(
-                  height: 60,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: containerBgColor,
-                    borderRadius: BorderRadius.all(
-                        Radius.circular(12)),
-                  ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        width: 24,
-                        height: 24,
+                Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        height: 60,
+                        width: double.infinity,
                         decoration: BoxDecoration(
-                         color: Colors.white,
-                          shape: BoxShape.circle,
+                          color: containerBgColor,
+                          borderRadius: BorderRadius.all(
+                              Radius.circular(12)),
+                        ),
+                        child: Center(
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                width: 16,
+                              ),
+                              Container(
+                                width: 24,
+                                height: 24,
+                                decoration: BoxDecoration(
+                                 color: sexBtnIndex==1?
+                                 primaryColor:Colors.white,
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                    width: 2,
+                                    color: sexBtnIndex==1?containerBgColor:Colors.white,
+                                  ),
+                                ),
+
+                              ),
+                              SizedBox(
+                                width: 16,
+                              ),
+                              Text(
+                                "Male",
+                                textAlign: TextAlign.start,
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontFamily: 'Lato',
+                                  color: textColor,
+                                  fontWeight: FontWeight.w300,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                      SizedBox(
-                        width: 16,
-                      ),
-                      Text(
-                        "Male",
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontFamily: 'Lato',
-                          color: textColor,
-                          fontWeight: FontWeight.w700,
+                    ),
+                    SizedBox(
+                      width: 16,
+                    ),
+                    Expanded(
+                      child: Container(
+                        height: 60,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: containerBgColor,
+                          borderRadius: BorderRadius.all(
+                              Radius.circular(12)),
+                        ),
+                        child: Center(
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                width: 16,
+                              ),
+                              Container(
+                                width: 24,
+                                height: 24,
+                                decoration: BoxDecoration(
+                                  color: sexBgColor,
+                                  shape: BoxShape.circle,
+                                    border: Border.all(
+                                      width: 2,
+                                      color: borderColor,
+                                    ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 16,
+                              ),
+                              Text(
+                                "Female",
+                                textAlign: TextAlign.start,
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontFamily: 'Lato',
+                                  color: textColor,
+                                  fontWeight: FontWeight.w300,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
                 SizedBox(
                   height: 30,
