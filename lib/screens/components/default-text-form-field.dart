@@ -23,7 +23,7 @@ class DefaultTextFormField extends StatelessWidget {
   final String textColor;
 
   DefaultTextFormField({
-    this.textColor = '#A6A6A6',
+    this.textColor = '#666666',
     this.onChanged,
     this.maxLength,
     this.textCapitalization,

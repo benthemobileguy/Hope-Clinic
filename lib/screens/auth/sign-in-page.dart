@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:hope_clinic/screens/auth/sign-up-page.dart';
 import 'package:hope_clinic/screens/components/default-text-form-field.dart';
+import 'package:hope_clinic/screens/components/main-button.dart';
 import 'package:hope_clinic/theme/style.dart';
 import 'package:hope_clinic/utils/color.dart';
 import 'package:hope_clinic/utils/validator.dart';
 import 'package:mdi/mdi.dart';
 class SignInPage extends StatefulWidget {
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _SignInPageState createState() => _SignInPageState();
 }
 
-class _LoginPageState extends State<SignInPage> {
+class _SignInPageState extends State<SignInPage> {
   FocusNode emailFocus = new FocusNode(), passwordFocus = new FocusNode();
   bool _showPassword = false, _loading = false,
       _isInitialised = false;
@@ -25,7 +27,7 @@ class _LoginPageState extends State<SignInPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                height: 40,
+                height: 50,
               ),
               Hero(
                 tag:"logo",
@@ -131,7 +133,7 @@ class _LoginPageState extends State<SignInPage> {
                     ),
                   ),
                   FlatButton(
-                    padding: EdgeInsets.only(left: 5),
+                    padding: EdgeInsets.only(left: 5, right: 5),
                     onPressed: () {
 
                     },
@@ -147,6 +149,63 @@ class _LoginPageState extends State<SignInPage> {
                     ),
                   ),
                 ],
+              ),
+              Spacer(),
+              Container(
+                height: 60,
+                child: MainButton(
+                  color: primaryColor,
+                  child: Text(
+                    "Sign In",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontFamily: 'Lato',
+                      color: Colors.white,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  onPressed: () {
+
+                  },
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Don't have an account?",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontFamily: 'Lato',
+                      color: HexColor("#444444"),
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  FlatButton(
+                    padding: EdgeInsets.only(left: 5, right: 5),
+                    minWidth: 40,
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context)
+                          => SignUpPage()));
+                    },
+                    child: Text(
+                      "Sign Up",
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontFamily: 'Lato',
+                        color: primaryColor,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 40,
               ),
             ],
           ),

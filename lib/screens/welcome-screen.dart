@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hope_clinic/screens/auth/sign-page.dart';
+import 'package:hope_clinic/screens/auth/sign-in-page.dart';
 import 'package:hope_clinic/screens/auth/sign-up-page.dart';
 import 'package:hope_clinic/screens/components/main-button.dart';
 import 'package:hope_clinic/theme/style.dart';
@@ -34,7 +34,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             ),
           Spacer(),
             Container(
-              height: 50,
+              height: 60,
               child: MainButton(
                 color: primaryColor,
                 child: Text(
@@ -58,7 +58,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               height: 20,
             ),
             Container(
-              height: 50,
+              height: 60,
               child: MainButton(
                 color: accentColor,
                 child: Text(
