@@ -4,7 +4,8 @@ final Color primaryColor = HexColor("#077965");
 final Color primaryColorDark = HexColor("#000000");
 final Color customGreen = HexColor("#0AC690");
 final Color accentColor = HexColor("#D7F4EF");
-final Color textColor = HexColor("#1A1A1A");
+final Color containerBgColor = HexColor("#EEEEEE");
+final Color textColor = HexColor("#666666");
 final Color hintColor = HexColor("#C4C4C4");
 
 ThemeData appTheme = new ThemeData(

@@ -113,6 +113,41 @@ class _RegisterPageState extends State<SignUpPage> {
                 SizedBox(
                   height: 10,
                 ),
+                Container(
+                  height: 60,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: containerBgColor,
+                    borderRadius: BorderRadius.all(
+                        Radius.circular(12)),
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: 24,
+                        height: 24,
+                        decoration: BoxDecoration(
+                         color: Colors.white,
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 16,
+                      ),
+                      Text(
+                        "Male",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontFamily: 'Lato',
+                          color: textColor,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 SizedBox(
                   height: 30,
                 ),
