@@ -550,7 +550,9 @@ class _RegisterPageState extends State<SignUpPage> {
                             ),
                           ),
                           onPressed: () {
-                            register();
+                            if(_formKey2.currentState.validate()){
+                              register();
+                            }
                           },
                         ),
                       ),
