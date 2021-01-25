@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hope_clinic/bloc/index.dart';
+import 'package:hope_clinic/services/index.dart';
 import 'package:provider/provider.dart';
 
 class AuthenticationService extends ApiService {
