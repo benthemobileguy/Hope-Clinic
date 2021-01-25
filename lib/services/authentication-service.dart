@@ -10,7 +10,7 @@ class AuthenticationService extends ApiService {
 
   Future<Map<String, dynamic>> login
       (String email, String password) async {
-    PrefManager prefManager = PrefManager();
+  //  PrefManager prefManager = PrefManager();
     bloc = Provider.of<MainBloc>(context);
     Map<String, String> data = new Map();
     data = {
@@ -22,7 +22,7 @@ class AuthenticationService extends ApiService {
     if(_response["responseCode"] == "0"){
       String token = _response["responseBody"]["token"];
       bloc.bearerToken = token;
-      prefManager.setAuthToken(token);
+    //  prefManager.setAuthToken(token);
       print("token" +token);
     }
     return _response;

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:hope_clinic/bloc/index.dart';
 import 'package:hope_clinic/services/api-exception.dart';
+import 'package:hope_clinic/utils/alert-manager.dart';
 import 'package:hope_clinic/utils/constants.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
