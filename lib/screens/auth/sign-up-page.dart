@@ -4,14 +4,24 @@ import 'package:hope_clinic/screens/components/default-text-form-field.dart';
 import 'package:hope_clinic/screens/components/main-button.dart';
 import 'package:hope_clinic/theme/style.dart';
 import 'package:hope_clinic/utils/color.dart';
+import 'package:mdi/mdi.dart';
 class SignUpPage extends StatefulWidget {
   @override
   _RegisterPageState createState() => _RegisterPageState();
 }
 
 class _RegisterPageState extends State<SignUpPage> {
-  String buttonText = 'Next';
   int sexBtnIndex = -1;
+  int pageindex = 0;
+  bool _showPassword1 = false, _showPassword2 = false,
+      _isInitialised = false;
+  String _password1, password2;
+  PageController controller = PageController();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -20,6 +30,7 @@ class _RegisterPageState extends State<SignUpPage> {
         body: Padding(
           padding: const EdgeInsets.only(left: 16.0, right: 16.0),
           child: PageView(
+            controller: controller,
             children: [
               SingleChildScrollView(
                 child: Column(
@@ -241,7 +252,7 @@ class _RegisterPageState extends State<SignUpPage> {
                       child: MainButton(
                         color: primaryColor,
                         child: Text(
-                          buttonText,
+                          "Next",
                           textAlign: TextAlign.start,
                           style: TextStyle(
                             fontSize: 14,
@@ -251,7 +262,10 @@ class _RegisterPageState extends State<SignUpPage> {
                           ),
                         ),
                         onPressed: () {
-
+                          controller.nextPage(
+                            duration: Duration(milliseconds: 500),
+                            curve: Curves.ease,
+                          );
                         },
                       ),
                     ),
@@ -341,20 +355,69 @@ class _RegisterPageState extends State<SignUpPage> {
                       height: 20,
                     ),
                     DefaultTextFormField(
-                      hintText: "First Name",
-                      textCapitalization: TextCapitalization.sentences,
-                      keyboardType: TextInputType.text,
-
-
+                        hintText: "Password",
+                        validator: (val) {
+                          if (val.isEmpty) {
+                            return 'Password cannot be empty';
+                          }
+                          if (val.length < 6) {
+                            return 'Minimum characters is 6';
+                          }
+                          return null;
+                        },
+                        obscureText: !_showPassword1,
+                        textInputAction: TextInputAction.done,
+                        keyboardType: TextInputType.visiblePassword,
+                        onChanged: (text) {
+                          setState(() {
+                            _password1 = text;
+                          });
+                        },
+                        suffixIcon: IconButton(
+                          icon: _showPassword1?
+                          Icon(Mdi.eye, color: HexColor("#666666"),)
+                              :Icon(Mdi.eyeOff,
+                              color: HexColor("#666666")),
+                          onPressed: (){
+                            setState(() {
+                              _showPassword1 = !_showPassword1;
+                            });
+                          },
+                        )
                     ),
                     SizedBox(
                       height: 10,
                     ),
                     DefaultTextFormField(
-                      hintText: "Last Name",
-                      textCapitalization: TextCapitalization.sentences,
-                      keyboardType: TextInputType.text,
-
+                        hintText: "Re-Type Password",
+                        validator: (val) {
+                          if (val.isEmpty) {
+                            return 'Password cannot be empty';
+                          }
+                          if (val.length < 6) {
+                            return 'Minimum characters is 6';
+                          }
+                          return null;
+                        },
+                        obscureText: !_showPassword2,
+                        textInputAction: TextInputAction.done,
+                        keyboardType: TextInputType.visiblePassword,
+                        onChanged: (text) {
+                          setState(() {
+                            _password1 = text;
+                          });
+                        },
+                        suffixIcon: IconButton(
+                          icon: _showPassword2?
+                          Icon(Mdi.eye, color: HexColor("#666666"),)
+                              :Icon(Mdi.eyeOff,
+                              color: HexColor("#666666")),
+                          onPressed: (){
+                            setState(() {
+                              _showPassword2 = !_showPassword2;
+                            });
+                          },
+                        )
                     ),
                     SizedBox(
                       height: 80,
@@ -364,7 +427,7 @@ class _RegisterPageState extends State<SignUpPage> {
                       child: MainButton(
                         color: primaryColor,
                         child: Text(
-                          buttonText,
+                          "Sign Up",
                           textAlign: TextAlign.start,
                           style: TextStyle(
                             fontSize: 14,
