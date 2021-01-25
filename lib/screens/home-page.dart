@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:hope_clinic/screens/auth/sign-in-page.dart';
 import 'package:hope_clinic/screens/auth/sign-up-page.dart';
 import 'package:hope_clinic/theme/style.dart';
+import 'package:hope_clinic/utils/pref-manager.dart';
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  PrefManager prefManager = PrefManager();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,9 +35,11 @@ class _HomePageState extends State<HomePage> {
             padding: EdgeInsets.only(left: 10, right: 10),
             minWidth: 40,
             onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context)
-                  =>SignInPage()));
+              prefManager.clearSharedPreferences().then((value){
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context)
+                    =>SignInPage()));
+              });
             },
             child: Text(
               "Log Out",

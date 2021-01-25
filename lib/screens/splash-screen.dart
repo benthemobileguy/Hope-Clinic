@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hope_clinic/screens/auth/sign-in-page.dart';
+import 'package:hope_clinic/screens/home-page.dart';
 import 'package:hope_clinic/screens/welcome-screen.dart';
 import 'package:hope_clinic/utils/pref-manager.dart';
 
@@ -56,10 +58,18 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   void checkLoginState() async {
-
+prefManager.getAuthToken().then((value){
+  if(value!=null){
+    Navigator.pushReplacement(context,
+        MaterialPageRoute(builder: (context)
+        => HomePage()));
+  } else{
     Navigator.pushReplacement(context,
         MaterialPageRoute(builder: (context)
         => WelcomeScreen()));
+  }
+});
+
 
   }
 }
