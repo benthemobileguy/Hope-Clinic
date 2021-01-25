@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hope_clinic/bloc/index.dart';
 import 'package:hope_clinic/services/index.dart';
+import 'package:hope_clinic/theme/style.dart';
+import 'package:hope_clinic/utils/color.dart';
+import 'package:hope_clinic/utils/pref-manager.dart';
 import 'package:provider/provider.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class AuthenticationService extends ApiService {
   BuildContext context;
@@ -10,19 +14,19 @@ class AuthenticationService extends ApiService {
 
   Future<Map<String, dynamic>> login
       (String email, String password) async {
-  //  PrefManager prefManager = PrefManager();
+  PrefManager prefManager = PrefManager();
     bloc = Provider.of<MainBloc>(context);
     Map<String, String> data = new Map();
     data = {
-      "username": email,
+      "email": email,
       "password":password,
     };
     Map<String, dynamic> _response =
     await post('login', data);
-    if(_response["responseCode"] == "0"){
-      String token = _response["responseBody"]["token"];
+    if(_response["status"] == true){
+      String token = _response["token"];
       bloc.bearerToken = token;
-    //  prefManager.setAuthToken(token);
+      prefManager.setAuthToken(token);
       print("token" +token);
     }
     return _response;

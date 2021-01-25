@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:hope_clinic/screens/auth/sign-up-page.dart';
 import 'package:hope_clinic/screens/components/default-text-form-field.dart';
 import 'package:hope_clinic/screens/components/main-button.dart';
+import 'package:hope_clinic/screens/home-page.dart';
+import 'package:hope_clinic/services/authentication-service.dart';
 import 'package:hope_clinic/theme/style.dart';
 import 'package:hope_clinic/utils/color.dart';
 import 'package:hope_clinic/utils/validator.dart';
 import 'package:mdi/mdi.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 class SignInPage extends StatefulWidget {
   @override
   _SignInPageState createState() => _SignInPageState();
@@ -17,10 +20,18 @@ class _SignInPageState extends State<SignInPage> {
   bool _showPassword = false, _loading = false,
       _isInitialised = false;
   String _email, _password;
+  AuthenticationService authenticationService;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    authenticationService = new AuthenticationService(context: context);
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         body: Padding(
           padding: const EdgeInsets.only(left: 16.0, right: 16.0),
@@ -153,7 +164,6 @@ class _SignInPageState extends State<SignInPage> {
                     ),
                   ],
                 ),
-                Spacer(),
                 Container(
                   height: 60,
                   child: MainButton(
@@ -229,6 +239,29 @@ class _SignInPageState extends State<SignInPage> {
 
   void signIn() async{
     if (_formKey.currentState.validate()) {
+    setState(() {
+      _loading = true;
+    });
+    try{
+      Map<String, dynamic> _res = await
+      authenticationService.login(_email, _password);
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context)
+          => HomePage()));
+      setState(() {
+        _loading = false;
+      });
+    }catch(e){
+      setState(() {
+        _loading = false;
+      });
+      Fluttertoast.showToast(
+        msg: "Login Fail: Your email or password is incorrect.",
+        backgroundColor: primaryColor,
+        timeInSecForIosWeb: 2,
+        toastLength: Toast.LENGTH_LONG,
+      );
+    }
 
     }
   }

@@ -90,7 +90,9 @@ class ApiService {
     int statusCode = response.statusCode;
     switch (statusCode) {
       case 200:
-
+        Map<String, dynamic> data = json.decode(response.body);
+        return data;
+        break;
       case 201:
         Map<String, dynamic> data = json.decode(response.body);
         return data;
@@ -109,7 +111,7 @@ class ApiService {
             msg = data.values.toList().first[0];
           }
         } else {
-          msg = data['responseMessage'];
+          msg = data['message'];
         }
 
         throw ApiException(
@@ -128,7 +130,7 @@ class ApiService {
           data = json.decode(data);
           msg = "";
         } else {
-          msg = data['responseMessage'];
+          msg = data['message'];
         }
 
         throw ApiException(
@@ -154,9 +156,9 @@ class ApiService {
     );
     final responseJson = json.decode(response.body);
     if (responseJson["responseCode"] != null && responseJson["responseCode"] != 0) {
-      AlertManager.showToast("Error " + responseJson["responseMessage"].toString());
+      AlertManager.showToast("Error " + responseJson["message"].toString());
     }  else if(responseJson["responseCode"] != null && responseJson["responseCode"] != 99){
-      AlertManager.showToast(responseJson["responseMessage"].toString());
+      AlertManager.showToast(responseJson["message"].toString());
     }
     print(responseJson.toString());
     int statusCode = response.statusCode;
@@ -181,7 +183,7 @@ class ApiService {
             msg = data.values.toList().first[0];
           }
         } else {
-          msg = data['responseMessage'];
+          msg = data['message'];
         }
 
         throw ApiException(
@@ -195,9 +197,9 @@ class ApiService {
         dynamic data = json.decode(response.body);
         print("response " + data.toString());
         if (data["responseCode"] != null && data["responseCode"] != 0) {
-          AlertManager.showToast("Error " + data["responseMessage"].toString());
-        }  else if(data["responseCode"] != null && data["responseMessage"] != 99){
-          AlertManager.showToast(data["responseMessage"].toString());
+          AlertManager.showToast("Error " + data["message"].toString());
+        }  else if(data["responseCode"] != null && data["message"] != 99){
+          AlertManager.showToast(data["message"].toString());
         }
         String msg;
         // lord knows why this was encoded twice
@@ -209,7 +211,7 @@ class ApiService {
             msg = data.values.toList().first[0];
           }
         } else {
-          msg = data['responseMessage'];
+          msg = data['message'];
         }
 
         throw ApiException(
