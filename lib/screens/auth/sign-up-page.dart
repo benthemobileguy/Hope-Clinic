@@ -19,6 +19,7 @@ class _RegisterPageState extends State<SignUpPage> {
   AuthenticationService authenticationService;
   int sexBtnIndex = -1;
   int pageindex = 0;
+  bool _isLoading = false;
   TextEditingController dobController = TextEditingController();
   final _formKey1 = GlobalKey<FormState>();
   final _formKey2 = GlobalKey<FormState>();
@@ -529,7 +530,7 @@ class _RegisterPageState extends State<SignUpPage> {
                         height: 60,
                         child: MainButton(
                           color: primaryColor,
-                          child: Text(
+                          child: !_isLoading? Text(
                             "Sign Up",
                             textAlign: TextAlign.start,
                             style: TextStyle(
@@ -537,6 +538,15 @@ class _RegisterPageState extends State<SignUpPage> {
                               fontFamily: 'Lato',
                               color: Colors.white,
                               fontWeight: FontWeight.w700,
+                            ),
+                          ):SizedBox(
+                            height: 20,
+                            width: 20,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                              valueColor:
+                              new AlwaysStoppedAnimation<Color>(
+                                  Colors.white),
                             ),
                           ),
                           onPressed: () {
@@ -757,12 +767,15 @@ class _RegisterPageState extends State<SignUpPage> {
   }
 
   void register() async{
+   setState(() {
+     _isLoading = true;
+   });
     Map<String, String> data = new Map();
     data = {
       "firstname": _firstNameController.text,
       "lastname": _lastNameController.text,
-      "phone_number": "+2347060959269",
-      "email": "developerjuni@gmail.com",
+      "phone_number": _phoneNoController.text,
+      "email": _emailController.text,
       "dob": dobController.text,
       "password": _confirmPassController.text,
       "role": "patient"
@@ -775,12 +788,18 @@ class _RegisterPageState extends State<SignUpPage> {
           curve: Curves.ease,
         );
       }
+      setState(() {
+        _isLoading = true;
+      });
     }catch(e){
       Fluttertoast.showToast(
         msg: "The email has already been taken!",
         timeInSecForIosWeb: 2,
         toastLength: Toast.LENGTH_LONG,
       );
+      setState(() {
+        _isLoading = true;
+      });
     }
   }
 }
