@@ -257,7 +257,6 @@ class _SignInPageState extends State<SignInPage> {
       });
       Fluttertoast.showToast(
         msg: "Login Fail: Your email or password is incorrect.",
-        backgroundColor: primaryColor,
         timeInSecForIosWeb: 2,
         toastLength: Toast.LENGTH_LONG,
       );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hope_clinic/screens/welcome-screen.dart';
+import 'package:hope_clinic/utils/pref-manager.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -12,6 +13,7 @@ class _SplashScreenState extends State<SplashScreen>
   Animation<double> animation;
   AnimationController _controller;
   Animation<double> _animation;
+  PrefManager prefManager = PrefManager();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,6 +56,7 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   void checkLoginState() async {
+
     Navigator.pushReplacement(context,
         MaterialPageRoute(builder: (context)
         => WelcomeScreen()));
