@@ -15,19 +15,127 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.white,
         body: Padding(
           padding: const EdgeInsets.only(left: 15, right: 15),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
 
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: 40,
-                  ),
-                  Text(
-                    "DOCTOR INFO",
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: 40,
+                        ),
+                        Text(
+                          "DOCTOR INFO",
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontSize: 10,
+                            fontFamily: 'Lato',
+                            color: greyColor,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          "Dr. Onuoha\nOkeigwe",
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontFamily: 'Lato',
+                            color: primaryColor,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          "Chiropractor",
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontFamily: 'Lato',
+                            color: textColor,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        SizedBox(
+                          height: 60,
+                          width: 155,
+                          child: MainButton(
+                            child:  Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                             Image.asset(
+                               'images/icons/mail.png',
+                               height: 24,
+                               width: 24,),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Text(
+                                  "Message",
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    fontFamily: 'Lato',
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            color: primaryColor,
+                            onPressed: (){
+
+                            },
+                          ),
+                        ),
+                        Text(
+                          "Message",
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontFamily: 'Lato',
+                            color: Colors.white,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Spacer(),
+                    Column(
+                      children: [
+                        SizedBox(
+                          height: 20,
+                        ),
+                        new Image.asset("images/man_smiling.png",
+                          width: 156,
+                          height: 204,),
+                      ],
+                    ),
+                    SizedBox(
+                      width: 10,
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 16,
+                ),
+                Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    "NEXT APPOINTMENT IN",
                     textAlign: TextAlign.start,
                     style: TextStyle(
                       fontSize: 10,
@@ -36,76 +144,73 @@ class _HomePageState extends State<HomePage> {
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "Dr. Onuoha\nOkeigwe",
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    "3 Days",
                     textAlign: TextAlign.start,
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 20,
                       fontFamily: 'Lato',
                       color: primaryColor,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-                  SizedBox(
-                    height: 10,
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                Text(
+                  "APPOINTMENTS",
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                    fontSize: 10,
+                    fontFamily: 'Lato',
+                    color: greyColor,
+                    fontWeight: FontWeight.w700,
                   ),
-                  Text(
-                    "Chiropractor",
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontFamily: 'Lato',
-                      color: textColor,
-                      fontWeight: FontWeight.w700,
-                    ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                  decoration: BoxDecoration(
+                    color:lightGreen,
+                    borderRadius: BorderRadius.all(Radius.circular(16))
                   ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  SizedBox(
-                    height: 60,
-                    width: 155,
-                    child: MainButton(
-                      child:  Row(
-                        children: [
-                          Text(
-                            "Message",
-                            textAlign: TextAlign.start,
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontFamily: 'Lato',
-                              color: textColor,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                        ],
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "5",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          fontSize: 32,
+                          fontFamily: 'Lato',
+                          color: primaryColor,
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
-                      color: primaryColor,
-                      onPressed: (){
-
-                      },
-                    ),
-                  )
-                ],
-              ),
-              Spacer(),
-              Column(
-                children: [
-                  SizedBox(
-                    height: 20,
+                      Text(
+                        "Upcoming\nAppointments",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontFamily: 'Lato',
+                          color: textColor,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ],
                   ),
-                  new Image.asset("images/man_smiling.png",
-                    width: 156,
-                    height: 204,),
-                ],
-              ),
-              SizedBox(
-                width: 10,
-              )
-            ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
