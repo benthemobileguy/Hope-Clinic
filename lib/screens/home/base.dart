@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hope_clinic/screens/home/index.dart';
+import 'package:hope_clinic/screens/profile/index.dart';
+import 'package:hope_clinic/screens/schedule/index.dart';
+import 'package:hope_clinic/screens/shop/index.dart';
+import 'package:hope_clinic/utils/color.dart';
 
 class Base extends StatefulWidget {
   final int currentIndex;
@@ -10,7 +15,6 @@ class Base extends StatefulWidget {
 }
 
 class _BaseState extends State<Base> {
-  SizeConfig _sizeConfig = SizeConfig();
   int _currentIndex = 0;
 
   final scaffoldKeyBase = new GlobalKey<ScaffoldState>();
@@ -35,10 +39,9 @@ class _BaseState extends State<Base> {
   Widget build(BuildContext ctx) {
     List<Widget> _children = [
       new HomePage(),
-      new WalletScreen(),
-      new TripsPage(),
-      new ReferralPage(),
-      new ProfilePage()
+      new SchedulePage(),
+      new ProfilePage(),
+      new ShopPage(),
     ];
     return new Scaffold(
       key: scaffoldKeyBase,
@@ -70,11 +73,8 @@ class _BaseState extends State<Base> {
               "Home",
               style: TextStyle(
                 fontWeight: FontWeight.w700,
-                fontFamily: 'Inter',
-                fontSize: _sizeConfig.textSize(
-                  context,
-                  1.7,
-                ),
+                fontFamily: 'Lato',
+                fontSize: 10,
               ),
             ),
           ),
@@ -96,14 +96,11 @@ class _BaseState extends State<Base> {
               ),
             ),
             title: Text(
-              "Wallet",
+              "Schedule",
               style: TextStyle(
                 fontWeight: FontWeight.w700,
-                fontFamily: 'Inter',
-                fontSize: _sizeConfig.textSize(
-                  context,
-                  1.7,
-                ),
+                fontFamily: 'Lato',
+                fontSize: 10,
               ),
             ),
           ),
@@ -118,21 +115,18 @@ class _BaseState extends State<Base> {
                   padding: const EdgeInsets.all(5.0),
                   child:ImageIcon(
                     AssetImage(
-                      "assets/images/trips.png",
+                      "assets/images/icons/schedule.png",
                     ),
                     size: 25,
                   )
               ),
             ),
             title: Text(
-              "Trips",
+              "Profile",
               style: TextStyle(
                 fontWeight: FontWeight.w700,
-                fontFamily: 'Inter',
-                fontSize: _sizeConfig.textSize(
-                  context,
-                  1.7,
-                ),
+                fontFamily: 'Lato',
+                fontSize: 10,
               ),
             ),
           ),
@@ -147,43 +141,44 @@ class _BaseState extends State<Base> {
                   padding: const EdgeInsets.all(5.0),
                   child:ImageIcon(
                     AssetImage(
-                      "assets/images/referral.png",
+                      "assets/images/icons/profile.png",
                     ),
                     size: 25,
                   )
               ),
             ),
             title: Text(
-              "Referral",
+              "Profile",
               style: TextStyle(
                 fontWeight: FontWeight.w700,
-                fontFamily: 'Inter',
-                fontSize: _sizeConfig.textSize(
-                  context,
-                  1.7,
-                ),
+                fontFamily: 'Lato',
+                fontSize: 10,
               ),
             ),
           ),
           new BottomNavigationBarItem(
-            icon: Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: ImageDisplay(
-                icon: Icons.person,
-                iconHeight: 20.0,
-                profilePicture: null,
-                height: _sizeConfig.heightMargin(context, 2.0),
+            icon: Container(
+              decoration: BoxDecoration(
+                  color: _currentIndex == 3
+                      ? HexColor("#FFF2E9") :
+                  Colors.transparent,
+                  shape: BoxShape.circle),
+              child: Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child:ImageIcon(
+                    AssetImage(
+                      "assets/images/icons/shop.png",
+                    ),
+                    size: 25,
+                  )
               ),
             ),
             title: Text(
-              "Profile",
+              "Shop",
               style: TextStyle(
                 fontWeight: FontWeight.w700,
-                fontFamily: 'Inter',
-                fontSize: _sizeConfig.textSize(
-                  context,
-                  1.7,
-                ),
+                fontFamily: 'Lato',
+                fontSize: 10,
               ),
             ),
           ),
