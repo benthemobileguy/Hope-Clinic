@@ -1,12 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jettify_customer/screens/home/components/image-display.dart';
-import 'package:jettify_customer/screens/home/index.dart';
-import 'package:jettify_customer/screens/profile/index.dart';
-import 'package:jettify_customer/screens/referral/index.dart';
-import 'package:jettify_customer/screens/trips/index.dart';
-import 'package:jettify_customer/screens/wallet/index.dart';
-import 'package:jettify_customer/utils/color.dart';
-import 'package:jettify_customer/utils/size-config.dart';
 
 class Base extends StatefulWidget {
   final int currentIndex;
