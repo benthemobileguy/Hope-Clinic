@@ -27,12 +27,13 @@ class AuthenticationService extends ApiService {
       String token = _response["token"];
       bloc.bearerToken = token;
       prefManager.setAuthToken(token);
+      prefManager.setUserData(_response['user']);
       print("token" +token);
     }
     return _response;
   }
   Future<Map<String, dynamic>> register(Map<String, dynamic> data) async {
-    Map<String, dynamic> _response = await post('signup', data);
+    Map<String, dynamic> _response = await post('register', data);
 
     return _response;
   }
@@ -42,7 +43,7 @@ class AuthenticationService extends ApiService {
   }
   Future<Map<String, dynamic>> verifyOTP(Map<String, dynamic> data) async {
     bloc = Provider.of<MainBloc>(context);
-    Map<String, dynamic> _response = await post('verifyOTP', data);
+    Map<String, dynamic> _response = await post('verify-account', data);
     return _response;
   }
 

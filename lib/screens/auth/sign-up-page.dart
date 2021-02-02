@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:hope_clinic/screens/auth/sign-in-page.dart';
 import 'package:hope_clinic/screens/components/default-text-form-field.dart';
 import 'package:hope_clinic/screens/components/main-button.dart';
+import 'package:hope_clinic/screens/home-page.dart';
 import 'package:hope_clinic/services/authentication-service.dart';
 import 'package:hope_clinic/theme/style.dart';
 import 'package:hope_clinic/utils/color.dart';
+import 'package:hope_clinic/utils/pref-manager.dart';
 import 'package:hope_clinic/utils/validator.dart';
 import 'package:mdi/mdi.dart';
 import 'package:pinput/pin_put/pin_put.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+
 class SignUpPage extends StatefulWidget {
   @override
   _RegisterPageState createState() => _RegisterPageState();
@@ -36,23 +39,24 @@ class _RegisterPageState extends State<SignUpPage> {
   BoxDecoration pinPutDecoration = BoxDecoration(
       border: Border.all(color: primaryColor),
       borderRadius: BorderRadius.circular(6));
-  bool _showPassword1 = false, _showPassword2 = false,
-      _isInitialised = false;
+  bool _showPassword1 = false, _showPassword2 = false, _isInitialised = false;
   String _password1, password2;
   PageController controller = PageController();
- @override
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
     authenticationService = new AuthenticationService(context: context);
   }
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return WillPopScope(
+      onWillPop: onWillPop,
       child: Scaffold(
         backgroundColor: Colors.white,
         body: Padding(
-          padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+          padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 10.0),
           child: PageView(
             physics: NeverScrollableScrollPhysics(),
             controller: controller,
@@ -67,7 +71,7 @@ class _RegisterPageState extends State<SignUpPage> {
                         height: 50,
                       ),
                       Hero(
-                        tag:"logo",
+                        tag: "logo",
                         child: new Image.asset(
                           'images/logo.png',
                           fit: BoxFit.cover,
@@ -115,7 +119,6 @@ class _RegisterPageState extends State<SignUpPage> {
                           }
                           return null;
                         },
-
                       ),
                       SizedBox(
                         height: 10,
@@ -164,17 +167,15 @@ class _RegisterPageState extends State<SignUpPage> {
                         height: 10,
                       ),
                       GestureDetector(
-                        onTap: (){
-                          DatePicker.showDatePicker(
-                              context,
+                        onTap: () {
+                          DatePicker.showDatePicker(context,
                               theme: DatePickerTheme(
                                 containerHeight: 200,
                                 headerColor: primaryColor,
                                 backgroundColor: Colors.white,
                                 itemStyle: TextStyle(
                                     color: primaryColor,
-                                    fontWeight:
-                                    FontWeight.w500,
+                                    fontWeight: FontWeight.w500,
                                     fontSize: 16.5),
                                 cancelStyle: TextStyle(
                                   fontSize: 16.5,
@@ -187,16 +188,16 @@ class _RegisterPageState extends State<SignUpPage> {
                                   fontFamily: 'CircularStd',
                                   color: Colors.white,
                                   fontWeight: FontWeight.w500,
-                                ),),
+                                ),
+                              ),
                               showTitleActions: true,
-                              minTime:DateTime(2010, 12, 31),
-                              maxTime: DateTime(2024, 12, 31),
-                              onChanged: (date) {
-
-                              }, onConfirm: (date) {
+                              minTime: DateTime(1930, 00, 00),
+                              maxTime: DateTime(2012, 00, 00),
+                              onChanged: (date) {}, onConfirm: (date) {
                             setDate(date);
-
-                          }, currentTime: DateTime.now(), locale: LocaleType.en);
+                          },
+                              currentTime: DateTime.now(),
+                              locale: LocaleType.en);
                         },
                         child: DefaultTextFormField(
                           controller: dobController,
@@ -212,7 +213,6 @@ class _RegisterPageState extends State<SignUpPage> {
                           suffixIcon: IconButton(
                             icon: Icon(Icons.calendar_today_outlined),
                           ),
-
                         ),
                       ),
                       SizedBox(
@@ -222,7 +222,7 @@ class _RegisterPageState extends State<SignUpPage> {
                         children: [
                           Expanded(
                             child: GestureDetector(
-                              onTap: (){
+                              onTap: () {
                                 setState(() {
                                   sexBtnIndex = 1;
                                 });
@@ -232,12 +232,13 @@ class _RegisterPageState extends State<SignUpPage> {
                                 width: double.infinity,
                                 decoration: BoxDecoration(
                                   color: containerBgColor,
-                                  borderRadius: BorderRadius.all(
-                                      Radius.circular(12)),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(12)),
                                 ),
                                 child: Center(
                                   child: Row(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       SizedBox(
                                         width: 16,
@@ -246,15 +247,17 @@ class _RegisterPageState extends State<SignUpPage> {
                                         width: 24,
                                         height: 24,
                                         decoration: BoxDecoration(
-                                          color: sexBtnIndex==1?
-                                          primaryColor:Colors.white,
+                                          color: sexBtnIndex == 1
+                                              ? primaryColor
+                                              : Colors.white,
                                           shape: BoxShape.circle,
                                           border: Border.all(
                                             width: 2,
-                                            color: sexBtnIndex==1?containerBgColor:Colors.white,
+                                            color: sexBtnIndex == 1
+                                                ? containerBgColor
+                                                : Colors.white,
                                           ),
                                         ),
-
                                       ),
                                       SizedBox(
                                         width: 16,
@@ -280,7 +283,7 @@ class _RegisterPageState extends State<SignUpPage> {
                           ),
                           Expanded(
                             child: GestureDetector(
-                              onTap: (){
+                              onTap: () {
                                 setState(() {
                                   sexBtnIndex = 2;
                                 });
@@ -290,12 +293,13 @@ class _RegisterPageState extends State<SignUpPage> {
                                 width: double.infinity,
                                 decoration: BoxDecoration(
                                   color: containerBgColor,
-                                  borderRadius: BorderRadius.all(
-                                      Radius.circular(12)),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(12)),
                                 ),
                                 child: Center(
                                   child: Row(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       SizedBox(
                                         width: 16,
@@ -304,13 +308,15 @@ class _RegisterPageState extends State<SignUpPage> {
                                         width: 24,
                                         height: 24,
                                         decoration: BoxDecoration(
-                                          color: sexBtnIndex==2?
-                                          primaryColor:Colors.white,
+                                          color: sexBtnIndex == 2
+                                              ? primaryColor
+                                              : Colors.white,
                                           shape: BoxShape.circle,
                                           border: Border.all(
                                             width: 2,
-                                            color: sexBtnIndex==2?
-                                            containerBgColor:Colors.white,
+                                            color: sexBtnIndex == 2
+                                                ? containerBgColor
+                                                : Colors.white,
                                           ),
                                         ),
                                       ),
@@ -353,12 +359,14 @@ class _RegisterPageState extends State<SignUpPage> {
                             ),
                           ),
                           onPressed: () {
-                            if(sexBtnIndex!= -1 &&_formKey1.currentState.validate()){
+                            if (sexBtnIndex != -1 &&
+                                _formKey1.currentState.validate()) {
                               controller.nextPage(
                                 duration: Duration(milliseconds: 500),
                                 curve: Curves.ease,
                               );
-                            } else if(_formKey1.currentState.validate() && sexBtnIndex == -1){
+                            } else if (_formKey1.currentState.validate() &&
+                                sexBtnIndex == -1) {
                               Fluttertoast.showToast(
                                   msg: "Please select your gender",
                                   toastLength: Toast.LENGTH_LONG,
@@ -367,7 +375,6 @@ class _RegisterPageState extends State<SignUpPage> {
                                   backgroundColor: primaryColor,
                                   textColor: HexColor("#FFFFFF"));
                             }
-
                           },
                         ),
                       ),
@@ -388,9 +395,10 @@ class _RegisterPageState extends State<SignUpPage> {
                             padding: EdgeInsets.only(left: 5, right: 5),
                             minWidth: 40,
                             onPressed: () {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context)
-                                  => SignInPage()));
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => SignInPage()));
                             },
                             child: Text(
                               "Sign In",
@@ -411,7 +419,9 @@ class _RegisterPageState extends State<SignUpPage> {
                     ],
                   ),
                 ),
-              ),///Page One
+              ),
+
+              ///Page One
               SingleChildScrollView(
                 child: Form(
                   key: _formKey2,
@@ -422,7 +432,7 @@ class _RegisterPageState extends State<SignUpPage> {
                         height: 50,
                       ),
                       Hero(
-                        tag:"logo",
+                        tag: "logo",
                         child: new Image.asset(
                           'images/logo.png',
                           fit: BoxFit.cover,
@@ -460,7 +470,7 @@ class _RegisterPageState extends State<SignUpPage> {
                         height: 20,
                       ),
                       DefaultTextFormField(
-                        controller: _passController,
+                          controller: _passController,
                           hintText: "Password",
                           validator: (val) {
                             if (val.isEmpty) {
@@ -480,25 +490,26 @@ class _RegisterPageState extends State<SignUpPage> {
                             });
                           },
                           suffixIcon: IconButton(
-                            icon: _showPassword1?
-                            Icon(Mdi.eye, color: HexColor("#666666"),)
-                                :Icon(Mdi.eyeOff,
-                                color: HexColor("#666666")),
-                            onPressed: (){
+                            icon: _showPassword1
+                                ? Icon(
+                                    Mdi.eye,
+                                    color: HexColor("#666666"),
+                                  )
+                                : Icon(Mdi.eyeOff, color: HexColor("#666666")),
+                            onPressed: () {
                               setState(() {
                                 _showPassword1 = !_showPassword1;
                               });
                             },
-                          )
-                      ),
+                          )),
                       SizedBox(
                         height: 10,
                       ),
                       DefaultTextFormField(
-                        controller: _confirmPassController,
+                          controller: _confirmPassController,
                           hintText: "Re-Type Password",
                           validator: (val) {
-                            if (val!=_passController.text) {
+                            if (val != _passController.text) {
                               return 'Password do not match';
                             }
                             return null;
@@ -512,17 +523,18 @@ class _RegisterPageState extends State<SignUpPage> {
                             });
                           },
                           suffixIcon: IconButton(
-                            icon: _showPassword2?
-                            Icon(Mdi.eye, color: HexColor("#666666"),)
-                                :Icon(Mdi.eyeOff,
-                                color: HexColor("#666666")),
-                            onPressed: (){
+                            icon: _showPassword2
+                                ? Icon(
+                                    Mdi.eye,
+                                    color: HexColor("#666666"),
+                                  )
+                                : Icon(Mdi.eyeOff, color: HexColor("#666666")),
+                            onPressed: () {
                               setState(() {
                                 _showPassword2 = !_showPassword2;
                               });
                             },
-                          )
-                      ),
+                          )),
                       SizedBox(
                         height: 80,
                       ),
@@ -530,27 +542,29 @@ class _RegisterPageState extends State<SignUpPage> {
                         height: 60,
                         child: MainButton(
                           color: primaryColor,
-                          child: !_isLoading? Text(
-                            "Sign Up",
-                            textAlign: TextAlign.start,
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontFamily: 'Lato',
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ):SizedBox(
-                            height: 20,
-                            width: 20,
-                            child: CircularProgressIndicator(
-                              strokeWidth: 2,
-                              valueColor:
-                              new AlwaysStoppedAnimation<Color>(
-                                  Colors.white),
-                            ),
-                          ),
+                          child: !_isLoading
+                              ? Text(
+                                  "Sign Up",
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    fontFamily: 'Lato',
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                )
+                              : SizedBox(
+                                  height: 20,
+                                  width: 20,
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 2,
+                                    valueColor:
+                                        new AlwaysStoppedAnimation<Color>(
+                                            Colors.white),
+                                  ),
+                                ),
                           onPressed: () {
-                            if(_formKey2.currentState.validate()){
+                            if (_formKey2.currentState.validate()) {
                               register();
                             }
                           },
@@ -573,9 +587,10 @@ class _RegisterPageState extends State<SignUpPage> {
                             padding: EdgeInsets.only(left: 5, right: 5),
                             minWidth: 40,
                             onPressed: () {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context)
-                                  => SignInPage()));
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => SignInPage()));
                             },
                             child: Text(
                               "Sign In",
@@ -596,7 +611,9 @@ class _RegisterPageState extends State<SignUpPage> {
                     ],
                   ),
                 ),
-              ),///Page Two
+              ),
+
+              ///Page Two
               SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -605,7 +622,7 @@ class _RegisterPageState extends State<SignUpPage> {
                       height: 50,
                     ),
                     Hero(
-                      tag:"logo",
+                      tag: "logo",
                       child: new Image.asset(
                         'images/logo.png',
                         fit: BoxFit.cover,
@@ -655,9 +672,7 @@ class _RegisterPageState extends State<SignUpPage> {
                       fieldsAlignment: MainAxisAlignment.center,
                       eachFieldHeight: 15,
                       eachFieldWidth: 15,
-                      onSubmit: (String pin) => {
-                        verifyPin(pin)
-                      },
+                      onSubmit: (String pin) => {verifyPin(pin)},
                       focusNode: _pinPutFocusNode,
                       controller: _pinPutController,
                       submittedFieldDecoration: pinPutDecoration.copyWith(
@@ -675,9 +690,7 @@ class _RegisterPageState extends State<SignUpPage> {
                         color: Colors.white,
                         padding: EdgeInsets.only(left: 10, right: 10),
                         minWidth: 40,
-                        onPressed: () {
-
-                        },
+                        onPressed: () {},
                         child: Text(
                           "Resend code",
                           textAlign: TextAlign.start,
@@ -748,60 +761,94 @@ class _RegisterPageState extends State<SignUpPage> {
                     // ),
                   ],
                 ),
-              ),///Page Three
-            ],
+              ),
 
+              ///Page Three
+            ],
           ),
         ),
       ),
     );
   }
 
-  verifyPin(String pin) {
-
+  verifyPin(String pin) async {
+    Map<String, String> data = new Map();
+    data = {"verify_code": pin};
+    PrefManager prefManager = PrefManager();
+    Map<String, dynamic> _res = await authenticationService.verifyOTP(data);
+    if (_res['status_code'] == 200) {
+      prefManager.setAuthToken(_res['token']).then((value){
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context)
+            => HomePage()));
+      });
+    } else{
+      
+      Fluttertoast.showToast(
+        msg: _res["message"],
+        timeInSecForIosWeb: 2,
+        toastLength: Toast.LENGTH_LONG,
+      );
+    }
   }
 
   void setDate(DateTime date) {
     setState(() {
-      dobController.text = date.toString().substring(0,10);
+      dobController.text = date.toString().substring(0, 10);
     });
-
   }
 
-  void register() async{
-   setState(() {
-     _isLoading = true;
-   });
+  void register() async {
+    setState(() {
+      _isLoading = true;
+    });
     Map<String, String> data = new Map();
     data = {
-      "firstname": _firstNameController.text,
-      "lastname": _lastNameController.text,
-      "phone_number": _phoneNoController.text,
-      "email": _emailController.text,
+      "firstname": _firstNameController.text.trim(),
+      "lastname": _lastNameController.text.trim(),
+      "phone_number": _phoneNoController.text.trim(),
+      "email": _emailController.text.trim(),
       "dob": dobController.text,
-      "password": _confirmPassController.text,
+      "password": _confirmPassController.text.trim(),
       "role": "patient"
     };
-    try{
+    try {
       Map<String, dynamic> _res = await authenticationService.register(data);
-      if(_formKey2.currentState.validate()){
-        controller.nextPage(
-          duration: Duration(milliseconds: 500),
-          curve: Curves.ease,
-        );
-      }
-      setState(() {
-        _isLoading = true;
+      PrefManager prefManager = PrefManager();
+      prefManager.setUserData(_res['user'])
+          .then((value) {
+        if (_formKey2.currentState.validate()) {
+          controller.nextPage(
+            duration: Duration(milliseconds: 500),
+            curve: Curves.ease,
+          );
+        }
       });
-    }catch(e){
+      setState(() {
+        _isLoading = false;
+      });
+    } catch (e) {
+      print(e.toString());
       Fluttertoast.showToast(
         msg: "The email has already been taken!",
         timeInSecForIosWeb: 2,
         toastLength: Toast.LENGTH_LONG,
       );
       setState(() {
-        _isLoading = true;
+        _isLoading = false;
       });
     }
+  }
+
+  Future<bool> onWillPop() {
+    if(controller.page !=0){
+      controller.previousPage(
+        duration: Duration(milliseconds: 500),
+        curve: Curves.ease,
+      );
+    } else{
+      Navigator.pop(context);
+    }
+    return null;
   }
 }
