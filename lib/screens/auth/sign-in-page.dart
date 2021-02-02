@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hope_clinic/screens/auth/sign-up-page.dart';
 import 'package:hope_clinic/screens/components/default-text-form-field.dart';
 import 'package:hope_clinic/screens/components/main-button.dart';
-import 'package:hope_clinic/screens/home-page.dart';
+import 'package:hope_clinic/screens/home/base.dart';
 import 'package:hope_clinic/services/authentication-service.dart';
 import 'package:hope_clinic/theme/style.dart';
 import 'package:hope_clinic/utils/color.dart';
@@ -247,7 +247,7 @@ class _SignInPageState extends State<SignInPage> {
       authenticationService.login(_email, _password);
       Navigator.push(context,
           MaterialPageRoute(builder: (context)
-          => HomePage()));
+          => Base()));
       setState(() {
         _loading = false;
       });
