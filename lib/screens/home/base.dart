@@ -63,7 +63,7 @@ class _BaseState extends State<Base> {
                   padding: const EdgeInsets.all(5.0),
                   child:ImageIcon(
                     AssetImage(
-                      "assets/images/home.png",
+                      "images/icons/home.png",
                     ),
                     size: 25,
                   )
@@ -89,7 +89,7 @@ class _BaseState extends State<Base> {
                   padding: const EdgeInsets.all(5.0),
                   child:ImageIcon(
                     AssetImage(
-                      "assets/images/wallet.png",
+                      "images/icons/calendar.png",
                     ),
                     size: 25,
                   )
@@ -115,7 +115,7 @@ class _BaseState extends State<Base> {
                   padding: const EdgeInsets.all(5.0),
                   child:ImageIcon(
                     AssetImage(
-                      "assets/images/icons/schedule.png",
+                      "images/icons/profile.png",
                     ),
                     size: 25,
                   )
@@ -141,33 +141,7 @@ class _BaseState extends State<Base> {
                   padding: const EdgeInsets.all(5.0),
                   child:ImageIcon(
                     AssetImage(
-                      "assets/images/icons/profile.png",
-                    ),
-                    size: 25,
-                  )
-              ),
-            ),
-            title: Text(
-              "Profile",
-              style: TextStyle(
-                fontWeight: FontWeight.w700,
-                fontFamily: 'Lato',
-                fontSize: 10,
-              ),
-            ),
-          ),
-          new BottomNavigationBarItem(
-            icon: Container(
-              decoration: BoxDecoration(
-                  color: _currentIndex == 3
-                      ? HexColor("#FFF2E9") :
-                  Colors.transparent,
-                  shape: BoxShape.circle),
-              child: Padding(
-                  padding: const EdgeInsets.all(5.0),
-                  child:ImageIcon(
-                    AssetImage(
-                      "assets/images/icons/shop.png",
+                      "images/icons/shop.png",
                     ),
                     size: 25,
                   )

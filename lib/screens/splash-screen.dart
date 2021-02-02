@@ -65,7 +65,7 @@ prefManager.getAuthToken().then((value){
   } else{
     Navigator.pushReplacement(context,
         MaterialPageRoute(builder: (context)
-        => WelcomeScreen()));
+        => Base()));
   }
 });
 
