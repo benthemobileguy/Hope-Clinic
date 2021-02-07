@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hope_clinic/screens/shop/components/shop-item.dart';
 import 'package:hope_clinic/theme/style.dart';
 import 'package:hope_clinic/utils/color.dart';
 class ShopPage extends StatefulWidget {
@@ -14,6 +15,7 @@ class _ShopPageState extends State<ShopPage> {
         padding: const EdgeInsets.all(20.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               "Hope Store",
@@ -25,30 +27,10 @@ class _ShopPageState extends State<ShopPage> {
                 fontWeight: FontWeight.w700,
               ),
             ),
-            new Image.asset('images/img_1.png'),
-            Text(
-              "Organic Ginger Balm",
-              textAlign: TextAlign.start,
-              style: TextStyle(
-                fontSize: 14,
-                fontFamily: 'Lato',
-                color: normalText,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
             SizedBox(
-              height: 10,
+              height: 30,
             ),
-            Text(
-              "5,000",
-              textAlign: TextAlign.start,
-              style: TextStyle(
-                fontSize: 16,
-                fontFamily: 'Lato',
-                color: primaryColor,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
+            ShopItem(),
           ],
         ),
       ),
