@@ -1,10 +1,10 @@
 
-class ShopItem {
+class Shop {
   String title;
   String image;
   String price;
 
-  ShopItem(
+  Shop(
       {this.title,
         this.image,
         this.price,});

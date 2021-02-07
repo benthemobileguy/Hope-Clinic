@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hope_clinic/model/shop-item.dart';
 import 'package:hope_clinic/screens/shop/components/shop-item.dart';
 import 'package:hope_clinic/theme/style.dart';
 import 'package:hope_clinic/utils/color.dart';
@@ -8,6 +9,20 @@ class ShopPage extends StatefulWidget {
 }
 
 class _ShopPageState extends State<ShopPage> {
+  List<Shop> shopItem = [];
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    shopItem.add(Shop(title: "Organic Ginger Balm",
+        image: "images/img_1.png", price: "5,000"));
+    shopItem.add(Shop(title: "Pure Memory Foam Knee Pillow",
+        image: "images/img_2.png", price: "15,000"));
+    shopItem.add(Shop(title: "Premium Gel Cool Neck Memory Foam Pillow",
+        image: "images/img_1.png", price: "25,000"));
+    shopItem.add(Shop(title: "HOPE Gift Vouchers",
+        image: "images/img_1.png", price: "50,000"));
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -30,7 +45,7 @@ class _ShopPageState extends State<ShopPage> {
             SizedBox(
               height: 30,
             ),
-            ShopItem(),
+            ShopItem(shopItem: shopItem,),
           ],
         ),
       ),
