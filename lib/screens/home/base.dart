@@ -53,21 +53,14 @@ class _BaseState extends State<Base> {
         onTap: onTabTapped,
         items: <BottomNavigationBarItem>[
           new BottomNavigationBarItem(
-            icon: Container(
-              decoration: BoxDecoration(
-                  color: _currentIndex == 0
-                      ? HexColor("#FFF2E9") :
-                  Colors.transparent,
-                  shape: BoxShape.circle),
-              child: Padding(
-                  padding: const EdgeInsets.all(5.0),
-                  child:ImageIcon(
-                    AssetImage(
-                      "images/icons/home.png",
-                    ),
-                    size: 25,
-                  )
-              ),
+            icon: Padding(
+                padding: const EdgeInsets.all(5.0),
+                child:ImageIcon(
+                  AssetImage(
+                    "images/icons/home.png",
+                  ),
+                  size: 25,
+                )
             ),
             title: Text(
               "Home",
@@ -79,21 +72,16 @@ class _BaseState extends State<Base> {
             ),
           ),
           new BottomNavigationBarItem(
-            icon: Container(
-              decoration: BoxDecoration(
-                  color: _currentIndex == 1
-                      ? HexColor("#FFF2E9") :
-                  Colors.transparent,
-                  shape: BoxShape.circle),
-              child: Padding(
-                  padding: const EdgeInsets.all(5.0),
-                  child:ImageIcon(
-                    AssetImage(
-                      "images/icons/calendar.png",
-                    ),
-                    size: 25,
-                  )
-              ),
+            icon: Padding(
+                padding: const EdgeInsets.all(5.0),
+                child:ImageIcon(
+                  AssetImage(
+                   _currentIndex!=1?
+                   "images/icons/calendar.png"
+                       :"images/icons/calendar_green.png",
+                  ),
+                  size: 25,
+                )
             ),
             title: Text(
               "Schedule",
@@ -105,21 +93,15 @@ class _BaseState extends State<Base> {
             ),
           ),
           new BottomNavigationBarItem(
-            icon: Container(
-              decoration: BoxDecoration(
-                  color: _currentIndex == 2
-                      ? HexColor("#FFF2E9") :
-                  Colors.transparent,
-                  shape: BoxShape.circle),
-              child: Padding(
-                  padding: const EdgeInsets.all(5.0),
-                  child:ImageIcon(
-                    AssetImage(
-                      "images/icons/profile.png",
-                    ),
-                    size: 25,
-                  )
-              ),
+            icon: Padding(
+                padding: const EdgeInsets.all(5.0),
+                child:ImageIcon(
+                  AssetImage(
+                    _currentIndex!=2? "images/icons/profile.png":
+                    "images/icons/profile_green.png",
+                  ),
+                  size: 25,
+                )
             ),
             title: Text(
               "Profile",
@@ -131,21 +113,15 @@ class _BaseState extends State<Base> {
             ),
           ),
           new BottomNavigationBarItem(
-            icon: Container(
-              decoration: BoxDecoration(
-                  color: _currentIndex == 3
-                      ? HexColor("#FFF2E9") :
-                  Colors.transparent,
-                  shape: BoxShape.circle),
-              child: Padding(
-                  padding: const EdgeInsets.all(5.0),
-                  child:ImageIcon(
-                    AssetImage(
-                      "images/icons/shop.png",
-                    ),
-                    size: 25,
-                  )
-              ),
+            icon: Padding(
+                padding: const EdgeInsets.all(5.0),
+                child:ImageIcon(
+                  AssetImage(
+                    _currentIndex!=3? "images/icons/shop.png"
+                        :"images/icons/shop_green.png",
+                  ),
+                  size: 25,
+                )
             ),
             title: Text(
               "Shop",

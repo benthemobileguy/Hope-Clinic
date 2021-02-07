@@ -2,12 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:hope_clinic/screens/components/main-button.dart';
 import 'package:hope_clinic/theme/style.dart';
 import 'package:hope_clinic/utils/color.dart';
+import 'package:hope_clinic/utils/global-variables.dart';
+import 'package:hope_clinic/utils/pref-manager.dart';
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  PrefManager prefManager = PrefManager();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    fetchUser();
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -243,6 +252,9 @@ class _HomePageState extends State<HomePage> {
                               fontWeight: FontWeight.w700,
                             ),
                           ),
+                          SizedBox(
+                            height: 15,
+                          ),
                         ],
                       ),
                     ),
@@ -254,5 +266,11 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+
+  void fetchUser() async{
+   prefManager.getUserData().then((value){
+     user = value;
+   });
   }
 }

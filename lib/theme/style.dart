@@ -9,6 +9,9 @@ final Color textColor = HexColor("#666666");
 final Color greyColor = HexColor("#999999");
 final Color hintColor = HexColor("#C4C4C4");
 final Color lightGreen = HexColor("#D7F4EF");
+final Color textRed = HexColor("#E33A3A");
+final Color normalText = HexColor("#222222");
+final Color redBg = HexColor("#FFF1F1");
 
 ThemeData appTheme = new ThemeData(
   textSelectionHandleColor: Colors.orange,
