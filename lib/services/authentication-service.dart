@@ -37,6 +37,12 @@ class AuthenticationService extends ApiService {
 
     return _response;
   }
+  Future<Map<String, dynamic>> editProfile
+      (Map<String, dynamic> data) async {
+    Map<String, dynamic> _response = await post('user/update', data);
+
+    return _response;
+  }
   Future<Map<String, dynamic>> fetchUserProfile() async {
     Map<String, dynamic> _response = await get('userDetails');
     return _response;

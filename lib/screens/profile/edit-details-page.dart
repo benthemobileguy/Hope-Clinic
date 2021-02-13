@@ -1,22 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:hope_clinic/screens/components/default-text-form-field.dart';
 import 'package:hope_clinic/screens/components/main-button.dart';
+import 'package:hope_clinic/services/authentication-service.dart';
 import 'package:hope_clinic/theme/style.dart';
 import 'package:hope_clinic/utils/global-variables.dart';
 import 'package:hope_clinic/utils/validator.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 class EditDetailsPage extends StatefulWidget {
   @override
   _EditDetailsPageState createState() => _EditDetailsPageState();
 }
 
 class _EditDetailsPageState extends State<EditDetailsPage> {
+  AuthenticationService authenticationService;
   TextEditingController _emailController = TextEditingController(text: user.email);
   TextEditingController _phoneNoController = TextEditingController(text: user.phoneNumber);
-  TextEditingController _dobController = TextEditingController(text: user.email);
+  TextEditingController _dobController = TextEditingController(text: user.dob);
   TextEditingController _firstNameController = TextEditingController(text: user.firstname);
   TextEditingController _lastNameController = TextEditingController(text: user.lastname);
   final _formKey = GlobalKey<FormState>();
   bool isLoading = false;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    authenticationService = new AuthenticationService(context: context);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -93,16 +102,54 @@ class _EditDetailsPageState extends State<EditDetailsPage> {
                 SizedBox(
                   height: 14,
                 ),
-                DefaultTextFormField(
-                  controller: _emailController,
-                  hintText: "E-mail Address",
-                  keyboardType: TextInputType.emailAddress,
-                  validator: (val) {
-                    if (!validateEmail(val)) {
-                      return 'Please enter a valid email address';
-                    }
-                    return null;
+                GestureDetector(
+                  onTap: () {
+                    DatePicker.showDatePicker(context,
+                        theme: DatePickerTheme(
+                          containerHeight: 200,
+                          headerColor: primaryColor,
+                          backgroundColor: Colors.white,
+                          itemStyle: TextStyle(
+                              color: primaryColor,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16.5),
+                          cancelStyle: TextStyle(
+                            fontSize: 16.5,
+                            fontFamily: 'CircularStd',
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          doneStyle: TextStyle(
+                            fontSize: 16.5,
+                            fontFamily: 'CircularStd',
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        showTitleActions: true,
+                        minTime: DateTime(1930, 00, 00),
+                        maxTime: DateTime(2012, 00, 00),
+                        onChanged: (date) {}, onConfirm: (date) {
+                          setDate(date);
+                        },
+                        currentTime: DateTime.now(),
+                        locale: LocaleType.en);
                   },
+                  child: DefaultTextFormField(
+                    controller: _dobController,
+                    validator: (val) {
+                      if (val == "") {
+                        return 'Please enter a date of birth';
+                      }
+                      return null;
+                    },
+                    hintText: "Date of Birth",
+                    disabled: true,
+                    keyboardType: TextInputType.emailAddress,
+                    suffixIcon: IconButton(
+                      icon: Icon(Icons.calendar_today_outlined),
+                    ),
+                  ),
                 ),
                 SizedBox(
                   height: 14,
@@ -122,7 +169,7 @@ class _EditDetailsPageState extends State<EditDetailsPage> {
                   height: 20,
                 ),
                 MainButton(
-                  child: Row(
+                  child: !isLoading?Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       new Image.asset(
@@ -144,6 +191,15 @@ class _EditDetailsPageState extends State<EditDetailsPage> {
                         ),
                       ),
                     ],
+                  ):SizedBox(
+                    height: 25,
+                    width: 25,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                      valueColor:
+                      new AlwaysStoppedAnimation<Color>(
+                          Colors.white),
+                    ),
                   ),
                   color: primaryColor,
                   onPressed: (){
@@ -160,7 +216,16 @@ class _EditDetailsPageState extends State<EditDetailsPage> {
 
   void editProfile() async{
     if(_formKey.currentState.validate()){
-    Navigator.pop(context);
+     setState(() {
+       isLoading = true;
+     });
     }
+  }
+
+  void setDate(DateTime date) {
+    setState(() {
+      _dobController.text = date.toString().substring(0, 10);
+    });
+
   }
 }
