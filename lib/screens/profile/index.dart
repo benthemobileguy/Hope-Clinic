@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hope_clinic/screens/auth/edit-details-page.dart';
+import 'package:hope_clinic/screens/profile/edit-details-page.dart';
 import 'package:hope_clinic/screens/auth/sign-in-page.dart';
 import 'package:hope_clinic/screens/components/main-button.dart';
 import 'package:hope_clinic/theme/style.dart';

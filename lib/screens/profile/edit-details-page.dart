@@ -13,6 +13,7 @@ class _EditDetailsPageState extends State<EditDetailsPage> {
   TextEditingController _emailController = TextEditingController(text: user.email);
   TextEditingController _phoneNoController = TextEditingController(text: user.phoneNumber);
   final _formKey = GlobalKey<FormState>();
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
