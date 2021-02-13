@@ -78,73 +78,78 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               Row(
                 children: [
-                  Container(
-                    width: MediaQuery.of(context).size.width/2,
-                    child: MainButton(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          new Image.asset(
-                            'images/icons/profile_green.png',
-                            height: 20,
-                            width: 20,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            "Edit My Details",
-                            textAlign: TextAlign.start,
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontFamily: 'Lato',
-                              color: primaryColor,
-                              fontWeight: FontWeight.w700,
+                  Expanded(
+                    child: Container(
+                      child: MainButton(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            new Image.asset(
+                              'images/icons/profile_green.png',
+                              height: 20,
+                              width: 20,
                             ),
-                          ),
-                        ],
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              "Edit My Details",
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontFamily: 'Lato',
+                                color: primaryColor,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ],
+                        ),
+                        color: lightGreen,
+                        onPressed: (){
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context)
+                              => EditDetailsPage()));
+                        },
                       ),
-                      color: lightGreen,
-                      onPressed: (){
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context)
-                            => EditDetailsPage()));
-                      },
                     ),
                   ),
-                  Container(
-                   width: MediaQuery.of(context).size.width/2,
-                    child: MainButton(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          new Image.asset(
-                            'images/icons/report.png',
-                            height: 20,
-                            width: 20,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            "Doctors Report",
-                            textAlign: TextAlign.start,
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontFamily: 'Lato',
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Expanded(
+                    child: Container(
+                      child: MainButton(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            new Image.asset(
+                              'images/icons/report.png',
+                              height: 20,
+                              width: 20,
                             ),
-                          ),
-                        ],
-                      ),
-                      color: primaryColor,
-                      onPressed: (){
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              "Doctors Report",
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontFamily: 'Lato',
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ],
+                        ),
+                        color: primaryColor,
+                        onPressed: (){
 
-                      },
+                        },
+                      ),
                     ),
                   ),
-
+                  
                 ],
               ),
               SizedBox(
@@ -205,7 +210,6 @@ class _ProfilePageState extends State<ProfilePage> {
               FractionallySizedBox(
                 widthFactor: 0.5,
                 child: Container(
-                  padding: EdgeInsets.all(10),
                   child: MainButton(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
