@@ -12,6 +12,9 @@ class EditDetailsPage extends StatefulWidget {
 class _EditDetailsPageState extends State<EditDetailsPage> {
   TextEditingController _emailController = TextEditingController(text: user.email);
   TextEditingController _phoneNoController = TextEditingController(text: user.phoneNumber);
+  TextEditingController _dobController = TextEditingController(text: user.email);
+  TextEditingController _firstNameController = TextEditingController(text: user.firstname);
+  TextEditingController _lastNameController = TextEditingController(text: user.lastname);
   final _formKey = GlobalKey<FormState>();
   bool isLoading = false;
   @override
@@ -42,67 +45,113 @@ class _EditDetailsPageState extends State<EditDetailsPage> {
         padding: const EdgeInsets.all(20.0),
         child: Form(
           key: _formKey,
-          child: Column(
-            children: [
-              SizedBox(
-                height: 20,
-              ),
-              DefaultTextFormField(
-                controller: _emailController,
-                hintText: "E-mail Address",
-                keyboardType: TextInputType.emailAddress,
-                validator: (val) {
-                  if (!validateEmail(val)) {
-                    return 'Please enter a valid email address';
-                  }
-                  return null;
-                },
-              ),
-              SizedBox(
-                height: 14,
-              ),
-              DefaultTextFormField(
-                controller: _phoneNoController,
-                hintText: "Phone Number",
-                keyboardType: TextInputType.number,
-                validator: (val) {
-                  if (val.length != 11) {
-                    return 'Please input a valid number';
-                  }
-                  return null;
-                },
-              ),
-              Spacer(),
-              MainButton(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    new Image.asset(
-                      'images/icons/tick_square.png',
-                      height: 20,
-                      width: 20,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      "Save",
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontFamily: 'Lato',
-                        color: Colors.white,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ],
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 20,
                 ),
-                color: primaryColor,
-                onPressed: (){
-                 editProfile();
-                },
-              ),
-            ],
+                DefaultTextFormField(
+                  controller: _firstNameController,
+                  hintText: "First Name",
+                  keyboardType: TextInputType.text,
+                  validator: (val) {
+                    if (val.isEmpty) {
+                      return 'Empty field';
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(
+                  height: 14,
+                ),
+                DefaultTextFormField(
+                  controller: _lastNameController,
+                  hintText: "Last Name",
+                  keyboardType: TextInputType.text,
+                  validator: (val) {
+                    if (val.isEmpty) {
+                      return 'Empty field';
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(
+                  height: 14,
+                ),
+                DefaultTextFormField(
+                  controller: _emailController,
+                  hintText: "E-mail Address",
+                  keyboardType: TextInputType.emailAddress,
+                  validator: (val) {
+                    if (!validateEmail(val)) {
+                      return 'Please enter a valid email address';
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(
+                  height: 14,
+                ),
+                DefaultTextFormField(
+                  controller: _emailController,
+                  hintText: "E-mail Address",
+                  keyboardType: TextInputType.emailAddress,
+                  validator: (val) {
+                    if (!validateEmail(val)) {
+                      return 'Please enter a valid email address';
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(
+                  height: 14,
+                ),
+                DefaultTextFormField(
+                  controller: _phoneNoController,
+                  hintText: "Phone Number",
+                  keyboardType: TextInputType.number,
+                  validator: (val) {
+                    if (val.length != 11) {
+                      return 'Please input a valid number';
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                MainButton(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      new Image.asset(
+                        'images/icons/tick_square.png',
+                        height: 20,
+                        width: 20,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        "Save",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontFamily: 'Lato',
+                          color: Colors.white,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ],
+                  ),
+                  color: primaryColor,
+                  onPressed: (){
+                   editProfile();
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),
