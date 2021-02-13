@@ -39,7 +39,7 @@ class AuthenticationService extends ApiService {
   }
   Future<Map<String, dynamic>> editProfile
       (Map<String, dynamic> data) async {
-    Map<String, dynamic> _response = await post('user/update', data);
+    Map<String, dynamic> _response = await put('user/update', data);
 
     return _response;
   }

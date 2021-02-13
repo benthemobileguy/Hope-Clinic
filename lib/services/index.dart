@@ -145,7 +145,7 @@ class ApiService {
 
   Future<Map<String, dynamic>> put(String url, dynamic body,
       {redirectOn401: true}) async {
-    print('Api service is called to make post request');
+    print('Api service is called to make put request');
     MainBloc bloc = Provider.of<MainBloc>(context);
     Map<String, String> _headers = await headers(bloc: bloc);
 

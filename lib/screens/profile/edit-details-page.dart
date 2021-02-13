@@ -138,7 +138,7 @@ class _EditDetailsPageState extends State<EditDetailsPage> {
                   child: DefaultTextFormField(
                     controller: _dobController,
                     validator: (val) {
-                      if (val == "") {
+                      if (val.isEmpty) {
                         return 'Please enter a date of birth';
                       }
                       return null;
@@ -226,6 +226,14 @@ class _EditDetailsPageState extends State<EditDetailsPage> {
     setState(() {
       _dobController.text = date.toString().substring(0, 10);
     });
-
+    Map<String, dynamic> data = new Map();
+    data = {
+      "firstname": _firstNameController.text,
+      "lastname": _lastNameController.text,
+      "phone_number": _phoneNoController.text,
+      "email": _emailController.text,
+      "dob": _dobController.text
+    };
+  authenticationService.editProfile(data);
   }
 }
