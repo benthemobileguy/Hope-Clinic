@@ -223,6 +223,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.1"
+  flutter_calendar_carousel:
+    dependency: "direct dev"
+    description:
+      name: flutter_calendar_carousel
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.5.3"
   flutter_datetime_picker:
     dependency: "direct dev"
     description:

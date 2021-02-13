@@ -52,6 +52,7 @@ dev_dependencies:
   localstorage: ^3.0.0
   connectivity: ^0.4.9
   cloud_firestore: ^0.14.4
+  flutter_calendar_carousel: ^1.5.3
 
 
 flutter:

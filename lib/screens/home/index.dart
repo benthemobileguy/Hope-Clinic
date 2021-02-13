@@ -189,6 +189,7 @@ class _HomePageState extends State<HomePage> {
                 Row(
                   children: [
                     Container(
+                      height: 130,
                       padding: EdgeInsets.symmetric(horizontal: 35, vertical: 17),
                       decoration: BoxDecoration(
                         color:lightGreen,
@@ -223,10 +224,9 @@ class _HomePageState extends State<HomePage> {
                         ],
                       ),
                     ),
-                    SizedBox(
-                      width: 20,
-                    ),
+                   Spacer(),
                     Container(
+                      height: 130,
                       padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
                       decoration: BoxDecoration(
                           color:primaryColor,
