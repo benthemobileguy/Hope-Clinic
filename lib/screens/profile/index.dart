@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hope_clinic/bloc/index.dart';
 import 'package:hope_clinic/screens/profile/edit-details-page.dart';
 import 'package:hope_clinic/screens/auth/sign-in-page.dart';
 import 'package:hope_clinic/screens/components/main-button.dart';
@@ -6,6 +7,7 @@ import 'package:hope_clinic/theme/style.dart';
 import 'package:hope_clinic/utils/color.dart';
 import 'package:hope_clinic/utils/global-variables.dart';
 import 'package:hope_clinic/utils/links.dart';
+import 'package:provider/provider.dart';
 import 'package:hope_clinic/utils/pref-manager.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -15,6 +17,13 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   PrefManager prefManager = PrefManager();
+  MainBloc mainBloc;
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+    mainBloc = Provider.of<MainBloc>(context);
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -169,7 +178,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 height: 5,
               ),
               Text(
-                user.email,
+                mainBloc.user.email,
                 textAlign: TextAlign.start,
                 style: TextStyle(
                   fontSize: 14,
@@ -195,7 +204,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 height: 5,
               ),
               Text(
-                user.phoneNumber,
+                mainBloc.user.phoneNumber,
                 textAlign: TextAlign.start,
                 style: TextStyle(
                   fontSize: 14,

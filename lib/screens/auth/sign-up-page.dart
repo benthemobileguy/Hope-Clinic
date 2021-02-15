@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hope_clinic/bloc/index.dart';
+import 'package:hope_clinic/model/user.dart';
 import 'package:hope_clinic/screens/auth/sign-in-page.dart';
 import 'package:hope_clinic/screens/components/default-text-form-field.dart';
 import 'package:hope_clinic/screens/components/main-button.dart';
@@ -12,7 +14,7 @@ import 'package:mdi/mdi.dart';
 import 'package:pinput/pin_put/pin_put.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
-
+import 'package:provider/provider.dart';
 class SignUpPage extends StatefulWidget {
   @override
   _RegisterPageState createState() => _RegisterPageState();
@@ -22,6 +24,7 @@ class _RegisterPageState extends State<SignUpPage> {
   AuthenticationService authenticationService;
   int sexBtnIndex = -1;
   int pageindex = 0;
+  MainBloc mainBloc;
   bool _isLoading = false;
   TextEditingController dobController = TextEditingController();
   final _formKey1 = GlobalKey<FormState>();
@@ -42,6 +45,12 @@ class _RegisterPageState extends State<SignUpPage> {
   bool _showPassword1 = false, _showPassword2 = false, _isInitialised = false;
   String _password1, password2;
   PageController controller = PageController();
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+    mainBloc = Provider.of<MainBloc>(context);
+  }
   @override
   void initState() {
     // TODO: implement initState
@@ -817,6 +826,7 @@ class _RegisterPageState extends State<SignUpPage> {
       PrefManager prefManager = PrefManager();
       prefManager.setUserData(_res['user'])
           .then((value) {
+     mainBloc.user = User.fromJson(_res['user']);
         if (_formKey2.currentState.validate()) {
           controller.nextPage(
             duration: Duration(milliseconds: 500),

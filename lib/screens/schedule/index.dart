@@ -206,9 +206,13 @@ class _SchedulePageState extends State<SchedulePage> {
                     fontWeight: FontWeight.w700,
                   ),
                 ),
+                SizedBox(
+                  height: 10,
+                ),
                 Row(
                   children: [
                     Container(
+                      height: 130,
                       padding: EdgeInsets.symmetric(horizontal: 35, vertical: 17),
                       decoration: BoxDecoration(
                           color:lightGreen,
@@ -243,10 +247,9 @@ class _SchedulePageState extends State<SchedulePage> {
                         ],
                       ),
                     ),
-                    SizedBox(
-                      width: 20,
-                    ),
+                    Spacer(),
                     Container(
+                      height: 130,
                       padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
                       decoration: BoxDecoration(
                           color:primaryColor,

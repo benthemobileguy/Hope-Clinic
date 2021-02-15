@@ -21,7 +21,7 @@ class ApiService {
     };
 
     if (bloc != null && bloc.bearerToken != null) {
-      headers.addAll({'Authorization': "${bloc.bearerToken}"});
+      headers.addAll({'Authorization': "Bearer ${bloc.bearerToken}"});
     }
 
     return headers;
@@ -85,8 +85,8 @@ class ApiService {
       body: json.encode(body),
     );
     final responseJson = json.decode(response.body);
-    print(Constants().API_BASE_URL + url);
     print("res:" + responseJson.toString());
+    AlertManager.showToast(responseJson["message"].toString());
     int statusCode = response.statusCode;
     switch (statusCode) {
       case 200:
@@ -155,12 +155,8 @@ class ApiService {
       body: json.encode(body),
     );
     final responseJson = json.decode(response.body);
-    if (responseJson["responseCode"] != null && responseJson["responseCode"] != 0) {
-      AlertManager.showToast("Error " + responseJson["message"].toString());
-    }  else if(responseJson["responseCode"] != null && responseJson["responseCode"] != 99){
-      AlertManager.showToast(responseJson["message"].toString());
-    }
     print(responseJson.toString());
+    AlertManager.showToast(responseJson["message"].toString());
     int statusCode = response.statusCode;
     switch (statusCode) {
       case 200:
@@ -195,25 +191,8 @@ class ApiService {
         break;
       default:
         dynamic data = json.decode(response.body);
-        print("response " + data.toString());
-        if (data["responseCode"] != null && data["responseCode"] != 0) {
-          AlertManager.showToast("Error " + data["message"].toString());
-        }  else if(data["responseCode"] != null && data["message"] != 99){
-          AlertManager.showToast(data["message"].toString());
-        }
         String msg;
-        // lord knows why this was encoded twice
-        if (data is String) {
-          data = json.decode(data);
-          msg = "";
-          if (data.values.toList().length > 0) {
-            // show first error
-            msg = data.values.toList().first[0];
-          }
-        } else {
-          msg = data['message'];
-        }
-
+        msg = data['message'];
         throw ApiException(
           context: context,
           message: msg,

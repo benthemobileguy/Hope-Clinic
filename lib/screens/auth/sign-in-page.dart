@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hope_clinic/model/user.dart';
+import 'package:provider/provider.dart';
+import 'package:hope_clinic/bloc/index.dart';
 import 'package:hope_clinic/screens/auth/sign-up-page.dart';
 import 'package:hope_clinic/screens/components/default-text-form-field.dart';
 import 'package:hope_clinic/screens/components/main-button.dart';
@@ -20,7 +23,14 @@ class _SignInPageState extends State<SignInPage> {
   bool _showPassword = false, _loading = false,
       _isInitialised = false;
   String _email, _password;
+  MainBloc mainBloc;
   AuthenticationService authenticationService;
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+    mainBloc = Provider.of<MainBloc>(context);
+  }
   @override
   void initState() {
     // TODO: implement initState

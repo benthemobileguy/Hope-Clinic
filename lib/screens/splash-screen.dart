@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hope_clinic/bloc/index.dart';
 import 'package:hope_clinic/screens/home/base.dart';
 import 'package:hope_clinic/screens/welcome-screen.dart';
 import 'package:hope_clinic/utils/pref-manager.dart';
-
+import 'package:provider/provider.dart';
 class SplashScreen extends StatefulWidget {
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -11,10 +12,12 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
   List<bool> isCustomised;
+  MainBloc mainBloc;
   Animation<double> animation;
   AnimationController _controller;
   Animation<double> _animation;
   PrefManager prefManager = PrefManager();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,6 +41,7 @@ class _SplashScreenState extends State<SplashScreen>
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
+    mainBloc = Provider.of<MainBloc>(context);
   }
   @override
   void initState() {
@@ -59,9 +63,12 @@ class _SplashScreenState extends State<SplashScreen>
   void checkLoginState() async {
 prefManager.getAuthToken().then((value){
   if(value!=null){
-    Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (context)
-        => Base()));
+    prefManager.getUserData().then((value) {
+      mainBloc.user = value;
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (context)
+          => Base()));
+    });
   } else{
     Navigator.pushReplacement(context,
         MaterialPageRoute(builder: (context)

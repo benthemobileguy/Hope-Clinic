@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hope_clinic/bloc/index.dart';
 import 'package:hope_clinic/screens/components/main-button.dart';
 import 'package:hope_clinic/theme/style.dart';
-import 'package:hope_clinic/utils/color.dart';
 import 'package:hope_clinic/utils/global-variables.dart';
 import 'package:hope_clinic/utils/pref-manager.dart';
+import 'package:provider/provider.dart';
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -11,6 +12,13 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   PrefManager prefManager = PrefManager();
+  MainBloc bloc;
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+    bloc = Provider.of<MainBloc>(context);
+  }
   @override
   void initState() {
     // TODO: implement initState
@@ -271,6 +279,7 @@ class _HomePageState extends State<HomePage> {
   void fetchUser() async{
    prefManager.getUserData().then((value){
      user = value;
+    bloc.user = value;
    });
   }
 }

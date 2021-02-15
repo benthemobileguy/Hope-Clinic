@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hope_clinic/bloc/index.dart';
+import 'package:hope_clinic/model/user.dart';
 import 'package:hope_clinic/services/index.dart';
-import 'package:hope_clinic/theme/style.dart';
-import 'package:hope_clinic/utils/color.dart';
 import 'package:hope_clinic/utils/pref-manager.dart';
 import 'package:provider/provider.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+
 
 class AuthenticationService extends ApiService {
   BuildContext context;
@@ -28,6 +27,7 @@ class AuthenticationService extends ApiService {
       bloc.bearerToken = token;
       prefManager.setAuthToken(token);
       prefManager.setUserData(_response['user']);
+      bloc.user = User.fromJson(_response['user']);
       print("token" +token);
     }
     return _response;
