@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hope_clinic/bloc/index.dart';
 import 'package:hope_clinic/model/shop-item.dart';
-import 'package:hope_clinic/screens/shop/components/shop-item.dart';
 import 'package:hope_clinic/theme/style.dart';
-import 'package:hope_clinic/utils/color.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:provider/provider.dart';
+
 class ShopPage extends StatefulWidget {
   @override
   _ShopPageState createState() => _ShopPageState();
@@ -10,6 +12,7 @@ class ShopPage extends StatefulWidget {
 
 class _ShopPageState extends State<ShopPage> {
   List<Shop> shopItem = [];
+  MainBloc bloc;
   @override
   void initState() {
     // TODO: implement initState
@@ -22,6 +25,13 @@ class _ShopPageState extends State<ShopPage> {
         image: "images/img_1.png", price: "25,000"));
     shopItem.add(Shop(title: "HOPE Gift Vouchers",
         image: "images/img_1.png", price: "50,000"));
+  }
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+    bloc = Provider.of<MainBloc>(context, listen: false);
+    getMarketShop();
   }
   @override
   Widget build(BuildContext context) {
@@ -45,10 +55,23 @@ class _ShopPageState extends State<ShopPage> {
             SizedBox(
               height: 30,
             ),
-            ShopItem(shopItem: shopItem,),
+            // ShopItem(shopItem: shopItem,),
+            Expanded(
+              child: Center(
+                child: SpinKitRipple(
+                  borderWidth: 6,
+                  color: primaryColor,
+                  size: 60.0,
+                ),
+              ),
+            ),
           ],
         ),
       ),
     );
+  }
+
+  void getMarketShop() async{
+
   }
 }
