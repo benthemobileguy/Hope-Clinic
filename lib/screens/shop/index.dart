@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hope_clinic/bloc/index.dart';
+import 'package:hope_clinic/model/market-shop.dart';
 import 'package:hope_clinic/model/shop-item.dart';
 import 'package:hope_clinic/theme/style.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -70,8 +71,14 @@ class _ShopPageState extends State<ShopPage> {
       ),
     );
   }
-
-  void getMarketShop() async{
-
+  Future<List<MarketShop>> getMarketShop() async {
+    bloc.fetchTrips(context, operatorData.id,
+        "0", tripType).then((value) => {
+      setState(() {
+        trips = value;
+      }),
+    });
+    return trips;
   }
+
 }
