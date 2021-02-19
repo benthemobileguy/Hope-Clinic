@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hope_clinic/model/market-shop.dart';
+import 'package:hope_clinic/services/shop/index.dart';
 
 class ShopBloc extends ChangeNotifier {
   List<MarketShop> _marketShop;
@@ -12,13 +13,13 @@ class ShopBloc extends ChangeNotifier {
     notifyListeners();
   }
   ///fetch reviews
-  Future<List<Reviews>> fetchReviews(BuildContext context, String id) async {
-    ReviewsService reviewsService = new  ReviewsService(
+  Future<List<MarketShop>> fetchMarketShop(BuildContext context) async {
+    MarketService marketService = new  MarketService(
         context: context);
-    List<Reviews> _reviews = await reviewsService.getReviews(id);
-    this._reviews = _reviews;
+    List<MarketShop> _marketShop = await marketService.getMarketShop();
+    this._marketShop = _marketShop;
     notifyListeners();
-    return _reviews;
+    return _marketShop;
   }
 
 }

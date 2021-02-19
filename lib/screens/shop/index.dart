@@ -12,20 +12,12 @@ class ShopPage extends StatefulWidget {
 }
 
 class _ShopPageState extends State<ShopPage> {
-  List<Shop> shopItem = [];
+  List<MarketShop> shopList = [];
   MainBloc bloc;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    shopItem.add(Shop(title: "Organic Ginger Balm",
-        image: "images/img_1.png", price: "5,000"));
-    shopItem.add(Shop(title: "Pure Memory Foam Knee Pillow",
-        image: "images/img_2.png", price: "15,000"));
-    shopItem.add(Shop(title: "Premium Gel Cool Neck Memory Foam Pillow",
-        image: "images/img_1.png", price: "25,000"));
-    shopItem.add(Shop(title: "HOPE Gift Vouchers",
-        image: "images/img_1.png", price: "50,000"));
   }
   @override
   void didChangeDependencies() async{
@@ -72,13 +64,8 @@ class _ShopPageState extends State<ShopPage> {
     );
   }
   Future<List<MarketShop>> getMarketShop() async {
-    bloc.fetchTrips(context, operatorData.id,
-        "0", tripType).then((value) => {
-      setState(() {
-        trips = value;
-      }),
-    });
-    return trips;
+    bloc.fetchMarketShop(context);
+    return shopList;
   }
 
 }

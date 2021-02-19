@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hope_clinic/bloc/shop/index.dart';
 import 'package:hope_clinic/model/user.dart';
 
-class MainBloc with ChangeNotifier {
+class MainBloc with ChangeNotifier,
+    ShopBloc {
   String _bearerToken;
   User _user;
 

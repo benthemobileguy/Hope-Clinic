@@ -27,7 +27,7 @@ class ApiService {
     return headers;
   }
 
-  Future<Map<String, dynamic>> get(String url) async {
+  Future<dynamic> get(String url) async {
     print('Api service is called to make get request');
 
     MainBloc bloc = Provider.of<MainBloc>(context);

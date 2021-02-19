@@ -15,6 +15,10 @@ class MarketShop {
     }
     return data;
   }
+
+  static List<MarketShop> fromJsonList(List<dynamic> _list) {
+    return _list.map((_shop) => MarketShop.fromJson(_shop)).toList();
+  }
 }
 
 class Store {
