@@ -27,11 +27,11 @@ class _ShopPageState extends State<ShopPage> {
         image: "images/img_1.png", price: "50,000"));
   }
   @override
-  void didChangeDependencies() {
+  void didChangeDependencies() async{
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
     bloc = Provider.of<MainBloc>(context, listen: false);
-    getMarketShop();
+   await getMarketShop();
   }
   @override
   Widget build(BuildContext context) {
