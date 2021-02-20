@@ -39,9 +39,8 @@ class  MarketService extends ApiService {
     return _response;
   }
   /// reserve product
-  Future<Map<String, dynamic>> deleteReservedItem(Map<String, dynamic> data, String reserveId) async {
-    Map<String, dynamic> _response = await post('reserve/delete/${reserveId}', data);
-
+  Future<Map<String, dynamic>> deleteReservedItem(String reserveId) async {
+    Map<String, dynamic> _response = await delete('reserve/delete/${reserveId}');
     return _response;
   }
 }
