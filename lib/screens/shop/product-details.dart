@@ -3,6 +3,7 @@ import 'package:hope_clinic/model/market-shop.dart';
 import 'package:hope_clinic/screens/components/main-button.dart';
 import 'package:hope_clinic/theme/style.dart';
 import 'package:hope_clinic/utils/global-variables.dart';
+
 class ProductDetails extends StatefulWidget {
   final MarketShop item;
 
@@ -28,12 +29,15 @@ class _ProductDetailsState extends State<ProductDetails> {
           ),
         ),
         leading: IconButton(
-          icon: Icon(Icons.chevron_left,
-            size: 30,),
+          icon: Icon(
+            Icons.chevron_left,
+            size: 30,
+          ),
           color: textColor,
           onPressed: () {
             Navigator.pop(context);
-          },),
+          },
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
@@ -42,31 +46,43 @@ class _ProductDetailsState extends State<ProductDetails> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Card(
-                elevation: 2,
-                child: Row(
-                  children: [
-                    Container(
-                      margin: EdgeInsets.symmetric(vertical: 10,),
-                      height: 200,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(4),
-                          image: DecorationImage(
-                              fit: BoxFit.contain,
-                              image: NetworkImage(
-                                "${widget.item.files[0]}",
-                              ))),
-                    ),
-                   Container(
-                     padding: EdgeInsets.all(7),
-                     decoration: BoxDecoration(
-                       color: accentColor,
-                       shape: BoxShape.circle
-                     ),
-                       child:
-                   Icon(Icons.chevron_right, color: primaryColor,)
-                   ),
-                  ],
+              Center(
+                child: Card(
+                  elevation: 2,
+                  child: Stack(
+                    children: [
+                      PageView(
+                        children: <Widget>[
+                          Container(
+                            margin: EdgeInsets.only(
+                                top: 10, bottom: 10, right: 60, left: 20),
+                            height: 200,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(4),
+                                image: DecorationImage(
+                                    fit: BoxFit.contain,
+                                    image: NetworkImage(
+                                      "${widget.item.files[0]}",
+                                    ))),
+                          ),
+                        ],
+                      ),
+                      Positioned(
+                        right: 0,
+                        bottom: 0,
+                        top: 0,
+                        child: Container(
+                            margin: EdgeInsets.only(right: 16),
+                            padding: EdgeInsets.all(7),
+                            decoration: BoxDecoration(
+                                color: accentColor, shape: BoxShape.circle),
+                            child: Icon(
+                              Icons.chevron_right,
+                              color: primaryColor,
+                            )),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               SizedBox(
@@ -99,7 +115,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                 height: 10,
               ),
               Text(
-                dummyText,
+                "${widget.item.desc}",
                 textAlign: TextAlign.start,
                 style: TextStyle(
                   fontSize: 14,
@@ -138,9 +154,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                     ],
                   ),
                   color: primaryColor,
-                  onPressed: (){
-
-                  },
+                  onPressed: () {},
                 ),
               ),
               SizedBox(
