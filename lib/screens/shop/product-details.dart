@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hope_clinic/model/market-shop.dart';
 import 'package:hope_clinic/screens/components/main-button.dart';
+import 'package:hope_clinic/services/shop/index.dart';
 import 'package:hope_clinic/theme/style.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
@@ -13,6 +14,7 @@ class ProductDetails extends StatefulWidget {
 }
 
 class _ProductDetailsState extends State<ProductDetails> {
+  MarketService
   CarouselController buttonCarouselController = CarouselController();
   @override
   Widget build(BuildContext context) {
@@ -172,7 +174,9 @@ class _ProductDetailsState extends State<ProductDetails> {
                     ],
                   ),
                   color: primaryColor,
-                  onPressed: () {},
+                  onPressed: () {
+                    reserveProduct();
+                  },
                 ),
               ),
               SizedBox(
@@ -183,5 +187,9 @@ class _ProductDetailsState extends State<ProductDetails> {
         ),
       ),
     );
+  }
+
+  void reserveProduct() async{
+
   }
 }
