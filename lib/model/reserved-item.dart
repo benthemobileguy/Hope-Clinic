@@ -1,6 +1,7 @@
 
 class ReservedItem {
   int id;
+  bool isLoading = false;
   int userId;
   int storeId;
   int quantity;

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:hope_clinic/bloc/index.dart';
 import 'package:hope_clinic/model/reserved-item.dart';
 import 'package:hope_clinic/screens/components/main-button.dart';
 import 'package:hope_clinic/screens/shop/reserved-product-details-page.dart';
 import 'package:hope_clinic/services/shop/index.dart';
 import 'package:hope_clinic/theme/style.dart';
+import 'package:provider/provider.dart';
 class ShopItemReserved extends StatefulWidget {
   final List<ReservedItem> reservedItem;
 
@@ -14,12 +16,13 @@ class ShopItemReserved extends StatefulWidget {
 }
 
 class _ShopItemReservedState extends State<ShopItemReserved> {
-  bool isLoading = false;
   MarketService marketService;
+  MainBloc mainBloc;
   @override
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
+    mainBloc = Provider.of<MainBloc>(context);
     marketService = new MarketService(context: context);
   }
   @override
@@ -113,7 +116,17 @@ class _ShopItemReservedState extends State<ShopItemReserved> {
                   height: 60,
                   margin: EdgeInsets.symmetric(horizontal: 10),
                   child: MainButton(
-                    child: Row(
+                    child: mainBloc.reservedItem[index].isLoading?
+                    SizedBox(
+                      height: 25,
+                      width: 25,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                        valueColor:
+                        new AlwaysStoppedAnimation<Color>(
+                            Colors.white),
+                      ),
+                    ): Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
@@ -138,7 +151,7 @@ class _ShopItemReservedState extends State<ShopItemReserved> {
                     ),
                     color: redBg,
                     onPressed: (){
-                      deleteProduct();
+                      deleteProduct(index);
                     },
                   ),
                 ),
@@ -150,23 +163,23 @@ class _ShopItemReservedState extends State<ShopItemReserved> {
     );
   }
 
-  void deleteProduct() async{
+  void deleteProduct(int index) async{
     setState(() {
-      isLoading = true;
+      mainBloc.reservedItem[index].isLoading = true;
     });
     try{
       marketService.deleteReservedItem(
-          mainBloc.reservedItem[widget.index]
+          mainBloc.reservedItem[index]
               .id.toString());
-      mainBloc.removeReservedItem( widget.index);
+      mainBloc.removeReservedItem(index);
       Navigator.pop(context);
       setState(() {
-        isLoading = false;
+        mainBloc.reservedItem[index].isLoading = false;
       });
     }catch(e){
       print(e.toString());
       setState(() {
-        isLoading = false;
+        mainBloc.reservedItem[index].isLoading = false;
       });
     }
 

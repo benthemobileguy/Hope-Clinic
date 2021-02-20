@@ -159,16 +159,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 10),
                 child: MainButton(
-                  child: isLoading? SizedBox(
-                    height: 25,
-                    width: 25,
-                    child: CircularProgressIndicator(
-                      strokeWidth: 2,
-                      valueColor:
-                      new AlwaysStoppedAnimation<Color>(
-                          Colors.white),
-                    ),
-                  ):Row(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       new Image.asset(
@@ -193,7 +184,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   ),
                   color: primaryColor,
                   onPressed: () {
-                    reserveProduct();
+                   addQuantityModal();
                   },
                 ),
               ),
@@ -224,5 +215,35 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
         isLoading = false;
       });
     }
+  }
+
+  void addQuantityModal() async{
+    showModalBottomSheet(
+        backgroundColor: bottomSheetBg,
+        context: context,
+        isScrollControlled: true,
+        builder: (context){
+        return Container(
+        height: 200,
+          child: Column(
+            children: [
+              Text(
+                "Reserve Product",
+                textAlign: TextAlign.start,
+                style: TextStyle(
+                  fontSize: 16,
+                  fontFamily: 'Lato',
+                  color: textColor,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+
+            ],
+          ),
+        );
+        });
   }
 }

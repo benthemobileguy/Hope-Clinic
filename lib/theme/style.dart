@@ -13,6 +13,7 @@ final Color hintColor = HexColor("#C4C4C4");
 final Color lightGreen = HexColor("#D7F4EF");
 final Color textRed = HexColor("#E33A3A");
 final Color normalText = HexColor("#222222");
+final Color bottomSheetBg = HexColor("#CDCDCD");
 final Color normalText2 = HexColor("#444444");
 final Color redBg = HexColor("#FFF1F1");
 
