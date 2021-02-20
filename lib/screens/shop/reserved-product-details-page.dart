@@ -212,6 +212,15 @@ class _ReservedProductsDetailsPageState extends State<ReservedProductsDetailsPag
 setState(() {
   isLoading = true;
 });
+try{
+  marketService.deleteReservedItem(
+      mainBloc.reservedItem[widget.index].store.id.toString());
+}catch(e){
+  print(e.toString());
+  setState(() {
+    isLoading = false;
+  });
+}
 
   }
 }
