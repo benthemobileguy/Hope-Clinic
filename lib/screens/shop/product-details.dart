@@ -196,9 +196,10 @@ class _ProductDetailsState extends State<ProductDetails> {
   }
 
   void reserveProduct() async{
-    Map<String, String> data = new Map();
+    Map<String, dynamic> data = new Map();
     data = {
-
+    "quantity": widget.item.quantity,
+    "store_id" : widget.item.id
     };
 marketService.reserveProduct(data);
   }
