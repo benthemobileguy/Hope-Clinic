@@ -7,6 +7,8 @@ class ReservedProducts extends StatefulWidget {
 class _ReservedProductsState extends State<ReservedProducts> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+
+    );
   }
 }
