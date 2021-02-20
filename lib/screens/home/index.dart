@@ -13,12 +13,12 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   PrefManager prefManager = PrefManager();
   MainBloc bloc;
+  bool isInitialised = false;
   @override
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
     bloc = Provider.of<MainBloc>(context);
-    fetchRequests();
   }
   @override
   void initState() {
@@ -28,6 +28,10 @@ class _HomePageState extends State<HomePage> {
   }
   @override
   Widget build(BuildContext context) {
+    if(!isInitialised){
+      fetchRequests();
+      isInitialised = true;
+    }
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -284,7 +288,7 @@ class _HomePageState extends State<HomePage> {
    });
   }
 
-   fetchRequests() async{
+ Future fetchRequests() async{
     Future.wait([
       bloc.fetchNextAppointment(context),
       bloc.fetchUpcomingAppointment(context)
