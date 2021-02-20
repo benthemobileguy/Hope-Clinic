@@ -14,8 +14,14 @@ class ProductDetails extends StatefulWidget {
 }
 
 class _ProductDetailsState extends State<ProductDetails> {
-  MarketService
+  MarketService marketService;
   CarouselController buttonCarouselController = CarouselController();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    marketService = new MarketService(context: context);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
