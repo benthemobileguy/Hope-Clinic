@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hope_clinic/bloc/index.dart';
 import 'package:hope_clinic/model/reserved-item.dart';
+import 'package:hope_clinic/screens/shop/components/shop-item-reserved.dart';
 import 'package:hope_clinic/theme/style.dart';
 import 'package:provider/provider.dart';
 class ReservedProducts extends StatefulWidget {
@@ -50,10 +51,23 @@ class _ReservedProductsState extends State<ReservedProducts> {
           },
         ),
       ),
+      body:   shopList==null?
+      Expanded(
+        child: Center(
+          child: SpinKitRipple(
+            borderWidth: 8,
+            color: primaryColor,
+            size: 100.0,
+          ),
+        ),
+      ):
+      Expanded(child:
+      ShopItemReserved(shopItem:
+      reservedList,)),
     );
   }
-  Future<List<ReservedProducts>> getReservedProducts() async {
-    bloc.fetchMarketShop(context).then((value) {
+  Future<List<ReservedItem>> getReservedProducts() async {
+    bloc.fetchReservedProducts(context).then((value) {
       setState(() {
         reservedList = value;
       });
