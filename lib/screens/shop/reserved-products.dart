@@ -55,7 +55,6 @@ class _ReservedProductsState extends State<ReservedProducts> {
     bloc.fetchMarketShop(context).then((value) {
       setState(() {
         shopList = value;
-        print(shopList.toString());
       });
     });
     return shopList;
