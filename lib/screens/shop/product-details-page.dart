@@ -205,7 +205,8 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
       isLoading = true;
     });
     Map<String, dynamic> data = new Map();
-    data = {"quantity": widget.item.quantity, "store_id": widget.item.id};
+    data = {"quantity": widget.item.quantity,
+      "store_id": widget.item.id};
     try {
       Map<String, dynamic> _res = await marketService.reserveProduct(data);
       setState(() {
