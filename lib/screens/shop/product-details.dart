@@ -202,10 +202,9 @@ class _ProductDetailsState extends State<ProductDetails> {
     "store_id" : widget.item.id
     };
     try{
-
+ Map<String,dynamic> _res = await marketService.reserveProduct(data);
     }catch(e){
 
     }
-marketService.reserveProduct(data);
   }
 }
