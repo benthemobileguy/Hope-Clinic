@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hope_clinic/model/market-shop.dart';
 import 'package:hope_clinic/model/next-appointment.dart';
 import 'package:hope_clinic/model/reserved-item.dart';
 import 'package:hope_clinic/model/upcominng-appointment.dart';
-import 'package:hope_clinic/screens/shop/reserved-products-page.dart';
+import 'package:hope_clinic/services/appointment/index.dart';
 import 'package:hope_clinic/services/shop/index.dart';
 
 class AppointmentBloc extends ChangeNotifier {
@@ -29,20 +28,20 @@ class AppointmentBloc extends ChangeNotifier {
 
   ///fetch next appointment
   Future<NextAppointment> fetchNextAppointment(BuildContext context) async {
-    MarketService marketService = new  MarketService(
+    AppointmentService appointmentService = new AppointmentService(
         context: context);
-    NextAppointment _nextAppointment= await marketService.getMarketShop();
+    NextAppointment _nextAppointment= await appointmentService.getNextAppointment();
     this._nextAppointment = _nextAppointment;
     notifyListeners();
     return _nextAppointment;
   }
   ///fetch upcoming appointment
   Future<UpcomingAppointment> fetchUpcomingAppointment(BuildContext context) async {
-    MarketService marketService = new  MarketService(
+    AppointmentService appointmentService = new  AppointmentService(
         context: context);
-    List<ReservedItem> _reservedItems = await marketService.getReservedProducts();
-    this._reservedItem = _reservedItems;
+    UpcomingAppointment _upcomingAppointment = await appointmentService.getUpcomingAppointment();
+    this._upcomingAppointment = _upcomingAppointment;
     notifyListeners();
-    return _reservedItems;
+    return _upcomingAppointment;
   }
 }

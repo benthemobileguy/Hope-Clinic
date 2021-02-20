@@ -18,9 +18,9 @@ class  AppointmentService extends ApiService {
     Map<String, dynamic> _data =
     await get('store');
     print(_data);
-    List<MarketShop> _marketShop = [];
-    _marketShop = MarketShop.fromJsonList(_data['data']['store']['data']);
-    bloc.marketShop = _marketShop;
+    UpcomingAppointment _upcomingAppointment;
+    _upcomingAppointment = UpcomingAppointment.fromJson(_data);
+    bloc. = _upcomingAppointment;
     return _marketShop;
   }
 
