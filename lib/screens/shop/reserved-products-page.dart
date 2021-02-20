@@ -6,12 +6,12 @@ import 'package:hope_clinic/theme/style.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
-class ReservedProducts extends StatefulWidget {
+class ReservedProductsPage extends StatefulWidget {
   @override
-  _ReservedProductsState createState() => _ReservedProductsState();
+  _ReservedProductsPageState createState() => _ReservedProductsPageState();
 }
 
-class _ReservedProductsState extends State<ReservedProducts> {
+class _ReservedProductsPageState extends State<ReservedProductsPage> {
   List<ReservedItem> reservedItems;
   MainBloc bloc;
   List<ReservedItem> reservedList;
