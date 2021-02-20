@@ -240,7 +240,16 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
               SizedBox(
                 height: 30,
               ),
-
+              Text(
+                "Confirm Reservation",
+                textAlign: TextAlign.start,
+                style: TextStyle(
+                  fontSize: 24,
+                  fontFamily: 'Lato',
+                  color: textColor,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
             ],
           ),
         );
