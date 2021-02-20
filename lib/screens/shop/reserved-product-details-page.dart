@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hope_clinic/bloc/index.dart';
 import 'package:hope_clinic/screens/components/main-button.dart';
+import 'package:hope_clinic/services/shop/index.dart';
 import 'package:hope_clinic/theme/style.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:provider/provider.dart';
@@ -14,6 +15,8 @@ class ReservedProductsDetailsPage extends StatefulWidget {
 
 class _ReservedProductsDetailsPageState extends State<ReservedProductsDetailsPage> {
   MainBloc mainBloc;
+  bool isLoading = false;
+  MarketService marketService;
   CarouselController buttonCarouselController = CarouselController();
   @override
   void didChangeDependencies() {
@@ -156,7 +159,16 @@ class _ReservedProductsDetailsPageState extends State<ReservedProductsDetailsPag
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 10),
                 child: MainButton(
-                  child: Row(
+                  child: isLoading? SizedBox(
+                    height: 25,
+                    width: 25,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                      valueColor:
+                      new AlwaysStoppedAnimation<Color>(
+                          Colors.redAccent),
+                    ),
+                  ):Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -196,6 +208,9 @@ class _ReservedProductsDetailsPageState extends State<ReservedProductsDetailsPag
   }
 
   void deleteProduct() async{
+setState(() {
+  isLoading = true;
+});
 
   }
 }

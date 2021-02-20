@@ -72,7 +72,7 @@ class ApiService {
         break;
     }
   }
-  Future<Map<String, dynamic>> delete(String url, dynamic body,
+  Future<Map<String, dynamic>> delete(String url,
       {redirectOn401: true}) async {
     print('Api service is called to make delete request');
     MainBloc bloc = Provider.of<MainBloc>(context);
