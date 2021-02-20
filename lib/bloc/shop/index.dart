@@ -7,14 +7,14 @@ import 'package:hope_clinic/screens/shop/reserved-products-page.dart';
 import 'package:hope_clinic/services/shop/index.dart';
 
 class ShopBloc extends ChangeNotifier {
-  List<NextAppointment> _nextAppointment;
-  List<UpcomingAppointment> _upcomingAppointment;
-  List<UpcomingAppointment> get upcoomingAppointment {
+  NextAppointment _nextAppointment;
+  UpcomingAppointment _upcomingAppointment;
+ UpcomingAppointment get upcomingAppointment {
     return _upcomingAppointment;
   }
 
-  set upcomingAppointment(List<MarketShop> _data) {
-    this._marketShop = _data;
+  set upcomingAppointment(UpcomingAppointment _data) {
+    this._upcomingAppointment = _data;
     notifyListeners();
   }
 
