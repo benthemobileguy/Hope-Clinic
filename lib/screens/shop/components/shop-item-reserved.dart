@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hope_clinic/model/reserved-item.dart';
+import 'package:hope_clinic/screens/components/main-button.dart';
 import 'package:hope_clinic/screens/shop/product-details.dart';
+import 'package:hope_clinic/screens/shop/reserved-product-details-page.dart';
 import 'package:hope_clinic/theme/style.dart';
 
 class ShopItemReserved extends StatelessWidget {
@@ -18,15 +20,15 @@ class ShopItemReserved extends StatelessWidget {
       gridDelegate:
       SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          childAspectRatio: 0.75),
+          childAspectRatio: 0.6),
       itemCount: reservedItem.length,
       itemBuilder: (context, index) {
         return GestureDetector(
           onTap: (){
-            // Navigator.push(context,
-            //     MaterialPageRoute(builder: (context)
-            //     => ProductDetails
-            //       (item: reservedItem[index])));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context)
+                => ReservedProductsDetailsPage(index:
+                index)));
           },
           child: Container(
             child: Column(
@@ -93,6 +95,42 @@ class ShopItemReserved extends StatelessWidget {
                       color: greyColor2,
                       fontWeight: FontWeight.w400,
                     ),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  height: 60,
+                  margin: EdgeInsets.symmetric(horizontal: 10),
+                  child: MainButton(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        new Icon(
+                          Icons.close,
+                          color: textRed,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          "Delete",
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontFamily: 'Lato',
+                            color: textRed,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ],
+                    ),
+                    color: redBg,
+                    onPressed: (){
+                     print("we je ");
+                    },
                   ),
                 ),
               ],
