@@ -182,6 +182,5 @@ class _ShopItemReservedState extends State<ShopItemReserved> {
         mainBloc.reservedItem[index].isLoading = false;
       });
     }
-
   }
 }

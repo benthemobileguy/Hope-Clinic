@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hope_clinic/bloc/index.dart';
-import 'package:hope_clinic/model/market-shop.dart';
 import 'package:hope_clinic/model/next-appointment.dart';
-import 'package:hope_clinic/model/reserved-item.dart';
-import 'package:hope_clinic/model/upcominng-appointment.dart';
+import 'package:hope_clinic/model/upcoming-appointment.dart';
 import 'package:hope_clinic/services/index.dart';
 import 'package:provider/provider.dart';
 
@@ -20,7 +18,7 @@ class  AppointmentService extends ApiService {
     print(_data);
     UpcomingAppointment _upcomingAppointment;
     _upcomingAppointment = UpcomingAppointment.fromJson(_data['data']);
-    bloc._upcomingAppointment = _upcomingAppointment;
+    bloc.upcomingAppointment = _upcomingAppointment;
     return _upcomingAppointment;
   }
 

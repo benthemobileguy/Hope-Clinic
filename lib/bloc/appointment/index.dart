@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hope_clinic/model/next-appointment.dart';
-import 'package:hope_clinic/model/reserved-item.dart';
-import 'package:hope_clinic/model/upcominng-appointment.dart';
+import 'package:hope_clinic/model/upcoming-appointment.dart';
 import 'package:hope_clinic/services/appointment/index.dart';
-import 'package:hope_clinic/services/shop/index.dart';
 
 class AppointmentBloc extends ChangeNotifier {
   NextAppointment _nextAppointment;
@@ -21,7 +19,7 @@ class AppointmentBloc extends ChangeNotifier {
     return _nextAppointment;
   }
 
-  set reservedItem(NextAppointment _data) {
+  set nextAppointment(NextAppointment _data) {
     this._nextAppointment = _data;
     notifyListeners();
   }

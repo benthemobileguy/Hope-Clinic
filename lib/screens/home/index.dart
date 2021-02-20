@@ -18,6 +18,7 @@ class _HomePageState extends State<HomePage> {
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
     bloc = Provider.of<MainBloc>(context);
+    fetchRequests();
   }
   @override
   void initState() {
@@ -281,5 +282,12 @@ class _HomePageState extends State<HomePage> {
      user = value;
     bloc.user = value;
    });
+  }
+
+  void fetchRequests() async{
+    Future.wait([
+      bloc.fetchNextAppointment(context),
+      bloc.fetchUpcomingAppointment(context)
+    ]);
   }
 }
