@@ -37,7 +37,7 @@ class AppointmentBloc extends ChangeNotifier {
     return _nextAppointment;
   }
   ///fetch upcoming appointment
-  Future<List<ReservedItem>> fetchReservedProducts(BuildContext context) async {
+  Future<UpcomingAppointment> fetchUpcomingAppointment(BuildContext context) async {
     MarketService marketService = new  MarketService(
         context: context);
     List<ReservedItem> _reservedItems = await marketService.getReservedProducts();
