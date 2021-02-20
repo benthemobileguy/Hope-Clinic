@@ -1,18 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:hope_clinic/model/reserved-item.dart';
 import 'package:hope_clinic/screens/components/main-button.dart';
-import 'package:hope_clinic/screens/shop/product-details-page.dart';
 import 'package:hope_clinic/screens/shop/reserved-product-details-page.dart';
+import 'package:hope_clinic/services/shop/index.dart';
 import 'package:hope_clinic/theme/style.dart';
-
-class ShopItemReserved extends StatelessWidget {
+class ShopItemReserved extends StatefulWidget {
   final List<ReservedItem> reservedItem;
 
-  const ShopItemReserved({
-    Key key,
-    this.reservedItem,
-  }) : super(key: key);
+  const ShopItemReserved({Key key, this.reservedItem}) : super(key: key);
+  @override
+  _ShopItemReservedState createState() => _ShopItemReservedState();
 
+}
+
+class _ShopItemReservedState extends State<ShopItemReserved> {
+  bool isLoading = false;
+  MarketService marketService;
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+    marketService = new MarketService(context: context);
+  }
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
@@ -21,7 +30,7 @@ class ShopItemReserved extends StatelessWidget {
       SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           childAspectRatio: 0.6),
-      itemCount: reservedItem.length,
+      itemCount: widget.reservedItem.length,
       itemBuilder: (context, index) {
         return GestureDetector(
           onTap: (){
@@ -46,7 +55,7 @@ class ShopItemReserved extends StatelessWidget {
                       image: DecorationImage(
                           fit: BoxFit.contain,
                           image: NetworkImage(
-                            "${reservedItem[index].store.files[0]}",
+                            "${widget.reservedItem[index].store.files[0]}",
                           ))),
                 ),
                 SizedBox(
@@ -55,7 +64,7 @@ class ShopItemReserved extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 10),
                   child: Text(
-                    "${reservedItem[index].store.title}",
+                    "${widget.reservedItem[index].store.title}",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 14,
@@ -71,7 +80,7 @@ class ShopItemReserved extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 10),
                   child: Text(
-                    "${reservedItem[index].store.price}",
+                    "${widget.reservedItem[index].store.price}",
                     textAlign: TextAlign.start,
                     style: TextStyle(
                       fontSize: 16,
@@ -87,7 +96,7 @@ class ShopItemReserved extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 10),
                   child: Text(
-                    "${reservedItem[index].quantity} Products Reserved",
+                    "${widget.reservedItem[index].quantity} Products Reserved",
                     textAlign: TextAlign.start,
                     style: TextStyle(
                       fontSize: 12,
@@ -129,7 +138,7 @@ class ShopItemReserved extends StatelessWidget {
                     ),
                     color: redBg,
                     onPressed: (){
-                     print("we je ");
+                      deleteProduct();
                     },
                   ),
                 ),
@@ -139,5 +148,27 @@ class ShopItemReserved extends StatelessWidget {
         );
       },
     );
+  }
+
+  void deleteProduct() async{
+    setState(() {
+      isLoading = true;
+    });
+    try{
+      marketService.deleteReservedItem(
+          mainBloc.reservedItem[widget.index]
+              .id.toString());
+      mainBloc.removeReservedItem( widget.index);
+      Navigator.pop(context);
+      setState(() {
+        isLoading = false;
+      });
+    }catch(e){
+      print(e.toString());
+      setState(() {
+        isLoading = false;
+      });
+    }
+
   }
 }

@@ -4,6 +4,7 @@ import 'package:hope_clinic/screens/components/main-button.dart';
 import 'package:hope_clinic/services/shop/index.dart';
 import 'package:hope_clinic/theme/style.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:hope_clinic/utils/alert-manager.dart';
 import 'package:provider/provider.dart';
 class ReservedProductsDetailsPage extends StatefulWidget {
   final int index;
@@ -215,7 +216,9 @@ setState(() {
 try{
   marketService.deleteReservedItem(
       mainBloc.reservedItem[widget.index]
-          .store.id.toString());
+          .id.toString());
+  mainBloc.removeReservedItem( widget.index);
+  Navigator.pop(context);
   setState(() {
     isLoading = false;
   });

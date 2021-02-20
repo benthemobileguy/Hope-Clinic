@@ -29,7 +29,7 @@ class  MarketService extends ApiService {
     print(_data);
     List<ReservedItem> _reservedItem = [];
     _reservedItem = ReservedItem.fromJsonList(_data['data']['reserves']['data']);
-    bloc.reservedProducts= _reservedItem;
+    bloc.reservedItem = _reservedItem;
     return _reservedItem;
   }
   /// delete reserved item

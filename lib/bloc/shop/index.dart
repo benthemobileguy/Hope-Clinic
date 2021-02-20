@@ -20,8 +20,12 @@ class ShopBloc extends ChangeNotifier {
     return _reservedItem;
   }
 
-  set reservedProducts(List<ReservedItem> _data) {
+  set reservedItem(List<ReservedItem> _data) {
     this._reservedItem = _data;
+    notifyListeners();
+  }
+  removeReservedItem(int index) {
+    this._reservedItem.removeAt(index);
     notifyListeners();
   }
   ///fetch market shop
