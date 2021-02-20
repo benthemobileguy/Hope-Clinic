@@ -284,7 +284,7 @@ class _HomePageState extends State<HomePage> {
    });
   }
 
-  void fetchRequests() async{
+   fetchRequests() async{
     Future.wait([
       bloc.fetchNextAppointment(context),
       bloc.fetchUpcomingAppointment(context)
