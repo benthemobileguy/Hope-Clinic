@@ -215,6 +215,9 @@ setState(() {
 try{
   marketService.deleteReservedItem(
       mainBloc.reservedItem[widget.index].store.id.toString());
+  setState(() {
+    isLoading = false;
+  });
 }catch(e){
   print(e.toString());
   setState(() {
