@@ -23,6 +23,7 @@ class _ReservedProductsDetailsPageState extends State<ReservedProductsDetailsPag
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
     mainBloc = Provider.of<MainBloc>(context);
+    marketService = new MarketService(context: context);
   }
   @override
   Widget build(BuildContext context) {
