@@ -52,7 +52,7 @@ class AppointmentBloc extends ChangeNotifier {
     return _upcomingAppointment;
   }
   ///fetch days left count
-  Future<UpcomingAppointment> fetchUpcomingAppointment(BuildContext context) async {
+  Future<UpcomingAppointment> fetchDaysLeftCount(BuildContext context) async {
     AppointmentService appointmentService = new  AppointmentService(
         context: context);
     UpcomingAppointment _upcomingAppointment = await appointmentService.getUpcomingAppointment();
