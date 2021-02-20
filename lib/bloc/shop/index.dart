@@ -14,8 +14,8 @@ class ShopBloc extends ChangeNotifier {
     notifyListeners();
   }
   List<ReservedProducts> _reservedProducts;
-  List<MarketShop> get marketShop {
-    return _marketShop;
+  List<ReservedProducts> get reservedProducts {
+    return _reservedProducts;
   }
 
   set marketShop(List<MarketShop> _data) {
