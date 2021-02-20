@@ -197,6 +197,9 @@ class _ProductDetailsState extends State<ProductDetails> {
 
   void reserveProduct() async{
     Map<String, String> data = new Map();
+    data = {
+
+    };
 marketService.reserveProduct(data);
   }
 }
