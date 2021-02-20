@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hope_clinic/model/shop-item.dart';
+import 'package:hope_clinic/model/market-shop.dart';
 import 'package:hope_clinic/screens/shop/product-details.dart';
 import 'package:hope_clinic/theme/style.dart';
 
 class ShopItem extends StatelessWidget {
-  final List<Shop> shopItem;
+  final List<MarketShop> shopItem;
 
   const ShopItem({
     Key key,
@@ -23,39 +23,71 @@ class ShopItem extends StatelessWidget {
             onTap: (){
               Navigator.push(context,
                   MaterialPageRoute(builder: (context)
-                  => ProductDetails(item: shopItem[index])));
+                  => ProductDetails
+                    (item: shopItem[index])));
             },
             child: Container(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                      color: Colors.white,
-                      child: new Image.asset(
-                        shopItem[index].image,
-                        width: double.infinity,
-                        height: 120,
-                      )),
-                  Text(
-                    shopItem[index].title,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontFamily: 'Lato',
-                      color: normalText,
-                      fontWeight: FontWeight.w700,
+                    padding: EdgeInsets.symmetric(vertical: 30),
+                    margin: EdgeInsets.symmetric(horizontal: 10),
+                    decoration: BoxDecoration(
+                      border: Border.all(color:
+                      primaryColor.withOpacity(0.3),
+                          width: 2),
+                        image: DecorationImage(
+                            fit: BoxFit.contain,
+                            image: NetworkImage(
+                                "${shopItem[index].files[0]}",
+                            ))),
+                  ),
+
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 10),
+                    child: Text(
+                      "${shopItem[index].title}",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontFamily: 'Lato',
+                        color: normalText,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                   ),
                   SizedBox(
-                    height: 5,
+                    height: 3,
                   ),
-                  Text(
-                    "${shopItem[index].price}",
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontFamily: 'Lato',
-                      color: primaryColor,
-                      fontWeight: FontWeight.w700,
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 10),
+                    child: Text(
+                      "${shopItem[index].price}",
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontFamily: 'Lato',
+                        color: primaryColor,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 3,
+                  ),
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 10),
+                    child: Text(
+                      "${shopItem[index].quantity} Products Reserved",
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontFamily: 'Lato',
+                        color: greyColor2,
+                        fontWeight: FontWeight.w400,
+                      ),
                     ),
                   ),
                 ],

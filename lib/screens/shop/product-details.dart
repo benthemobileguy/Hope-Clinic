@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hope_clinic/model/shop-item.dart';
+import 'package:hope_clinic/model/market-shop.dart';
 import 'package:hope_clinic/screens/components/main-button.dart';
 import 'package:hope_clinic/theme/style.dart';
 import 'package:hope_clinic/utils/global-variables.dart';
 class ProductDetails extends StatefulWidget {
-  final Shop item;
+  final MarketShop item;
 
   const ProductDetails({Key key, this.item}) : super(key: key);
   @override
@@ -36,21 +36,24 @@ class _ProductDetailsState extends State<ProductDetails> {
           },),
       ),
       body: Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 14),
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                height: 20,
-              ),
               Center(
-                child: new Image.asset(widget.item.image,
-                  height: 350, width: double.infinity,),
-              ),
-              SizedBox(
-                height: 15,
+                child:  Container(
+                  margin: EdgeInsets.symmetric(vertical: 10),
+                  width: double.infinity,
+                  height: 200,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          fit: BoxFit.contain,
+                          image: NetworkImage(
+                            "${widget.item.files[0]}",
+                          ))),
+                ),
               ),
               Text(
                 "${widget.item.title}",
@@ -63,7 +66,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                 ),
               ),
               SizedBox(
-                height: 15,
+                height: 10,
               ),
               Text(
                 "${widget.item.price}",
@@ -92,7 +95,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                 height: 15,
               ),
               Padding(
-                padding: EdgeInsets.all(10),
+                padding: EdgeInsets.symmetric(vertical: 10),
                 child: MainButton(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

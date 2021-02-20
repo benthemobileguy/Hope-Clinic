@@ -12,10 +12,11 @@ class  MarketService extends ApiService {
   /// get reviews
   Future<List<MarketShop>> getMarketShop() async {
     bloc = Provider.of<MainBloc>(context, listen: false);
-    List<dynamic> _data =
+    Map<String, dynamic> _data =
     await get('store');
+    print(_data);
     List<MarketShop> _marketShop = [];
-    _marketShop = MarketShop.fromJsonList(_data);
+    _marketShop = MarketShop.fromJsonList(_data['data']['store']['data']);
     bloc.marketShop = _marketShop;
     return _marketShop;
   }

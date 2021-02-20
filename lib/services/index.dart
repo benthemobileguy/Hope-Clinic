@@ -59,7 +59,7 @@ class ApiService {
           }
         } else {
           if(data['message'] !=null){
-            msg = data['message']['name'];
+            msg = data['message'];
           }
         }
 

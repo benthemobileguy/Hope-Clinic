@@ -62,6 +62,7 @@ class _SplashScreenState extends State<SplashScreen>
 
   void checkLoginState() async {
 prefManager.getAuthToken().then((value){
+  mainBloc.bearerToken = value;
   if(value!=null){
     prefManager.getUserData().then((value) {
       mainBloc.user = value;
