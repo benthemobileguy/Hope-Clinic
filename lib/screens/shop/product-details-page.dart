@@ -186,7 +186,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   ),
                   color: primaryColor,
                   onPressed: () {
-                   addQuantityModal();
+                    addQuantityModal();
                   },
                 ),
               ),
@@ -207,10 +207,10 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
     Map<String, dynamic> data = new Map();
     data = {"quantity": widget.item.quantity, "store_id": widget.item.id};
     try {
-   Map<String, dynamic> _res = await marketService.reserveProduct(data);
-   setState(() {
-     isLoading = false;
-   });
+      Map<String, dynamic> _res = await marketService.reserveProduct(data);
+      setState(() {
+        isLoading = false;
+      });
     } catch (e) {
       print(e.toString());
       setState(() {
@@ -219,131 +219,127 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
     }
   }
 
-  void addQuantityModal() async{
+  void addQuantityModal() async {
     showModalBottomSheet(
         context: context,
         isScrollControlled: true,
-        builder: (context){
-        return StatefulBuilder(
-          builder: (BuildContext context, StateSetter stateSetter){
-            quantityModalSetter = stateSetter;
-            return  Container(
-              padding: EdgeInsets.all(14),
-              height: 330,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "Reserve Product",
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                      fontSize: 14.5,
-                      fontFamily: 'Lato',
-                      color: textColor,
-                      fontWeight: FontWeight.w700,
+        builder: (context) {
+          return StatefulBuilder(
+            builder: (BuildContext context, StateSetter stateSetter) {
+              quantityModalSetter = stateSetter;
+              return Container(
+                padding: EdgeInsets.all(14),
+                height: 330,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 10,
                     ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "Confirm Reservation",
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                      fontSize: 22,
-                      fontFamily: 'Lato',
-                      color: normalTexth1,
-                      fontWeight: FontWeight.w700,
+                    Text(
+                      "Reserve Product",
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        fontSize: 14.5,
+                        fontFamily: 'Lato',
+                        color: textColor,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 14,
-                  ),
-                  Text(
-                    "How many products to be reserved",
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                      fontSize: 14.5,
-                      fontFamily: 'Lato',
-                      color: normalTexth1,
-                      fontWeight: FontWeight.w700,
+                    SizedBox(
+                      height: 20,
                     ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: containerBgColor
-                        ),
-                        padding: EdgeInsets.all(10),
-                        child: Icon(
-                          Icons.chevron_left,
-                          color: textColor,
-                        ),
+                    Text(
+                      "Confirm Reservation",
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontFamily: 'Lato',
+                        color: normalTexth1,
+                        fontWeight: FontWeight.w700,
                       ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Text(
-                        "${quantityNo}",
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                          fontSize: 30,
-                          fontFamily: 'Lato',
-                          color: normalTexth1,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: containerBgColor
-                        ),
-                        padding: EdgeInsets.all(10),
-                        child: Icon(
-                          Icons.chevron_right,
-                          color: textColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 10),
-                    child: MainButton(
-                      child: Text(
-                        "Confirm",
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontFamily: 'Lato',
-                          color: Colors.white,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                      color: primaryColor,
-                      onPressed: () {
-                        reserveProduct();
-                      },
                     ),
-                  ),
-                ],
-              ),
-            );
-          },
-        );
+                    SizedBox(
+                      height: 14,
+                    ),
+                    Text(
+                      "How many products to be reserved",
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        fontSize: 14.5,
+                        fontFamily: 'Lato',
+                        color: normalTexth1,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle, color: containerBgColor),
+                          padding: EdgeInsets.all(10),
+                          child: Icon(
+                            Icons.chevron_left,
+                            color: textColor,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Text(
+                          "${quantityNo}",
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontSize: 30,
+                            fontFamily: 'Lato',
+                            color: normalTexth1,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle, color: containerBgColor),
+                          padding: EdgeInsets.all(10),
+                          child: Icon(
+                            Icons.chevron_right,
+                            color: textColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 10),
+                      child: MainButton(
+                        child: Text(
+                          "Confirm",
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontFamily: 'Lato',
+                            color: Colors.white,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        color: primaryColor,
+                        onPressed: () {
+                          reserveProduct();
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          );
         });
   }
 }
