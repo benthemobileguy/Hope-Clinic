@@ -47,7 +47,9 @@ class ShopItem extends StatelessWidget {
                               "${shopItem[index].files[0]}",
                           ))),
                 ),
-
+                SizedBox(
+                  height: 3,
+                ),
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 10),
                   child: Text(

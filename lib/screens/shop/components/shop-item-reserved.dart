@@ -23,10 +23,10 @@ class ShopItemReserved extends StatelessWidget {
       itemBuilder: (context, index) {
         return GestureDetector(
           onTap: (){
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context)
-                => ProductDetails
-                  (item: reservedItem[index])));
+            // Navigator.push(context,
+            //     MaterialPageRoute(builder: (context)
+            //     => ProductDetails
+            //       (item: reservedItem[index])));
           },
           child: Container(
             child: Column(
@@ -44,14 +44,16 @@ class ShopItemReserved extends StatelessWidget {
                       image: DecorationImage(
                           fit: BoxFit.contain,
                           image: NetworkImage(
-                            "${reservedItem[index].files[0]}",
+                            "${reservedItem[index].store.files[0]}",
                           ))),
                 ),
-
+                SizedBox(
+                  height: 3,
+                ),
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 10),
                   child: Text(
-                    "${reservedItem[index].title}",
+                    "${reservedItem[index].store.title}",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 14,
@@ -67,7 +69,7 @@ class ShopItemReserved extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 10),
                   child: Text(
-                    "${reservedItem[index].price}",
+                    "${reservedItem[index].store.price}",
                     textAlign: TextAlign.start,
                     style: TextStyle(
                       fontSize: 16,
