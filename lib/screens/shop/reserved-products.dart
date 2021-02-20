@@ -60,7 +60,4 @@ class _ReservedProductsState extends State<ReservedProducts> {
     });
     return shopList;
   }
-  void getReservedProducts() async{
-
-  }
 }
