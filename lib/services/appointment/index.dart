@@ -33,4 +33,15 @@ class  AppointmentService extends ApiService {
     bloc.nextAppointment = _nextAppointment;
     return _nextAppointment;
   }
+  /// get days left count
+  Future<NextAppointment> getNextAppointment() async {
+    bloc = Provider.of<MainBloc>(context, listen: false);
+    Map<String, dynamic> _data =
+    await get('count/next/appointment/time');
+    print(_data);
+    NextAppointment _nextAppointment;
+    _nextAppointment = NextAppointment.fromJson(_data['data']);
+    bloc.nextAppointment = _nextAppointment;
+    return _nextAppointment;
+  }
 }
