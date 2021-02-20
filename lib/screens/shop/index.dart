@@ -3,6 +3,7 @@ import 'package:hope_clinic/bloc/index.dart';
 import 'package:hope_clinic/model/market-shop.dart';
 import 'package:hope_clinic/screens/components/main-button.dart';
 import 'package:hope_clinic/screens/shop/components/shop-item.dart';
+import 'package:hope_clinic/screens/shop/reserved-products.dart';
 import 'package:hope_clinic/theme/style.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
@@ -88,7 +89,9 @@ class _ShopPageState extends State<ShopPage> {
                       ),
                       color: accentColor,
                       onPressed: (){
-
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context)
+                            => ReservedProducts()));
                       },
                     ),
                   ),
