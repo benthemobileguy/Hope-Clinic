@@ -51,7 +51,15 @@ class _ReservedProductsState extends State<ReservedProducts> {
       ),
     );
   }
-
+  Future<List<MarketShop>> getReservedProducts() async {
+    bloc.fetchMarketShop(context).then((value) {
+      setState(() {
+        shopList = value;
+        print(shopList.toString());
+      });
+    });
+    return shopList;
+  }
   void getReservedProducts() async{
 
   }
