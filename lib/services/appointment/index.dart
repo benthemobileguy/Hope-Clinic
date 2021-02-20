@@ -20,7 +20,7 @@ class  AppointmentService extends ApiService {
     print(_data);
     UpcomingAppointment _upcomingAppointment;
     _upcomingAppointment = UpcomingAppointment.fromJson(_data['data']);
-    bloc._upcomingAppointment;
+    bloc._upcomingAppointment = _upcomingAppointment;
     return _upcomingAppointment;
   }
 
@@ -32,7 +32,7 @@ class  AppointmentService extends ApiService {
     print(_data);
     NextAppointment _nextAppointment;
     _nextAppointment = NextAppointment.fromJson(_data['data']);
-    bloc.reservedItem = _reservedItem;
+    bloc.nextAppointment = _nextAppointment;
     return _nextAppointment;
   }
 }
