@@ -20,8 +20,8 @@ class  AppointmentService extends ApiService {
     print(_data);
     UpcomingAppointment _upcomingAppointment;
     _upcomingAppointment = UpcomingAppointment.fromJson(_data);
-    bloc. = _upcomingAppointment;
-    return _marketShop;
+    bloc._upcomingAppointment;
+    return _upcomingAppointment;
   }
 
   /// get next appointment
@@ -30,9 +30,9 @@ class  AppointmentService extends ApiService {
     Map<String, dynamic> _data =
     await get('reserve');
     print(_data);
-    List<ReservedItem> _reservedItem = [];
-    _reservedItem = ReservedItem.fromJsonList(_data['data']['reserves']['data']);
+    NextAppointment _nextAppointment;
+    _nextAppointment = NextAppointment.fromJson(_data['data']);
     bloc.reservedItem = _reservedItem;
-    return _reservedItem;
+    return _nextAppointment;
   }
 }

@@ -4,7 +4,7 @@ import 'package:hope_clinic/bloc/shop/index.dart';
 import 'package:hope_clinic/model/user.dart';
 
 class MainBloc with ChangeNotifier,
-    ShopBloc, AppointmentBloc{
+    ShopBloc{
 
   String _bearerToken;
   User _user;
