@@ -214,7 +214,8 @@ setState(() {
 });
 try{
   marketService.deleteReservedItem(
-      mainBloc.reservedItem[widget.index].store.id.toString());
+      mainBloc.reservedItem[widget.index]
+          .store.id.toString());
   setState(() {
     isLoading = false;
   });
