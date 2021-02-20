@@ -72,7 +72,74 @@ class ApiService {
         break;
     }
   }
+  Future<Map<String, dynamic>> delete(String url, dynamic body,
+      {redirectOn401: true}) async {
+    print('Api service is called to make delete request');
+    MainBloc bloc = Provider.of<MainBloc>(context);
+    Map<String, String> _headers = await headers(bloc: bloc);
 
+    http.Response response = await http.delete(
+      Constants().API_BASE_URL + url,
+      headers: _headers,
+    );
+    final responseJson = json.decode(response.body);
+    print("res:" + responseJson.toString());
+    AlertManager.showToast(responseJson["message"].toString());
+    int statusCode = response.statusCode;
+    switch (statusCode) {
+      case 200:
+        Map<String, dynamic> data = json.decode(response.body);
+        return data;
+        break;
+      case 201:
+        Map<String, dynamic> data = json.decode(response.body);
+        return data;
+        break;
+
+      case 422:
+      case 400:
+        dynamic data = json.decode(response.body);
+        String msg;
+        // lord knows why this was encoded twice
+        if (data is String) {
+          data = json.decode(data);
+          msg = "";
+          if (data.values.toList().length > 0) {
+            // show first error
+            msg = data.values.toList().first[0];
+          }
+        } else {
+          msg = data['message'];
+        }
+
+        throw ApiException(
+          context: context,
+          message: msg,
+          errors: data,
+          code: statusCode,
+        );
+        break;
+      default:
+        dynamic data = json.decode(response.body);
+        print("response " + data.toString());
+        String msg;
+        // lord knows why this was encoded twice
+        if (data is String) {
+          data = json.decode(data);
+          msg = "";
+        } else {
+          msg = data['message'];
+        }
+
+        throw ApiException(
+          context: context,
+          message: msg,
+          code: statusCode,
+          preventRedirect: !redirectOn401,
+        );
+        break;
+    }
+  }
   Future<Map<String, dynamic>> post(String url, dynamic body,
       {redirectOn401: true}) async {
     print('Api service is called to make post request');

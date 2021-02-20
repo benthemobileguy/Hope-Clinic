@@ -32,9 +32,15 @@ class  MarketService extends ApiService {
     bloc.reservedProducts= _reservedItem;
     return _reservedItem;
   }
-  /// reserve product
+  /// delete reserved item
   Future<Map<String, dynamic>> reserveProduct(Map<String, dynamic> data) async {
     Map<String, dynamic> _response = await post('reserve/add', data);
+
+    return _response;
+  }
+  /// reserve product
+  Future<Map<String, dynamic>> deleteReservedItem(Map<String, dynamic> data, String reserveId) async {
+    Map<String, dynamic> _response = await post('reserve/delete/${reserveId}', data);
 
     return _response;
   }
