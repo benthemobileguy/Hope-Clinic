@@ -34,13 +34,5 @@ class ApiException implements Exception {
         break;
     }
   }
-// void logOut() {
-//   PrefManager prefManager = PrefManager();
-//   prefManager.clearSharedPreferences().then((value) => ({
-//     Navigator.pushReplacement(
-//         context, SlideFromRightPageRoute(widget:
-//     LoginScreen()))
-//   }));
-// }
 }
 

@@ -201,12 +201,14 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
   }
 
   void reserveProduct() async {
+    Navigator.pop(context);
     setState(() {
       isLoading = true;
     });
+    print(quantityNo);
     Map<String, dynamic> data = new Map();
     data = {"quantity": widget.item.quantity,
-      "store_id": widget.item.id};
+      "store_id": quantityNo.toString()};
     try {
       Map<String, dynamic> _res = await marketService.reserveProduct(data);
       setState(() {
@@ -280,7 +282,11 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                       children: [
                         GestureDetector(
                           onTap: (){
-
+                            quantityModalSetter(() {
+                              if(quantityNo>1){
+                                quantityNo--;
+                              }
+                            });
                           },
                           child: Container(
                             decoration: BoxDecoration(
@@ -310,7 +316,9 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                         ),
                         GestureDetector(
                           onTap: (){
-
+                          quantityModalSetter(() {
+                            quantityNo++;
+                          });
                           },
                           child: Container(
                             decoration: BoxDecoration(
