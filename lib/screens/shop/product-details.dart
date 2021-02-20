@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hope_clinic/model/market-shop.dart';
 import 'package:hope_clinic/screens/components/main-button.dart';
 import 'package:hope_clinic/theme/style.dart';
-import 'package:hope_clinic/utils/global-variables.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class ProductDetails extends StatefulWidget {
   final MarketShop item;
@@ -53,6 +53,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                     children: [
                       PageView(
                         children: <Widget>[
+
                           Container(
                             margin: EdgeInsets.only(
                                 top: 10, bottom: 10, right: 60, left: 20),
