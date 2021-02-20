@@ -16,7 +16,7 @@ class  AppointmentService extends ApiService {
   Future<UpcomingAppointment> getUpcomingAppointment() async {
     bloc = Provider.of<MainBloc>(context, listen: false);
     Map<String, dynamic> _data =
-    await get('store');
+    await get('count/upcoming/appointment');
     print(_data);
     UpcomingAppointment _upcomingAppointment;
     _upcomingAppointment = UpcomingAppointment.fromJson(_data['data']);
@@ -28,7 +28,7 @@ class  AppointmentService extends ApiService {
   Future<NextAppointment> getNextAppointment() async {
     bloc = Provider.of<MainBloc>(context, listen: false);
     Map<String, dynamic> _data =
-    await get('reserve');
+    await get('count/next/appointment/time');
     print(_data);
     NextAppointment _nextAppointment;
     _nextAppointment = NextAppointment.fromJson(_data['data']);
