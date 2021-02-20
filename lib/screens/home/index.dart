@@ -290,7 +290,8 @@ class _HomePageState extends State<HomePage> {
  Future fetchRequests() async{
     Future.wait([
       bloc.fetchNextAppointment(context),
-      bloc.fetchUpcomingAppointment(context)
+      bloc.fetchUpcomingAppointment(context),
+      bloc.fetchDaysLeftCount(context)
     ]);
   }
 }
