@@ -28,9 +28,9 @@ class  MarketService extends ApiService {
     await get('reserve');
     print(_data);
     List<ReservedItem> _reservedItem = [];
-    _reservedItem = ReservedItem.fromJsonList(_data['data']['store']['data']);
+    _reservedItem = ReservedItem.fromJsonList(_data['data']['reserves']['data']);
     bloc.reservedProducts= _reservedItem;
-    return _;
+    return _reservedItem;
   }
   /// reserve product
   Future<Map<String, dynamic>> reserveProduct(Map<String, dynamic> data) async {

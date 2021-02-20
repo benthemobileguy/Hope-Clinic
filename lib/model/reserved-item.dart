@@ -36,6 +36,10 @@ class ReservedItem {
     }
     return data;
   }
+
+  static List<ReservedItem> fromJsonList(List<dynamic> _list) {
+    return _list.map((_item) => ReservedItem.fromJson(_item)).toList();
+  }
 }
 
 class Store {
