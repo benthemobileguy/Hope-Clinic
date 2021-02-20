@@ -37,7 +37,7 @@ class ShopBloc extends ChangeNotifier {
   Future<List<ReservedItem>> fetchReservedProducts(BuildContext context) async {
     MarketService marketService = new  MarketService(
         context: context);
-    List<ReservedItem> _reservedItems = await marketService.getMarketShop();
+    List<ReservedItem> _reservedItems = await marketService.getReservedProducts();
     this._reservedItem = _reservedItems;
     notifyListeners();
     return _reservedItems;
