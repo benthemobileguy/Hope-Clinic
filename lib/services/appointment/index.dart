@@ -19,7 +19,7 @@ class  AppointmentService extends ApiService {
     await get('store');
     print(_data);
     UpcomingAppointment _upcomingAppointment;
-    _upcomingAppointment = UpcomingAppointment.fromJson(_data);
+    _upcomingAppointment = UpcomingAppointment.fromJson(_data['data']);
     bloc._upcomingAppointment;
     return _upcomingAppointment;
   }
