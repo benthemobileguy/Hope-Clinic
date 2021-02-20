@@ -184,7 +184,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   ),
                   color: primaryColor,
                   onPressed: () {
-                   addQuantityModal();
+                   reserveProduct();
                   },
                 ),
               ),
@@ -246,8 +246,56 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                 style: TextStyle(
                   fontSize: 24,
                   fontFamily: 'Lato',
-                  color: textColor,
+                  color: normalTexth1,
                   fontWeight: FontWeight.w700,
+                ),
+              ),
+              SizedBox(
+                height: 14,
+              ),
+              Text(
+                "How many products to be reserved",
+                textAlign: TextAlign.start,
+                style: TextStyle(
+                  fontSize: 16,
+                  fontFamily: 'Lato',
+                  color: normalTexth1,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 10),
+                child: MainButton(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      new Image.asset(
+                        'images/icons/cart.png',
+                        height: 20,
+                        width: 20,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        "Confirm",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontFamily: 'Lato',
+                          color: Colors.white,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ],
+                  ),
+                  color: primaryColor,
+                  onPressed: () {
+                   reserveProduct();
+                  },
                 ),
               ),
             ],
