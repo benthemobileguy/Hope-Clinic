@@ -5,15 +5,15 @@ import 'package:hope_clinic/services/shop/index.dart';
 import 'package:hope_clinic/theme/style.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
-class ProductDetails extends StatefulWidget {
+class ProductDetailsPage extends StatefulWidget {
   final MarketShop item;
 
-  const ProductDetails({Key key, this.item}) : super(key: key);
+  const ProductDetailsPage({Key key, this.item}) : super(key: key);
   @override
-  _ProductDetailsState createState() => _ProductDetailsState();
+  _ProductDetailsPageState createState() => _ProductDetailsPageState();
 }
 
-class _ProductDetailsState extends State<ProductDetails> {
+class _ProductDetailsPageState extends State<ProductDetailsPage> {
   MarketService marketService;
   bool isLoading = false;
   CarouselController buttonCarouselController = CarouselController();

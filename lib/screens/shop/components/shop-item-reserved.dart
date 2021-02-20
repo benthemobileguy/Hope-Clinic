@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hope_clinic/model/reserved-item.dart';
 import 'package:hope_clinic/screens/components/main-button.dart';
-import 'package:hope_clinic/screens/shop/product-details.dart';
+import 'package:hope_clinic/screens/shop/product-details-page.dart';
 import 'package:hope_clinic/screens/shop/reserved-product-details-page.dart';
 import 'package:hope_clinic/theme/style.dart';
 

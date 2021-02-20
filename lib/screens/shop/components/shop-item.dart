@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hope_clinic/model/market-shop.dart';
-import 'package:hope_clinic/screens/shop/product-details.dart';
+import 'package:hope_clinic/screens/shop/product-details-page.dart';
 import 'package:hope_clinic/theme/style.dart';
 
 class ShopItem extends StatelessWidget {
