@@ -159,7 +159,7 @@ class _ProductDetailsState extends State<ProductDetails> {
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 10),
                 child: MainButton(
-                  child: !isLoading? SizedBox(
+                  child: isLoading? SizedBox(
                     height: 25,
                     width: 25,
                     child: CircularProgressIndicator(
@@ -208,13 +208,19 @@ class _ProductDetailsState extends State<ProductDetails> {
   }
 
   void reserveProduct() async {
+    setState(() {
+      isLoading = true;
+    });
     Map<String, dynamic> data = new Map();
     data = {"quantity": widget.item.quantity, "store_id": widget.item.id};
     try {
-      Map<String, dynamic> _res = await marketService.reserveProduct(data);
+   //   Map<String, dynamic> _res = await marketService.reserveProduct(data);
 
     } catch (e) {
       print(e.toString());
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 }
