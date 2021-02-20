@@ -25,8 +25,7 @@ class ShopItem extends StatelessWidget {
           onTap: (){
             Navigator.push(context,
                 MaterialPageRoute(builder: (context)
-                => ProductDetails
-                  (item: shopItem[index])));
+                => ProductDetailsPage(item: shopItem[index],)));
           },
           child: Container(
             child: Column(
