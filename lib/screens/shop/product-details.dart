@@ -214,8 +214,10 @@ class _ProductDetailsState extends State<ProductDetails> {
     Map<String, dynamic> data = new Map();
     data = {"quantity": widget.item.quantity, "store_id": widget.item.id};
     try {
-   //   Map<String, dynamic> _res = await marketService.reserveProduct(data);
-
+   Map<String, dynamic> _res = await marketService.reserveProduct(data);
+   setState(() {
+     isLoading = false;
+   });
     } catch (e) {
       print(e.toString());
       setState(() {
