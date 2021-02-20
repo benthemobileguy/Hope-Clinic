@@ -203,6 +203,8 @@ class _ProductDetailsState extends State<ProductDetails> {
     };
     try{
 
+    }catch(e){
+
     }
 marketService.reserveProduct(data);
   }
