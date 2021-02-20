@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hope_clinic/bloc/index.dart';
+import 'package:hope_clinic/model/days-left-count.dart';
 import 'package:hope_clinic/model/next-appointment.dart';
 import 'package:hope_clinic/model/upcoming-appointment.dart';
 import 'package:hope_clinic/services/index.dart';
@@ -34,7 +35,7 @@ class  AppointmentService extends ApiService {
     return _nextAppointment;
   }
   /// get days left count
-  Future<NextAppointment> getNextAppointment() async {
+  Future<DaysLeftCount> getDaysLeftCount() async {
     bloc = Provider.of<MainBloc>(context, listen: false);
     Map<String, dynamic> _data =
     await get('count/next/appointment/time');
