@@ -139,10 +139,9 @@ class _HomePageState extends State<HomePage> {
                     Column(
                       children: [
                         SizedBox(
-                          height: 20,
+                          height: 25,
                         ),
                         new Image.asset("images/man_smiling.png",
-                          width: 156,
                           height: 204,),
                       ],
                     ),
