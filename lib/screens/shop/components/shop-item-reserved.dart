@@ -19,14 +19,14 @@ class ShopItemReserved extends StatelessWidget {
       SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           childAspectRatio: 0.75),
-      itemCount: shopItem.length,
+      itemCount: reservedItem.length,
       itemBuilder: (context, index) {
         return GestureDetector(
           onTap: (){
             Navigator.push(context,
                 MaterialPageRoute(builder: (context)
                 => ProductDetails
-                  (item: shopItem[index])));
+                  (item: reservedItem[index])));
           },
           child: Container(
             child: Column(
@@ -44,14 +44,14 @@ class ShopItemReserved extends StatelessWidget {
                       image: DecorationImage(
                           fit: BoxFit.contain,
                           image: NetworkImage(
-                            "${shopItem[index].files[0]}",
+                            "${reservedItem[index].files[0]}",
                           ))),
                 ),
 
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 10),
                   child: Text(
-                    "${shopItem[index].title}",
+                    "${reservedItem[index].title}",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 14,
@@ -67,7 +67,7 @@ class ShopItemReserved extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 10),
                   child: Text(
-                    "${shopItem[index].price}",
+                    "${reservedItem[index].price}",
                     textAlign: TextAlign.start,
                     style: TextStyle(
                       fontSize: 16,
@@ -83,7 +83,7 @@ class ShopItemReserved extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 10),
                   child: Text(
-                    "${shopItem[index].quantity} Products Reserved",
+                    "${reservedItem[index].quantity} Products Reserved",
                     textAlign: TextAlign.start,
                     style: TextStyle(
                       fontSize: 12,
