@@ -108,7 +108,9 @@ class _ShopPageState extends State<ShopPage> {
                 ),
               ),
             ):
-            ShopItem(shopItem: shopList,),
+            Expanded(child:
+            ShopItem(shopItem:
+            shopList,)),
           ],
         ),
       ),

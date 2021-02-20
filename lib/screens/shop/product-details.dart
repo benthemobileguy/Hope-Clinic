@@ -36,24 +36,41 @@ class _ProductDetailsState extends State<ProductDetails> {
           },),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 14),
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Center(
-                child:  Container(
-                  margin: EdgeInsets.symmetric(vertical: 10),
-                  width: double.infinity,
-                  height: 200,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          fit: BoxFit.contain,
-                          image: NetworkImage(
-                            "${widget.item.files[0]}",
-                          ))),
+              Card(
+                elevation: 2,
+                child: Row(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.symmetric(vertical: 10,),
+                      height: 200,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4),
+                          image: DecorationImage(
+                              fit: BoxFit.contain,
+                              image: NetworkImage(
+                                "${widget.item.files[0]}",
+                              ))),
+                    ),
+                   Container(
+                     padding: EdgeInsets.all(7),
+                     decoration: BoxDecoration(
+                       color: accentColor,
+                       shape: BoxShape.circle
+                     ),
+                       child:
+                   Icon(Icons.chevron_right, color: primaryColor,)
+                   ),
+                  ],
                 ),
+              ),
+              SizedBox(
+                height: 10,
               ),
               Text(
                 "${widget.item.title}",
