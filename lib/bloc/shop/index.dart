@@ -2,17 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:hope_clinic/model/market-shop.dart';
 import 'package:hope_clinic/model/next-appointment.dart';
 import 'package:hope_clinic/model/reserved-item.dart';
+import 'package:hope_clinic/model/upcominng-appointment.dart';
 import 'package:hope_clinic/screens/shop/reserved-products-page.dart';
 import 'package:hope_clinic/services/shop/index.dart';
 
 class ShopBloc extends ChangeNotifier {
   List<NextAppointment> _nextAppointment;
-  List<ReservedItem> _reservedItem;
-  List<MarketShop> get marketShop {
-    return _marketShop;
+  List<UpcomingAppointment> _upcomingAppointment;
+  List<UpcomingAppointment> get upcoomingAppointment {
+    return _upcomingAppointment;
   }
 
-  set marketShop(List<MarketShop> _data) {
+  set upcomingAppointment(List<MarketShop> _data) {
     this._marketShop = _data;
     notifyListeners();
   }
