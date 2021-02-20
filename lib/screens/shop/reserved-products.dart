@@ -21,6 +21,10 @@ class _ReservedProductsState extends State<ReservedProducts> {
   }
   @override
   Widget build(BuildContext context) {
+    if(!isInitialised){
+      getReservedProducts();
+      isInitialised = true;
+    }
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -46,5 +50,9 @@ class _ReservedProductsState extends State<ReservedProducts> {
         ),
       ),
     );
+  }
+
+  void getReservedProducts() async{
+
   }
 }
