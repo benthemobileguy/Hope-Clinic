@@ -5,6 +5,7 @@ import 'package:hope_clinic/services/shop/index.dart';
 
 class ShopBloc extends ChangeNotifier {
   List<MarketShop> _marketShop;
+  List<ReservedProducts> _reservedProducts;
   List<MarketShop> get marketShop {
     return _marketShop;
   }
@@ -13,13 +14,13 @@ class ShopBloc extends ChangeNotifier {
     this._marketShop = _data;
     notifyListeners();
   }
-  List<ReservedProducts> _reservedProducts;
+
   List<ReservedProducts> get reservedProducts {
     return _reservedProducts;
   }
 
-  set marketShop(List<MarketShop> _data) {
-    this._marketShop = _data;
+  set reservedProducts(List<ReservedProducts> _data) {
+    this._reservedProducts = _data;
     notifyListeners();
   }
   ///fetch market shop
