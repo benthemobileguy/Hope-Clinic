@@ -196,6 +196,6 @@ class _ProductDetailsState extends State<ProductDetails> {
   }
 
   void reserveProduct() async{
-
+marketService.reserveProduct(data);
   }
 }
