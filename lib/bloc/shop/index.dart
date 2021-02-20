@@ -32,6 +32,7 @@ class ShopBloc extends ChangeNotifier {
     notifyListeners();
     return _marketShop;
   }
+  ///fetch reserved products
   Future<List<ReservedProducts>> fetchReservedProducts(BuildContext context) async {
     MarketService marketService = new  MarketService(
         context: context);
