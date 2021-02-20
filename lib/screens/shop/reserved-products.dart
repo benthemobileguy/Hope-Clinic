@@ -4,6 +4,7 @@ import 'package:hope_clinic/model/reserved-item.dart';
 import 'package:hope_clinic/screens/shop/components/shop-item-reserved.dart';
 import 'package:hope_clinic/theme/style.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 class ReservedProducts extends StatefulWidget {
   @override
   _ReservedProductsState createState() => _ReservedProductsState();
@@ -51,7 +52,7 @@ class _ReservedProductsState extends State<ReservedProducts> {
           },
         ),
       ),
-      body:   shopList==null?
+      body: reservedList==null?
       Expanded(
         child: Center(
           child: SpinKitRipple(
@@ -62,7 +63,7 @@ class _ReservedProductsState extends State<ReservedProducts> {
         ),
       ):
       Expanded(child:
-      ShopItemReserved(shopItem:
+      ShopItemReserved(reservedItem:
       reservedList,)),
     );
   }

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:hope_clinic/model/market-shop.dart';
+import 'package:hope_clinic/model/reserved-item.dart';
 import 'package:hope_clinic/screens/shop/product-details.dart';
 import 'package:hope_clinic/theme/style.dart';
 
 class ShopItemReserved extends StatelessWidget {
-  final List<MarketShop> shopItem;
+  final List<ReservedItem> reservedItem;
 
   const ShopItemReserved({
     Key key,
-    this.shopItem,
+    this.reservedItem,
   }) : super(key: key);
 
   @override
