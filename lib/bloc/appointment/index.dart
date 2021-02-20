@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:hope_clinic/model/days-left-count.dart';
 import 'package:hope_clinic/model/next-appointment.dart';
 import 'package:hope_clinic/model/upcoming-appointment.dart';
 import 'package:hope_clinic/services/appointment/index.dart';
 
 class AppointmentBloc extends ChangeNotifier {
   NextAppointment _nextAppointment;
+  DaysLeftCount _daysLeftCount;
   UpcomingAppointment _upcomingAppointment;
   UpcomingAppointment get upcomingAppointment {
     return _upcomingAppointment;
@@ -23,7 +25,14 @@ class AppointmentBloc extends ChangeNotifier {
     this._nextAppointment = _data;
     notifyListeners();
   }
+  DaysLeftCount get daysLeftCount {
+    return _daysLeftCount;
+  }
 
+  set daysLeftCount(DaysLeftCount _data) {
+    this._daysLeftCount = _data;
+    notifyListeners();
+  }
   ///fetch next appointment
   Future<NextAppointment> fetchNextAppointment(BuildContext context) async {
     AppointmentService appointmentService = new AppointmentService(

@@ -40,9 +40,9 @@ class  AppointmentService extends ApiService {
     Map<String, dynamic> _data =
     await get('count/days-left');
     print(_data);
-    NextAppointment _nextAppointment;
-    _nextAppointment = NextAppointment.fromJson(_data['data']);
-    bloc.nextAppointment = _nextAppointment;
-    return _nextAppointment;
+    DaysLeftCount _daysLeftCount;
+    _daysLeftCount = DaysLeftCount.fromJson(_data['data']);
+    bloc.daysLeftCount = _daysLeftCount;
+    return _daysLeftCount;
   }
 }
