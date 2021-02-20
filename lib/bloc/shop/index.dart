@@ -13,6 +13,15 @@ class ShopBloc extends ChangeNotifier {
     this._marketShop = _data;
     notifyListeners();
   }
+  List<ReservedProducts> _reservedProducts;
+  List<MarketShop> get marketShop {
+    return _marketShop;
+  }
+
+  set marketShop(List<MarketShop> _data) {
+    this._marketShop = _data;
+    notifyListeners();
+  }
   ///fetch market shop
   Future<List<MarketShop>> fetchMarketShop(BuildContext context) async {
     MarketService marketService = new  MarketService(
