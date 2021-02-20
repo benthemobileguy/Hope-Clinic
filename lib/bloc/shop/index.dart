@@ -37,8 +37,8 @@ class ShopBloc extends ChangeNotifier {
     MarketService marketService = new  MarketService(
         context: context);
     List<ReservedProducts> _reservedProducts = await marketService.getMarketShop();
-    this._marketShop = _marketShop;
+    this._reservedProducts = _reservedProducts;
     notifyListeners();
-    return _marketShop;
+    return _reservedProducts;
   }
 }

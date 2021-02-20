@@ -9,7 +9,7 @@ class  MarketService extends ApiService {
   MainBloc bloc;
   MarketService({@required this.context}) : super(context: context);
 
-  /// get reviews
+  /// get market shop
   Future<List<MarketShop>> getMarketShop() async {
     bloc = Provider.of<MainBloc>(context, listen: false);
     Map<String, dynamic> _data =
