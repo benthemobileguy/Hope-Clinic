@@ -51,4 +51,13 @@ class AppointmentBloc extends ChangeNotifier {
     notifyListeners();
     return _upcomingAppointment;
   }
+  ///fetch days left count
+  Future<UpcomingAppointment> fetchUpcomingAppointment(BuildContext context) async {
+    AppointmentService appointmentService = new  AppointmentService(
+        context: context);
+    UpcomingAppointment _upcomingAppointment = await appointmentService.getUpcomingAppointment();
+    this._upcomingAppointment = _upcomingAppointment;
+    notifyListeners();
+    return _upcomingAppointment;
+  }
 }
