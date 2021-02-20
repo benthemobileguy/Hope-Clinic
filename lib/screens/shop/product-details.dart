@@ -13,6 +13,7 @@ class ProductDetails extends StatefulWidget {
 }
 
 class _ProductDetailsState extends State<ProductDetails> {
+  CarouselController buttonCarouselController = CarouselController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +41,7 @@ class _ProductDetailsState extends State<ProductDetails> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -51,36 +52,52 @@ class _ProductDetailsState extends State<ProductDetails> {
                   elevation: 2,
                   child: Stack(
                     children: [
-                      PageView(
-                        children: <Widget>[
-
-                          Container(
-                            margin: EdgeInsets.only(
-                                top: 10, bottom: 10, right: 60, left: 20),
-                            height: 200,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(4),
-                                image: DecorationImage(
-                                    fit: BoxFit.contain,
-                                    image: NetworkImage(
-                                      "${widget.item.files[0]}",
-                                    ))),
-                          ),
-                        ],
+                      CarouselSlider(
+                        items: widget.item.files.map((i) {
+                          return Builder(
+                            builder: (BuildContext context) {
+                              return Container(
+                                margin: EdgeInsets.only(
+                                    top: 10, bottom: 10, right: 60, left: 20),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(4),
+                                    image: DecorationImage(
+                                        fit: BoxFit.contain,
+                                        image: NetworkImage(
+                                          "${i}",
+                                        ))),
+                              );
+                            },
+                          );
+                        }).toList(),
+                        carouselController: buttonCarouselController,
+                        options: CarouselOptions(
+                          autoPlay: true,
+                          enlargeCenterPage: true,
+                          viewportFraction: 1,
+                          aspectRatio: 2.0,
+                          initialPage: 0,
+                        ),
                       ),
                       Positioned(
                         right: 0,
                         bottom: 0,
                         top: 0,
-                        child: Container(
-                            margin: EdgeInsets.only(right: 16),
-                            padding: EdgeInsets.all(7),
-                            decoration: BoxDecoration(
-                                color: accentColor, shape: BoxShape.circle),
-                            child: Icon(
-                              Icons.chevron_right,
-                              color: primaryColor,
-                            )),
+                        child: GestureDetector(
+                          onTap: (){
+                            buttonCarouselController.nextPage(
+                                duration: Duration(milliseconds: 300), curve: Curves.linear);
+                          },
+                          child: Container(
+                              margin: EdgeInsets.only(right: 16),
+                              padding: EdgeInsets.all(7),
+                              decoration: BoxDecoration(
+                                  color: accentColor, shape: BoxShape.circle),
+                              child: Icon(
+                                Icons.chevron_right,
+                                color: primaryColor,
+                              )),
+                        ),
                       ),
                     ],
                   ),
