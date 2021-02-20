@@ -201,6 +201,9 @@ class _ProductDetailsState extends State<ProductDetails> {
     "quantity": widget.item.quantity,
     "store_id" : widget.item.id
     };
+    try{
+
+    }
 marketService.reserveProduct(data);
   }
 }
