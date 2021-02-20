@@ -91,7 +91,7 @@ class _ShopPageState extends State<ShopPage> {
                       onPressed: (){
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context)
-                            => ReservedProducts()));
+                            => ReservedProductsPage()));
                       },
                     ),
                   ),
