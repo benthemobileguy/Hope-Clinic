@@ -11,6 +11,7 @@ class ReservedProducts extends StatefulWidget {
 class _ReservedProductsState extends State<ReservedProducts> {
   List<ReservedItem> reservedItems;
   MainBloc bloc;
+  List<ReservedItem> reservedList;
   bool isInitialised = false;
   @override
   void didChangeDependencies() async{
@@ -54,9 +55,9 @@ class _ReservedProductsState extends State<ReservedProducts> {
   Future<List<ReservedProducts>> getReservedProducts() async {
     bloc.fetchMarketShop(context).then((value) {
       setState(() {
-        shopList = value;
+        reservedList = value;
       });
     });
-    return shopList;
+    return reservedList;
   }
 }
