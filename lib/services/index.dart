@@ -153,14 +153,17 @@ class ApiService {
     );
     final responseJson = json.decode(response.body);
     print("res:" + responseJson.toString());
-    AlertManager.showToast(responseJson["message"].toString());
     int statusCode = response.statusCode;
     switch (statusCode) {
       case 200:
+        AlertManager.showToast(responseJson["message"].toString());
         Map<String, dynamic> data = json.decode(response.body);
+
         return data;
+
         break;
       case 201:
+        AlertManager.showToast(responseJson["message"].toString());
         Map<String, dynamic> data = json.decode(response.body);
         return data;
         break;

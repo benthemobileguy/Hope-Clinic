@@ -14,25 +14,7 @@ class ApiException implements Exception {
         this.preventRedirect = false,
         this.errors,
         @required this.context}) {
-    switch (code) {
-      case 401:
-        break;
-      case 403:
-      // logOut();
-        break;
-      case 422:
-      case 400:
-        Fluttertoast.showToast(
-          msg: message,
-          backgroundColor: Colors.red,
-          timeInSecForIosWeb: 2,
-          toastLength: Toast.LENGTH_LONG,
-        );
-        break;
-      default:
-        Fluttertoast.showToast(msg: message, backgroundColor: Colors.red);
-        break;
-    }
+    Fluttertoast.showToast(msg: message, backgroundColor: Colors.red);
   }
 }
 
