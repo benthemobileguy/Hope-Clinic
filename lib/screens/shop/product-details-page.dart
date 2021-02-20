@@ -278,13 +278,18 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                     ),
                     Row(
                       children: [
-                        Container(
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle, color: containerBgColor),
-                          padding: EdgeInsets.all(10),
-                          child: Icon(
-                            Icons.chevron_left,
-                            color: textColor,
+                        GestureDetector(
+                          onTap: (){
+
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle, color: containerBgColor),
+                            padding: EdgeInsets.all(10),
+                            child: Icon(
+                              Icons.chevron_left,
+                              color: textColor,
+                            ),
                           ),
                         ),
                         SizedBox(
@@ -303,13 +308,18 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                         SizedBox(
                           width: 20,
                         ),
-                        Container(
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle, color: containerBgColor),
-                          padding: EdgeInsets.all(10),
-                          child: Icon(
-                            Icons.chevron_right,
-                            color: textColor,
+                        GestureDetector(
+                          onTap: (){
+
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle, color: containerBgColor),
+                            padding: EdgeInsets.all(10),
+                            child: Icon(
+                              Icons.chevron_right,
+                              color: textColor,
+                            ),
                           ),
                         ),
                       ],
