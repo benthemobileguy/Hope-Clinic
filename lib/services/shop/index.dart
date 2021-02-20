@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hope_clinic/bloc/index.dart';
 import 'package:hope_clinic/model/market-shop.dart';
+import 'package:hope_clinic/model/reserved-item.dart';
 import 'package:hope_clinic/services/index.dart';
 import 'package:provider/provider.dart';
 
@@ -19,6 +20,17 @@ class  MarketService extends ApiService {
     _marketShop = MarketShop.fromJsonList(_data['data']['store']['data']);
     bloc.marketShop = _marketShop;
     return _marketShop;
+  }
+  /// get reserved products
+  Future<List<ReservedItem>> getReservedProducts() async {
+    bloc = Provider.of<MainBloc>(context, listen: false);
+    Map<String, dynamic> _data =
+    await get('reserve');
+    print(_data);
+    List<ReservedItem> _reservedItem = [];
+    _reservedItem = ReservedItem.fromJsonList(_data['data']['store']['data']);
+    bloc.reservedProducts= _reservedItem;
+    return _;
   }
   /// reserve product
   Future<Map<String, dynamic>> reserveProduct(Map<String, dynamic> data) async {

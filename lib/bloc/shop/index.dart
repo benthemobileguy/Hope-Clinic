@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hope_clinic/model/market-shop.dart';
+import 'package:hope_clinic/model/reserved-item.dart';
 import 'package:hope_clinic/screens/shop/reserved-products.dart';
 import 'package:hope_clinic/services/shop/index.dart';
 
 class ShopBloc extends ChangeNotifier {
   List<MarketShop> _marketShop;
-  List<ReservedProducts> _reservedProducts;
+  List<ReservedItem> _reservedItem;
   List<MarketShop> get marketShop {
     return _marketShop;
   }
@@ -15,12 +16,12 @@ class ShopBloc extends ChangeNotifier {
     notifyListeners();
   }
 
-  List<ReservedProducts> get reservedProducts {
-    return _reservedProducts;
+  List<ReservedItem> get reservedItem {
+    return _reservedItem;
   }
 
-  set reservedProducts(List<ReservedProducts> _data) {
-    this._reservedProducts = _data;
+  set reservedProducts(List<ReservedItem> _data) {
+    this._reservedItem = _data;
     notifyListeners();
   }
   ///fetch market shop
@@ -33,12 +34,12 @@ class ShopBloc extends ChangeNotifier {
     return _marketShop;
   }
   ///fetch reserved products
-  Future<List<ReservedProducts>> fetchReservedProducts(BuildContext context) async {
+  Future<List<ReservedItem>> fetchReservedProducts(BuildContext context) async {
     MarketService marketService = new  MarketService(
         context: context);
-    List<ReservedProducts> _reservedProducts = await marketService.getMarketShop();
-    this._reservedProducts = _reservedProducts;
+    List<ReservedItem> _reservedItems = await marketService.getMarketShop();
+    this._reservedItem = _reservedItems;
     notifyListeners();
-    return _reservedProducts;
+    return _reservedItems;
   }
 }
