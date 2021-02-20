@@ -15,6 +15,7 @@ class ProductDetails extends StatefulWidget {
 
 class _ProductDetailsState extends State<ProductDetails> {
   MarketService marketService;
+  bool isLoading = false;
   CarouselController buttonCarouselController = CarouselController();
   @override
   void initState() {
@@ -22,6 +23,7 @@ class _ProductDetailsState extends State<ProductDetails> {
     super.initState();
     marketService = new MarketService(context: context);
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,9 +94,10 @@ class _ProductDetailsState extends State<ProductDetails> {
                         bottom: 0,
                         top: 0,
                         child: GestureDetector(
-                          onTap: (){
+                          onTap: () {
                             buttonCarouselController.nextPage(
-                                duration: Duration(milliseconds: 300), curve: Curves.linear);
+                                duration: Duration(milliseconds: 300),
+                                curve: Curves.linear);
                           },
                           child: Container(
                               margin: EdgeInsets.only(right: 16),
@@ -156,7 +159,16 @@ class _ProductDetailsState extends State<ProductDetails> {
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 10),
                 child: MainButton(
-                  child: Row(
+                  child: !isLoading? SizedBox(
+                    height: 25,
+                    width: 25,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                      valueColor:
+                      new AlwaysStoppedAnimation<Color>(
+                          Colors.white),
+                    ),
+                  ):Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       new Image.asset(
@@ -195,16 +207,14 @@ class _ProductDetailsState extends State<ProductDetails> {
     );
   }
 
-  void reserveProduct() async{
+  void reserveProduct() async {
     Map<String, dynamic> data = new Map();
-    data = {
-    "quantity": widget.item.quantity,
-    "store_id" : widget.item.id
-    };
-    try{
- Map<String,dynamic> _res = await marketService.reserveProduct(data);
-    }catch(e){
+    data = {"quantity": widget.item.quantity, "store_id": widget.item.id};
+    try {
+      Map<String, dynamic> _res = await marketService.reserveProduct(data);
 
+    } catch (e) {
+      print(e.toString());
     }
   }
 }
