@@ -33,7 +33,7 @@ class MainBloc with ChangeNotifier,
     notifyListeners();
   }
 
-  NextAppointment get healthTips {
+  HealthTips get healthTips {
     return _healthTips;
   }
 }
