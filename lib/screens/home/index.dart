@@ -194,6 +194,24 @@ class _HomePageState extends State<HomePage> {
                   height: 30,
                 ),
                 Text(
+                  "HEALTH TIPS",
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                    fontSize: 10,
+                    fontFamily: 'Lato',
+                    color: greyColor,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                !isDataLoaded?ShimmerListView():
+                Container(),
+                SizedBox(
+                  height: 30,
+                ),
+                Text(
                   "APPOINTMENTS",
                   textAlign: TextAlign.start,
                   style: TextStyle(
@@ -283,23 +301,6 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ],
                 ),
-                FutureBuilder(
-                  future: Future.delayed(Duration(seconds: 2)),
-                    builder: (context, snapshot) {
-                      if (!snapshot.hasData) {
-                        print("we eje");
-                        return Row(
-                          children: <Widget>[
-                            Expanded(child: ShimmerListView()),
-                          ],
-                        );
-                      }else{
-                        print("Weweniweweniwe");
-                      }
-                      return Container(
-
-                      );
-                    }),
               ],
             ),
           ),
@@ -321,6 +322,10 @@ class _HomePageState extends State<HomePage> {
       bloc.fetchUpcomingAppointment(context),
       bloc.fetchDaysLeftCount(context),
       bloc.fetchHealthTips(context)
-    ]);
+    ]).then((value) {
+      setState(() {
+        isDataLoaded = true;
+      });
+    });
   }
 }
