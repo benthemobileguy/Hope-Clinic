@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:hope_clinic/bloc/index.dart';
 import 'package:hope_clinic/screens/components/main-button.dart';
 import 'package:hope_clinic/shimmers/shimmer-home.dart';
+import 'package:hope_clinic/shimmers/shimmer-list-view.dart';
 import 'package:hope_clinic/theme/style.dart';
 import 'package:hope_clinic/utils/global-variables.dart';
 import 'package:hope_clinic/utils/pref-manager.dart';
 import 'package:provider/provider.dart';
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -14,6 +16,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   PrefManager prefManager = PrefManager();
   MainBloc bloc;
+  Future _future;
   bool isInitialised = false;
   @override
   void didChangeDependencies() {
@@ -21,16 +24,18 @@ class _HomePageState extends State<HomePage> {
     super.didChangeDependencies();
     bloc = Provider.of<MainBloc>(context);
   }
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     fetchUser();
   }
+
   @override
   Widget build(BuildContext context) {
-    if(!isInitialised){
-      fetchRequests();
+    if (!isInitialised) {
+      _future = fetchRequests();
       isInitialised = true;
     }
     return SafeArea(
@@ -46,7 +51,6 @@ class _HomePageState extends State<HomePage> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -96,13 +100,14 @@ class _HomePageState extends State<HomePage> {
                           height: 60,
                           width: 155,
                           child: MainButton(
-                            child:  Row(
+                            child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                             Image.asset(
-                               'images/icons/mail.png',
-                               height: 24,
-                               width: 24,),
+                                Image.asset(
+                                  'images/icons/mail.png',
+                                  height: 24,
+                                  width: 24,
+                                ),
                                 SizedBox(
                                   width: 10,
                                 ),
@@ -119,9 +124,7 @@ class _HomePageState extends State<HomePage> {
                               ],
                             ),
                             color: primaryColor,
-                            onPressed: (){
-
-                            },
+                            onPressed: () {},
                           ),
                         ),
                         Text(
@@ -142,8 +145,10 @@ class _HomePageState extends State<HomePage> {
                         SizedBox(
                           height: 25,
                         ),
-                        new Image.asset("images/man_smiling.png",
-                          height: 204,),
+                        new Image.asset(
+                          "images/man_smiling.png",
+                          height: 204,
+                        ),
                       ],
                     ),
                     SizedBox(
@@ -173,7 +178,9 @@ class _HomePageState extends State<HomePage> {
                 Align(
                   alignment: Alignment.center,
                   child: Text(
-                    "3 Days",
+                    bloc.daysLeftCount != null
+                        ? '${bloc.daysLeftCount.count} Days'
+                        : "...",
                     textAlign: TextAlign.start,
                     style: TextStyle(
                       fontSize: 20,
@@ -203,16 +210,18 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     Container(
                       height: 130,
-                      padding: EdgeInsets.symmetric(horizontal: 35, vertical: 17),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 35, vertical: 17),
                       decoration: BoxDecoration(
-                        color:lightGreen,
-                        borderRadius: BorderRadius.all(Radius.circular(16))
-                      ),
+                          color: lightGreen,
+                          borderRadius: BorderRadius.all(Radius.circular(16))),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "5",
+                            bloc.upcomingAppointment != null
+                                ? bloc.upcomingAppointment.count.toString()
+                                : "...",
                             textAlign: TextAlign.start,
                             style: TextStyle(
                               fontSize: 32,
@@ -237,21 +246,22 @@ class _HomePageState extends State<HomePage> {
                         ],
                       ),
                     ),
-                   Spacer(),
+                    Spacer(),
                     Container(
                       height: 130,
-                      padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 40, vertical: 20),
                       decoration: BoxDecoration(
-                          color:primaryColor,
-                          borderRadius: BorderRadius.all(Radius.circular(16))
-                      ),
+                          color: primaryColor,
+                          borderRadius: BorderRadius.all(Radius.circular(16))),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Image.asset(
                             'images/icons/add_appointment.png',
                             height: 24,
-                            width: 24,),
+                            width: 24,
+                          ),
                           SizedBox(
                             height: 15,
                           ),
@@ -273,8 +283,23 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ],
                 ),
-                Expanded(child:
-                ShimmerHome()),
+                FutureBuilder(
+                  future: Future.delayed(Duration(seconds: 2)),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) {
+                        print("we eje");
+                        return Row(
+                          children: <Widget>[
+                            Expanded(child: ShimmerListView()),
+                          ],
+                        );
+                      }else{
+                        print("Weweniweweniwe");
+                      }
+                      return Container(
+
+                      );
+                    }),
               ],
             ),
           ),
@@ -283,14 +308,14 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void fetchUser() async{
-   prefManager.getUserData().then((value){
-     user = value;
-    bloc.user = value;
-   });
+  void fetchUser() async {
+    prefManager.getUserData().then((value) {
+      user = value;
+      bloc.user = value;
+    });
   }
 
- Future fetchRequests() async{
+  Future fetchRequests() async {
     Future.wait([
       bloc.fetchNextAppointment(context),
       bloc.fetchUpcomingAppointment(context),
