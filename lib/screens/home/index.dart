@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hope_clinic/bloc/index.dart';
 import 'package:hope_clinic/screens/components/main-button.dart';
+import 'package:hope_clinic/shimmers/home-shimmer.dart';
 import 'package:hope_clinic/theme/style.dart';
 import 'package:hope_clinic/utils/global-variables.dart';
 import 'package:hope_clinic/utils/pref-manager.dart';
@@ -272,6 +273,8 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ],
                 ),
+                Expanded(child:
+                ShimmerHome()),
               ],
             ),
           ),

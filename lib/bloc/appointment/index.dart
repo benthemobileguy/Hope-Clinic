@@ -70,10 +70,10 @@ class AppointmentBloc extends ChangeNotifier {
     return _daysLeftCount;
   }
   ///fetch health Tips
-  Future<HealthTips> fetchHealthTips(BuildContext context) async {
+  Future<List<HealthTips>> fetchHealthTips(BuildContext context) async {
     AppointmentService appointmentService = new  AppointmentService(
         context: context);
-    HealthTips _healthTips= await appointmentService.getHealthTips();
+    List<HealthTips> _healthTips= await appointmentService.getHealthTips();
     this._healthTips= _healthTips;
     notifyListeners();
     return _healthTips;
