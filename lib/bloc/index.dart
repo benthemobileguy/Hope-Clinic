@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hope_clinic/bloc/appointment/index.dart';
 import 'package:hope_clinic/bloc/shop/index.dart';
 import 'package:hope_clinic/model/health-tips.dart';
+import 'package:hope_clinic/model/next-appointment.dart';
 import 'package:hope_clinic/model/user.dart';
 
 class MainBloc with ChangeNotifier,
@@ -26,5 +27,13 @@ class MainBloc with ChangeNotifier,
   set user(User _data) {
     this._user = _data;
     notifyListeners();
+  }
+  set healthTips(HealthTips _data) {
+    this._healthTips = _data;
+    notifyListeners();
+  }
+
+  NextAppointment get healthTips {
+    return _healthTips;
   }
 }
