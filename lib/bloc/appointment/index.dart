@@ -8,17 +8,17 @@ import 'package:hope_clinic/services/appointment/index.dart';
 class AppointmentBloc extends ChangeNotifier {
   NextAppointment _nextAppointment;
   DaysLeftCount _daysLeftCount;
-  HealthTips _healthTips;
+  List<HealthTips> _healthTips;
   UpcomingAppointment _upcomingAppointment;
   UpcomingAppointment get upcomingAppointment {
     return _upcomingAppointment;
   }
-  set healthTips(HealthTips _data) {
+  set healthTips(List<HealthTips> _data) {
     this._healthTips = _data;
     notifyListeners();
   }
 
-  HealthTips get healthTips {
+  List<HealthTips> get healthTips {
     return _healthTips;
   }
   set upcomingAppointment(UpcomingAppointment _data) {
