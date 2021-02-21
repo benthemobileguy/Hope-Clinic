@@ -10,7 +10,7 @@ class MainBloc with ChangeNotifier,
 
   String _bearerToken;
   User _user;
-  HealthTips _healthTips;
+
 
   String get bearerToken {
     return _bearerToken;
@@ -27,13 +27,5 @@ class MainBloc with ChangeNotifier,
   set user(User _data) {
     this._user = _data;
     notifyListeners();
-  }
-  set healthTips(HealthTips _data) {
-    this._healthTips = _data;
-    notifyListeners();
-  }
-
-  HealthTips get healthTips {
-    return _healthTips;
   }
 }

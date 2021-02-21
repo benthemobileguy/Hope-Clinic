@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hope_clinic/model/days-left-count.dart';
+import 'package:hope_clinic/model/health-tips.dart';
 import 'package:hope_clinic/model/next-appointment.dart';
 import 'package:hope_clinic/model/upcoming-appointment.dart';
 import 'package:hope_clinic/services/appointment/index.dart';
@@ -7,11 +8,19 @@ import 'package:hope_clinic/services/appointment/index.dart';
 class AppointmentBloc extends ChangeNotifier {
   NextAppointment _nextAppointment;
   DaysLeftCount _daysLeftCount;
+  HealthTips _healthTips;
   UpcomingAppointment _upcomingAppointment;
   UpcomingAppointment get upcomingAppointment {
     return _upcomingAppointment;
   }
+  set healthTips(HealthTips _data) {
+    this._healthTips = _data;
+    notifyListeners();
+  }
 
+  HealthTips get healthTips {
+    return _healthTips;
+  }
   set upcomingAppointment(UpcomingAppointment _data) {
     this._upcomingAppointment = _data;
     notifyListeners();
@@ -59,5 +68,14 @@ class AppointmentBloc extends ChangeNotifier {
     this._daysLeftCount = _daysLeftCount;
     notifyListeners();
     return _daysLeftCount;
+  }
+  ///fetch health Tips
+  Future<HealthTips> fetchHealthTips(BuildContext context) async {
+    AppointmentService appointmentService = new  AppointmentService(
+        context: context);
+    HealthTips _healthTips= await appointmentService.getHealthTips();
+    this._healthTips= _healthTips;
+    notifyListeners();
+    return _healthTips;
   }
 }

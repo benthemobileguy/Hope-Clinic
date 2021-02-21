@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hope_clinic/bloc/index.dart';
 import 'package:hope_clinic/model/days-left-count.dart';
+import 'package:hope_clinic/model/health-tips.dart';
 import 'package:hope_clinic/model/next-appointment.dart';
 import 'package:hope_clinic/model/upcoming-appointment.dart';
 import 'package:hope_clinic/services/index.dart';
@@ -44,5 +45,17 @@ class  AppointmentService extends ApiService {
     _daysLeftCount = DaysLeftCount.fromJson(_data['data']);
     bloc.daysLeftCount = _daysLeftCount;
     return _daysLeftCount;
+  }
+
+  /// get health tips
+  Future<HealthTips> getHealthTips() async {
+    bloc = Provider.of<MainBloc>(context, listen: false);
+    Map<String, dynamic> _data =
+    await get('health/tip');
+    print(_data);
+    HealthTips _healthTips;
+    _healthTips = HealthTips.fromJson(_data['health_tips']);
+    bloc.healthTips = _healthTips;
+    return _healthTips;
   }
 }
