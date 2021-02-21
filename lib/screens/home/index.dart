@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hope_clinic/bloc/index.dart';
+import 'package:hope_clinic/model/health-tips.dart';
 import 'package:hope_clinic/screens/components/main-button.dart';
 import 'package:hope_clinic/shimmers/shimmer-home.dart';
 import 'package:hope_clinic/shimmers/shimmer-list-view.dart';
@@ -18,6 +19,7 @@ class _HomePageState extends State<HomePage> {
   MainBloc bloc;
   bool isDataLoaded = false;
   bool isInitialised = false;
+  HealthTips selectedHealthTip;
   @override
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
@@ -207,7 +209,44 @@ class _HomePageState extends State<HomePage> {
                   height: 10,
                 ),
                 !isDataLoaded?ShimmerListView():
-                Container(),
+                Container(
+                  height: 41,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: bloc.healthTips.length,
+                    itemBuilder: (context, index){
+                      return GestureDetector(
+                        onTap: (){
+                          setState(() {
+                            bloc.healthTips[index].tapped
+                            = !bloc.healthTips[index].tapped;
+                          });
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(12),
+                          margin: EdgeInsets.only(right: 14),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.all
+                                (Radius.circular(12)),
+                              color: bloc.healthTips[index].tapped?
+                              lightGreen:Colors.white
+                          ),
+                          child: Text(
+                            "${bloc.healthTips[index].segment}",
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontFamily: 'Lato',
+                              color: bloc.healthTips[index].tapped?
+                              primaryColor:greyColor,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
                 SizedBox(
                   height: 30,
                 ),

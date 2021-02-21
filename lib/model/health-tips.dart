@@ -1,4 +1,5 @@
 class HealthTips {
+  bool tapped = false;
   int id;
   int userId;
   String segment;

@@ -7,6 +7,7 @@ final Color customYellow = HexColor("#EAC43C");
 final Color accentColor = HexColor("#D7F4EF");
 final Color containerBgColor = HexColor("#EEEEEE");
 final Color textColor = HexColor("#666666");
+final Color greenLight = HexColor("#D74EF");
 final Color greyColor = HexColor("#999999");
 final Color greyColor2 = HexColor("#505050");
 final Color hintColor = HexColor("#C4C4C4");
