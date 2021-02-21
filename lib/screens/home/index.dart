@@ -16,7 +16,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   PrefManager prefManager = PrefManager();
   MainBloc bloc;
-  Future _future;
+  bool isDataLoaded = false;
   bool isInitialised = false;
   @override
   void didChangeDependencies() {
@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     if (!isInitialised) {
-      _future = fetchRequests();
+       fetchRequests();
       isInitialised = true;
     }
     return SafeArea(
