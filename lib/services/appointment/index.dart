@@ -58,4 +58,6 @@ class  AppointmentService extends ApiService {
     bloc.healthTips = _healthTips;
     return _healthTips;
   }
+
+
 }
