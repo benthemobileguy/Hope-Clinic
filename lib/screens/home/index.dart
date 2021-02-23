@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hope_clinic/bloc/index.dart';
 import 'package:hope_clinic/model/health-tips.dart';
+import 'package:hope_clinic/screens/book-appointment/index.dart';
 import 'package:hope_clinic/screens/components/main-button.dart';
 import 'package:hope_clinic/shimmers/shimmer-home.dart';
 import 'package:hope_clinic/shimmers/shimmer-list-view.dart';
 import 'package:hope_clinic/theme/style.dart';
+import 'package:hope_clinic/utils/color.dart';
 import 'package:hope_clinic/utils/global-variables.dart';
 import 'package:hope_clinic/utils/pref-manager.dart';
 import 'package:provider/provider.dart';
@@ -17,6 +19,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   PrefManager prefManager = PrefManager();
   MainBloc bloc;
+  int healthIndex = 0;
   bool isDataLoaded = false;
   bool isInitialised = false;
   HealthTips selectedHealthTip;
@@ -37,7 +40,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     if (!isInitialised) {
-       fetchRequests();
+      fetchRequests();
       isInitialised = true;
     }
     return SafeArea(
@@ -208,40 +211,101 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(
                   height: 10,
                 ),
-                !isDataLoaded?ShimmerListView():
+                !isDataLoaded
+                    ? ShimmerListView()
+                    : Container(
+                        height: 41,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: bloc.healthTips.length,
+                          itemBuilder: (context, index) {
+                            return GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  healthIndex = index;
+                                  bloc.healthTips[0].tapped = false;
+                                  if (selectedHealthTip != null) {
+                                    selectedHealthTip.tapped = false;
+                                  }
+                                  bloc.healthTips[index].tapped =
+                                      !bloc.healthTips[index].tapped;
+                                  selectedHealthTip = bloc.healthTips[index];
+                                });
+                              },
+                              child: Container(
+                                padding: EdgeInsets.all(12),
+                                margin: EdgeInsets.only(right: 14),
+                                decoration: BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(12)),
+                                    color: bloc.healthTips[index].tapped
+                                        ? lightGreen
+                                        : Colors.white),
+                                child: Text(
+                                  "${bloc.healthTips[index].segment}",
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    fontFamily: 'Lato',
+                                    color: bloc.healthTips[index].tapped
+                                        ? primaryColor
+                                        : greyColor,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                SizedBox(
+                  height: 14,
+                ),
                 Container(
-                  height: 41,
+                  height: 160,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: bloc.healthTips.length,
-                    itemBuilder: (context, index){
+                    itemCount: bloc.healthTips != null
+                        ? bloc.healthTips[healthIndex].files.length
+                        : 0,
+                    itemBuilder: (context, index) {
                       return GestureDetector(
-                        onTap: (){
-                          setState(() {
-                            bloc.healthTips[index].tapped
-                            = !bloc.healthTips[index].tapped;
-                          });
+                        onTap: () async {
+                          showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              contentPadding: EdgeInsets.all(0.0),
+                              content: Container(
+                                height: 300,
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(4),
+                                    border: Border.all(color:
+                                    primaryColor.withOpacity(0.3),
+                                        width: 2),
+                                    image: DecorationImage(
+                                        fit: BoxFit.fill,
+                                        image: NetworkImage(
+                                          "${bloc.healthTips[healthIndex].files[index]}",
+                                        ))),
+                              ),
+                            ),
+                          );
                         },
                         child: Container(
-                          padding: EdgeInsets.all(12),
-                          margin: EdgeInsets.only(right: 14),
+                          margin: EdgeInsets.only(right: 16),
+                          height: 160,
+                          width: 130,
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all
-                                (Radius.circular(12)),
-                              color: bloc.healthTips[index].tapped?
-                              lightGreen:Colors.white
-                          ),
-                          child: Text(
-                            "${bloc.healthTips[index].segment}",
-                            textAlign: TextAlign.start,
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontFamily: 'Lato',
-                              color: bloc.healthTips[index].tapped?
-                              primaryColor:greyColor,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
+                              image: DecorationImage(
+                                  fit: BoxFit.fill,
+                                  image: NetworkImage(
+                                    "${bloc.healthTips[healthIndex].files[index]}",
+                                  )),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(16)),
+                              border:
+                                  Border.all(color: primaryColor, width: 1)),
                         ),
                       );
                     },
@@ -304,38 +368,47 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     Spacer(),
-                    Container(
-                      height: 130,
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-                      decoration: BoxDecoration(
-                          color: primaryColor,
-                          borderRadius: BorderRadius.all(Radius.circular(16))),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            'images/icons/add_appointment.png',
-                            height: 24,
-                            width: 24,
-                          ),
-                          SizedBox(
-                            height: 15,
-                          ),
-                          Text(
-                            "Book An\nAppointment",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontFamily: 'Lato',
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context)
+                                => BookAppointment()));
+                      },
+                      child: Container(
+                        height: 130,
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                        decoration: BoxDecoration(
+                            color: primaryColor,
+                            borderRadius: BorderRadius.all(Radius.circular(16))),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              'images/icons/add_appointment.png',
+                              height: 24,
+                              width: 24,
                             ),
-                          ),
-                          SizedBox(
-                            height: 15,
-                          ),
-                        ],
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Text(
+                              "Book An\nAppointment",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontFamily: 'Lato',
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],
@@ -364,6 +437,11 @@ class _HomePageState extends State<HomePage> {
     ]).then((value) {
       setState(() {
         isDataLoaded = true;
+
+        ///show tips first item automatically
+        setState(() {
+          bloc.healthTips[0].tapped = true;
+        });
       });
     });
   }
