@@ -111,7 +111,7 @@ class _BookAppointmentState extends State<BookAppointment> {
                                         ),
                                       ),
                                       SizedBox(
-                                        height: 10,
+                                        height: 14,
                                       ),
                                       Text(
                                         bloc.packages[index].desc,
@@ -124,11 +124,42 @@ class _BookAppointmentState extends State<BookAppointment> {
                                         ),
                                       ),
                                       Container(
-                                        height: 72,
+                                        margin: EdgeInsets.only(top: 14),
+                                        padding: EdgeInsets.symmetric
+                                          (horizontal: 10, vertical: 10),
                                         decoration: BoxDecoration(
-                                          color: containerBgColor,
+                                          color:containerBgColor,
+                                          borderRadius: BorderRadius
+                                              .all(Radius.circular(12))
                                         ),
-                                      )
+                                        child: Column(
+                                          children: [
+                                            Text(
+                                              bloc.packages[index].desc,
+                                              textAlign: TextAlign.start,
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                                fontFamily: 'Lato',
+                                                color: textColor,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 14,
+                                            ),
+                                            Text(
+                                              bloc.packages[index].desc,
+                                              textAlign: TextAlign.start,
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                                fontFamily: 'Lato',
+                                                color: normalText,
+                                                fontWeight: FontWeight.w700,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
                                     ],
                                   ),
                                   Spacer(),
