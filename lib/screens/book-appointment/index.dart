@@ -120,6 +120,7 @@ class _BookAppointmentState extends State<BookAppointment> {
                                       Mdi.chevronDown: Mdi.chevronUp),
                                           onPressed: (){
                                         setState(() {
+                                          globalIndex = index;
                                           bloc.packages[index].isTapped =
                                           ! bloc.packages[index].isTapped;
                                         });
@@ -143,7 +144,6 @@ class _BookAppointmentState extends State<BookAppointment> {
                                     itemCount: bloc.packages[globalIndex].plans.length,
                                     itemBuilder: (context, index){
                                     return Container(
-                                      width: 230,
                                       margin: EdgeInsets.only(top: 14),
                                       padding: EdgeInsets.symmetric
                                         (horizontal: 10, vertical: 10),
@@ -170,14 +170,16 @@ class _BookAppointmentState extends State<BookAppointment> {
                                             mainAxisSize: MainAxisSize.min,
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
-                                              Text(
+                                              Flexible(
+                                                child: Text(
                                           '${bloc.packages[globalIndex].plans[index].title}',
-                                                textAlign: TextAlign.start,
-                                                style: TextStyle(
-                                                  fontSize: 14,
-                                                  fontFamily: 'Lato',
-                                                  color: textColor,
-                                                  fontWeight: FontWeight.w500,
+                                                  textAlign: TextAlign.start,
+                                                  style: TextStyle(
+                                                    fontSize: 14,
+                                                    fontFamily: 'Lato',
+                                                    color: textColor,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
                                                 ),
                                               ),
                                               SizedBox(
