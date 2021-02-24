@@ -124,6 +124,7 @@ class _BookAppointmentState extends State<BookAppointment> {
                                         ),
                                       ),
                                       Container(
+                                        height: 72,
                                         decoration: BoxDecoration(
                                           color: containerBgColor,
                                         ),
