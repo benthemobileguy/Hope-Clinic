@@ -13,6 +13,7 @@ class BookAppointment extends StatefulWidget {
 class _BookAppointmentState extends State<BookAppointment> {
   bool isDataLoaded = false;
   bool isInitialised = false;
+  int globalIndex = -1;
   MainBloc bloc;
   @override
   void didChangeDependencies() {
