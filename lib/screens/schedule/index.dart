@@ -221,84 +221,90 @@ class _SchedulePageState extends State<SchedulePage> {
                 ),
                 Row(
                   children: [
-                    Container(
-                      height: 130,
-                      padding: EdgeInsets.symmetric(horizontal: 35, vertical: 17),
-                      decoration: BoxDecoration(
-                          color:lightGreen,
-                          borderRadius: BorderRadius.all(Radius.circular(16))
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            mainBloc.daysLeftCount!=null?
-                            "${mainBloc.daysLeftCount.count}"
-                                :0,
-                            textAlign: TextAlign.start,
-                            style: TextStyle(
-                              fontSize: 32,
-                              fontFamily: 'Lato',
-                              color: primaryColor,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 7,
-                          ),
-                          Text(
-                            "Upcoming\nAppointments",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontFamily: 'Lato',
-                              color: textColor,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Spacer(),
-                    GestureDetector(
-                      onTap: (){
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context)
-                                => BookAppointment()));
-                      },
+                    Expanded(
                       child: Container(
                         height: 130,
-                        padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                        padding: EdgeInsets.symmetric(horizontal: 35, vertical: 17),
                         decoration: BoxDecoration(
-                            color:primaryColor,
+                            color:lightGreen,
                             borderRadius: BorderRadius.all(Radius.circular(16))
                         ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Image.asset(
-                              'images/icons/add_appointment.png',
-                              height: 24,
-                              width: 24,),
-                            SizedBox(
-                              height: 15,
-                            ),
                             Text(
-                              "Book An\nAppointment",
-                              textAlign: TextAlign.center,
+                              mainBloc.daysLeftCount!=null?
+                              "${mainBloc.daysLeftCount.count}"
+                                  :0,
+                              textAlign: TextAlign.start,
                               style: TextStyle(
-                                fontSize: 12,
+                                fontSize: 32,
                                 fontFamily: 'Lato',
-                                color: Colors.white,
+                                color: primaryColor,
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
                             SizedBox(
-                              height: 15,
+                              height: 7,
+                            ),
+                            Text(
+                              "Upcoming\nAppointments",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontFamily: 'Lato',
+                                color: textColor,
+                                fontWeight: FontWeight.w700,
+                              ),
                             ),
                           ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 14,
+                    ),
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: (){
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context)
+                                  => BookAppointment()));
+                        },
+                        child: Container(
+                          height: 130,
+                          padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                          decoration: BoxDecoration(
+                              color:primaryColor,
+                              borderRadius: BorderRadius.all(Radius.circular(16))
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                'images/icons/add_appointment.png',
+                                height: 24,
+                                width: 24,),
+                              SizedBox(
+                                height: 15,
+                              ),
+                              Text(
+                                "Book An\nAppointment",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontFamily: 'Lato',
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 15,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),

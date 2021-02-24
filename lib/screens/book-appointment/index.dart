@@ -136,6 +136,7 @@ class _BookAppointmentState extends State<BookAppointment> {
                               ),
                               bloc.packages[index].isTapped?
                               ListView.builder(
+                                physics: NeverScrollableScrollPhysics(),
                                 shrinkWrap: true,
                                 itemCount: bloc.packages[globalIndex].plans.length,
                                 itemBuilder: (context, index){
@@ -211,15 +212,26 @@ class _BookAppointmentState extends State<BookAppointment> {
               height: 60,
               child: MainButton(
                 color: primaryColor,
-                child: Text(
-                  "Book Appointment",
-                  textAlign: TextAlign.start,
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontFamily: 'Lato',
-                    color: Colors.white,
-                    fontWeight: FontWeight.w700,
-                  ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    new Image.asset('images/icons/bookmark.png',
+                      height: 16,
+                      width: 10,),
+                    SizedBox(
+                      width: 14,
+                    ),
+                    Text(
+                      "Book Appointment",
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontFamily: 'Lato',
+                        color: Colors.white,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ],
                 ),
                 onPressed: () {
 
