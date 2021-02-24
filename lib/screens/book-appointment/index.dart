@@ -111,6 +111,7 @@ class _BookAppointmentState extends State<BookAppointment> {
                                           fontWeight: FontWeight.w700,
                                         ),
                                       ),
+                                      Spacer(),
                                       new IconButton(icon:
                                       Icon(!bloc.packages[index].isTapped?
                                       Mdi.chevronDown: Mdi.chevronUp),
@@ -122,9 +123,6 @@ class _BookAppointmentState extends State<BookAppointment> {
 
                                           })
                                     ],
-                                  ),
-                                  SizedBox(
-                                    height: 14,
                                   ),
                                   Text(
                                     bloc.packages[index].desc,
