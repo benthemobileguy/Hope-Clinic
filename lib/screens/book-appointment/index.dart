@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hope_clinic/bloc/index.dart';
 import 'package:hope_clinic/shimmers/shimmer-list-view.dart';
@@ -54,30 +55,30 @@ class _BookAppointmentState extends State<BookAppointment> {
       body: Padding(
         padding: const EdgeInsets
             .symmetric(horizontal: 14),
-        child: LimitedBox(
-          maxHeight: 399,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: 30,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: 30,
+            ),
+            Text(
+              "SELECT A PACKAGE",
+              textAlign: TextAlign.start,
+              style: TextStyle(
+                fontSize: 12,
+                fontFamily: 'Lato',
+                color: textColor,
+                fontWeight: FontWeight.w700,
               ),
-              Text(
-                "SELECT A PACKAGE",
-                textAlign: TextAlign.start,
-                style: TextStyle(
-                  fontSize: 12,
-                  fontFamily: 'Lato',
-                  color: textColor,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              SizedBox(
-                height: 14,
-              ),
-              !isDataLoaded?ShimmerListView():
-                  Expanded(
+            ),
+            SizedBox(
+              height: 14,
+            ),
+            !isDataLoaded?ShimmerListView():
+                Expanded(
+                  child: SizedBox(
+                    height: 300,
                     child: ListView.builder(
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
@@ -94,12 +95,11 @@ class _BookAppointmentState extends State<BookAppointment> {
                             ),
                             child: Container(
                               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                              child:  Row(
+                              child:  Column(
                                 mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                  Row(
                                     children: [
                                       Text(
                                         bloc.packages[index].title,
@@ -111,94 +111,95 @@ class _BookAppointmentState extends State<BookAppointment> {
                                           fontWeight: FontWeight.w700,
                                         ),
                                       ),
-                                      SizedBox(
-                                        height: 14,
-                                      ),
-                                      Text(
-                                        bloc.packages[index].desc,
-                                        textAlign: TextAlign.start,
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          fontFamily: 'Lato',
-                                          color: textColor,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      ),
-                                      ListView.builder(
-                                        itemBuilder: (context, index){
+                                      new IconButton(icon:
+                                      Icon(!bloc.packages[index].isTapped?
+                                      Mdi.chevronDown: Mdi.chevronUp),
+                                          onPressed: (){
+                                        setState(() {
+                                          bloc.packages[index].isTapped =
+                                          ! bloc.packages[index].isTapped;
+                                        });
 
-                                        },
-                                        child: Container(
-                                          width: 230,
-                                          margin: EdgeInsets.only(top: 14),
-                                          padding: EdgeInsets.symmetric
-                                            (horizontal: 10, vertical: 10),
-                                          decoration: BoxDecoration(
-                                            color:containerBgColor,
-                                            borderRadius: BorderRadius
-                                                .all(Radius.circular(12))
+                                          })
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 14,
+                                  ),
+                                  Text(
+                                    bloc.packages[index].desc,
+                                    textAlign: TextAlign.start,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontFamily: 'Lato',
+                                      color: textColor,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                  bloc.packages[index].isTapped?
+                                  ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: bloc.packages[globalIndex].plans.length,
+                                    itemBuilder: (context, index){
+                                    return Container(
+                                      width: 230,
+                                      margin: EdgeInsets.only(top: 14),
+                                      padding: EdgeInsets.symmetric
+                                        (horizontal: 10, vertical: 10),
+                                      decoration: BoxDecoration(
+                                          color:containerBgColor,
+                                          borderRadius: BorderRadius
+                                              .all(Radius.circular(12))
+                                      ),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Container(
+                                            width:24,
+                                            height:24,
+                                            decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              shape: BoxShape.circle,
+                                            ),
                                           ),
-                                          child: Row(
+                                          SizedBox(
+                                            width: 16,
+                                          ),
+                                          Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
-                                              Container(
-                                                width:24,
-                                                height:24,
-                                                decoration: BoxDecoration(
-                                                  color: Colors.white,
-                                                 shape: BoxShape.circle,
+                                              Text(
+                                                bloc.packages[index].desc,
+                                                textAlign: TextAlign.start,
+                                                style: TextStyle(
+                                                  fontSize: 14,
+                                                  fontFamily: 'Lato',
+                                                  color: textColor,
+                                                  fontWeight: FontWeight.w500,
                                                 ),
                                               ),
                                               SizedBox(
-                                                width: 16,
+                                                height: 10,
                                               ),
-                                              Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    bloc.packages[index].desc,
-                                                    textAlign: TextAlign.start,
-                                                    style: TextStyle(
-                                                      fontSize: 14,
-                                                      fontFamily: 'Lato',
-                                                      color: textColor,
-                                                      fontWeight: FontWeight.w500,
-                                                    ),
-                                                  ),
-                                                  SizedBox(
-                                                    height: 10,
-                                                  ),
-                                                  Text(
-                                                    'NGN ${12000}',
-                                                    textAlign: TextAlign.start,
-                                                    style: TextStyle(
-                                                      fontSize: 16,
-                                                      fontFamily: 'Lato',
-                                                      color: normalText,
-                                                      fontWeight: FontWeight.w700,
-                                                    ),
-                                                  ),
-                                                ],
+                                              Text(
+                                                'NGN ${12000}',
+                                                textAlign: TextAlign.start,
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                  fontFamily: 'Lato',
+                                                  color: normalText,
+                                                  fontWeight: FontWeight.w700,
+                                                ),
                                               ),
                                             ],
                                           ),
-                                        ),
+                                        ],
                                       ),
-                                    ],
-                                  ),
-                                  Spacer(),
-                                  IconButton(icon:
-                                  Icon(
-                                   !bloc.packages[index].isTapped?
-                                   Mdi.chevronDown:
-                                   Mdi.chevronUp,
-                                    color: textColor,
-                                  ), onPressed:(){
-                                    setState(() {
-                                      globalIndex = index;
-                                      bloc.packages[index].isTapped
-                                      = !bloc.packages[index].isTapped;
-                                    });
-                                  })
+                                    );
+                                    },
+                                  )
+                                      :Container(),
                                 ],
                               ),
                             ),
@@ -207,8 +208,8 @@ class _BookAppointmentState extends State<BookAppointment> {
                       },
                     ),
                   ),
-            ],
-          ),
+                ),
+          ],
         ),
       ),
     );
