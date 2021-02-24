@@ -207,9 +207,6 @@ class _BookAppointmentState extends State<BookAppointment> {
                     );
                   },
                 ),
-            SizedBox(
-              height: 20,
-            ),
             Container(
               height: 60,
               child: MainButton(
@@ -230,7 +227,7 @@ class _BookAppointmentState extends State<BookAppointment> {
               ),
             ),
             SizedBox(
-              height: 20,
+              height: 30,
             )
           ],
         ),
