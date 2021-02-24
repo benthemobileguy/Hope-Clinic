@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hope_clinic/bloc/index.dart';
+import 'package:hope_clinic/screens/components/main-button.dart';
 import 'package:hope_clinic/shimmers/shimmer-list-view.dart';
 import 'package:hope_clinic/theme/style.dart';
 import 'package:hope_clinic/utils/color.dart';
@@ -170,7 +171,8 @@ class _BookAppointmentState extends State<BookAppointment> {
                                             mainAxisSize: MainAxisSize.min,
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
-                                              Flexible(
+                                              Container(
+                                                width:210,
                                                 child: Text(
                                           '${bloc.packages[globalIndex].plans[index].title}',
                                                   textAlign: TextAlign.start,
@@ -212,6 +214,25 @@ class _BookAppointmentState extends State<BookAppointment> {
                     ),
                   ),
                 ),
+            Container(
+              height: 60,
+              child: MainButton(
+                color: primaryColor,
+                child: Text(
+                  "Sign In",
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontFamily: 'Lato',
+                    color: Colors.white,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                onPressed: () {
+
+                },
+              ),
+            ),
           ],
         ),
       ),
