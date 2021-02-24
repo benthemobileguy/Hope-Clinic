@@ -4,6 +4,7 @@ import 'package:hope_clinic/shimmers/shimmer-list-view.dart';
 import 'package:hope_clinic/theme/style.dart';
 import 'package:hope_clinic/utils/color.dart';
 import 'package:provider/provider.dart';
+import 'package:mdi/mdi.dart';
 class BookAppointment extends StatefulWidget {
   @override
   _BookAppointmentState createState() => _BookAppointmentState();
@@ -88,30 +89,43 @@ class _BookAppointmentState extends State<BookAppointment> {
                           child: Container(
                             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                             height: 90,
-                            child:  Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                            child:  Row(
                               children: [
-                                Text(
-                                  bloc.packages[index].title,
-                                  textAlign: TextAlign.start,
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontFamily: 'Lato',
-                                    color: primaryColor,
-                                    fontWeight: FontWeight.w700,
-                                  ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      bloc.packages[index].title,
+                                      textAlign: TextAlign.start,
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontFamily: 'Lato',
+                                        color: primaryColor,
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    ),
+                                    Spacer(),
+                                    Text(
+                                      bloc.packages[index].desc,
+                                      textAlign: TextAlign.start,
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        fontFamily: 'Lato',
+                                        color: textColor,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                                 Spacer(),
-                                Text(
-                                  bloc.packages[index].desc,
-                                  textAlign: TextAlign.start,
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontFamily: 'Lato',
-                                    color: textColor,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
+                                IconButton(icon:
+                                Icon(
+                                 !bloc.packages[index].isTapped?
+                                 Mdi.chevronDown:
+                                 Mdi.chevronUp,
+                                ), onPressed:(){
+
+                                })
                               ],
                             ),
                           ),

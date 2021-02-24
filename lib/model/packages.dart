@@ -1,5 +1,6 @@
 
 class Packages {
+  bool isTapped = false;
   int id;
   int userId;
   String title;
