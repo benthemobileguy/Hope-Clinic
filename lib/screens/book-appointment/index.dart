@@ -173,6 +173,7 @@ class _BookAppointmentState extends State<BookAppointment> {
                                     color: textColor,
                                   ), onPressed:(){
                                     setState(() {
+                                      globalIndex = index;
                                       bloc.packages[index].isTapped
                                       = !bloc.packages[index].isTapped;
                                     });
