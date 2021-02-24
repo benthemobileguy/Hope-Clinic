@@ -133,6 +133,7 @@ class _BookAppointmentState extends State<BookAppointment> {
                                               .all(Radius.circular(12))
                                         ),
                                         child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                             Text(
                                               bloc.packages[index].desc,
@@ -148,7 +149,7 @@ class _BookAppointmentState extends State<BookAppointment> {
                                               height: 14,
                                             ),
                                             Text(
-                                              bloc.packages[index].desc,
+                                              'NGN ${bloc.packages[index].desc}',
                                               textAlign: TextAlign.start,
                                               style: TextStyle(
                                                 fontSize: 16,
