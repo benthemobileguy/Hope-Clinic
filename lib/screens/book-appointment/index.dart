@@ -133,31 +133,40 @@ class _BookAppointmentState extends State<BookAppointment> {
                                           borderRadius: BorderRadius
                                               .all(Radius.circular(12))
                                         ),
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                        child: Row(
                                           children: [
-                                            Text(
-                                              bloc.packages[index].desc,
-                                              textAlign: TextAlign.start,
-                                              style: TextStyle(
-                                                fontSize: 14,
-                                                fontFamily: 'Lato',
-                                                color: textColor,
-                                                fontWeight: FontWeight.w500,
+                                            Container(
+                                              decoration: BoxDecoration(
+
                                               ),
                                             ),
-                                            SizedBox(
-                                              height: 14,
-                                            ),
-                                            Text(
-                                              'NGN ${bloc.packages[index].desc}',
-                                              textAlign: TextAlign.start,
-                                              style: TextStyle(
-                                                fontSize: 16,
-                                                fontFamily: 'Lato',
-                                                color: normalText,
-                                                fontWeight: FontWeight.w700,
-                                              ),
+                                            Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  bloc.packages[index].desc,
+                                                  textAlign: TextAlign.start,
+                                                  style: TextStyle(
+                                                    fontSize: 14,
+                                                    fontFamily: 'Lato',
+                                                    color: textColor,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  height: 14,
+                                                ),
+                                                Text(
+                                                  'NGN ${bloc.packages[index].desc}',
+                                                  textAlign: TextAlign.start,
+                                                  style: TextStyle(
+                                                    fontSize: 16,
+                                                    fontFamily: 'Lato',
+                                                    color: normalText,
+                                                    fontWeight: FontWeight.w700,
+                                                  ),
+                                                ),
+                                              ],
                                             ),
                                           ],
                                         ),
