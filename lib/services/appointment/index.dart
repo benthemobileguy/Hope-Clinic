@@ -61,13 +61,13 @@ class  AppointmentService extends ApiService {
     return _healthTips;
   }
   /// get packages
-  Future<Packages> getPackages() async {
+  Future<List<Packages>> getPackages() async {
     bloc = Provider.of<MainBloc>(context, listen: false);
     Map<String, dynamic> _data =
     await get('packages');
     print(_data);
-   Packages _packages;
-    _packages = Packages.fromJson(_data['data']['packages']);
+    List<Packages> _packages;
+    _packages = Packages.fromJsonList(_data['data']['packages']);
     bloc.packages = _packages;
     return _packages;
   }

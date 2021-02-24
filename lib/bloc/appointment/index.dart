@@ -9,7 +9,7 @@ import 'package:hope_clinic/services/appointment/index.dart';
 class AppointmentBloc extends ChangeNotifier {
   NextAppointment _nextAppointment;
   DaysLeftCount _daysLeftCount;
-  Packages _packages;
+  List<Packages> _packages;
   List<HealthTips> _healthTips;
   UpcomingAppointment _upcomingAppointment;
   UpcomingAppointment get upcomingAppointment {
@@ -23,12 +23,12 @@ class AppointmentBloc extends ChangeNotifier {
   List<HealthTips> get healthTips {
     return _healthTips;
   }
-  set packages(Packages _data) {
+  set packages(List<Packages> _data) {
     this._packages = _data;
     notifyListeners();
   }
 
-  Packages get packages {
+  List<Packages> get packages {
     return _packages;
   }
   set upcomingAppointment(UpcomingAppointment _data) {
@@ -89,10 +89,10 @@ class AppointmentBloc extends ChangeNotifier {
     return _healthTips;
   }
   ///fetch packages
-  Future<Packages> fetchPakages(BuildContext context) async {
+  Future<List<Packages>> fetchPakages(BuildContext context) async {
     AppointmentService appointmentService = new  AppointmentService(
         context: context);
-    Packages _packages= await appointmentService.getPackages();
+    List<Packages> _packages= await appointmentService.getPackages();
     this._packages = _packages;
     notifyListeners();
     return _packages;

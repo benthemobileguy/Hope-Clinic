@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hope_clinic/bloc/index.dart';
 import 'package:hope_clinic/shimmers/shimmer-list-view.dart';
 import 'package:hope_clinic/theme/style.dart';
+import 'package:hope_clinic/utils/color.dart';
+import 'package:provider/provider.dart';
 class BookAppointment extends StatefulWidget {
   @override
   _BookAppointmentState createState() => _BookAppointmentState();
@@ -9,6 +12,13 @@ class BookAppointment extends StatefulWidget {
 class _BookAppointmentState extends State<BookAppointment> {
   bool isDataLoaded = false;
   bool isInitialised = false;
+  MainBloc bloc;
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+    bloc = Provider.of<MainBloc>(context);
+  }
   @override
   Widget build(BuildContext context) {
     if (!isInitialised) {
@@ -59,17 +69,36 @@ class _BookAppointmentState extends State<BookAppointment> {
               ),
             ),
             SizedBox(
-              height: 10,
+              height: 14,
             ),
             !isDataLoaded?ShimmerListView():
-                Container(),
+                Container(
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.
+                        all(Radius.circular(12)),
+                      side: BorderSide(color:
+                      borderColor, width: 2)
+                    ),
+                    elevation: 2,
+                    child: Container(
+                      height: 90,
+
+                    ),
+                  ),
+                ),
           ],
         ),
       ),
     );
   }
-
-  void fetchRequests() {
-
+  Future fetchRequests() async {
+    Future.wait([
+      bloc.fetchPakages(context),
+    ]).then((value) {
+      setState(() {
+        isDataLoaded = true;
+      });
+    });
   }
 }

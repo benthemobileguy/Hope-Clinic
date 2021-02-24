@@ -56,6 +56,10 @@ class Packages {
     }
     return data;
   }
+
+  static List<Packages> fromJsonList(List<dynamic> _list) {
+    return _list.map((_shop) => Packages.fromJson(_shop)).toList();
+  }
 }
 
 class Plans {
