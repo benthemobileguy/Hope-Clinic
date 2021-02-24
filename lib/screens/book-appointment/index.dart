@@ -72,19 +72,52 @@ class _BookAppointmentState extends State<BookAppointment> {
               height: 14,
             ),
             !isDataLoaded?ShimmerListView():
-                Container(
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.
-                        all(Radius.circular(12)),
-                      side: BorderSide(color:
-                      borderColor, width: 2)
-                    ),
-                    elevation: 2,
-                    child: Container(
-                      height: 90,
-
-                    ),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: bloc.packages.length,
+                    itemBuilder: (context, index){
+                      return Container(
+                        margin: EdgeInsets.only(bottom: 5),
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.
+                              all(Radius.circular(12)),
+                              side: BorderSide(color:
+                              borderColor, width: 1)
+                          ),
+                          child: Container(
+                            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                            height: 90,
+                            child:  Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  bloc.packages[index].title,
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: 'Lato',
+                                    color: primaryColor,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                                Spacer(),
+                                Text(
+                                  bloc.packages[index].desc,
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    fontFamily: 'Lato',
+                                    color: textColor,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 ),
           ],
