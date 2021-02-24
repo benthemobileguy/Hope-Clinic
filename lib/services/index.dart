@@ -171,19 +171,7 @@ class ApiService {
       case 422:
       case 400:
         dynamic data = json.decode(response.body);
-        String msg;
-        // lord knows why this was encoded twice
-        if (data is String) {
-          data = json.decode(data);
-          msg = "";
-          if (data.values.toList().length > 0) {
-            // show first error
-            msg = data.values.toList().first[0];
-          }
-        } else {
-          msg = data['message'];
-        }
-
+        String msg = data['message'];
         throw ApiException(
           context: context,
           message: msg,

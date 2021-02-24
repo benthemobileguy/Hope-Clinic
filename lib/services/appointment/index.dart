@@ -59,5 +59,27 @@ class  AppointmentService extends ApiService {
     return _healthTips;
   }
 
+  /// get health tips
+  Future<List<HealthTips>> getHealthTips() async {
+    bloc = Provider.of<MainBloc>(context, listen: false);
+    Map<String, dynamic> _data =
+    await get('health/tip');
+    print(_data);
+    List<HealthTips> _healthTips = [];
+    _healthTips = HealthTips.fromJsonList(_data['health_tips']);
+    bloc.healthTips = _healthTips;
+    return _healthTips;
+  }
+  /// get packages
+  Future<Packages> getPackages() async {
+    bloc = Provider.of<MainBloc>(context, listen: false);
+    Map<String, dynamic> _data =
+    await get('health/tip');
+    print(_data);
+    List<HealthTips> _healthTips = [];
+    _healthTips = HealthTips.fromJsonList(_data['health_tips']);
+    bloc.healthTips = _healthTips;
+    return _healthTips;
+  }
 
 }

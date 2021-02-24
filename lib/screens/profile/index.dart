@@ -246,6 +246,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     color: redBg,
                     onPressed: (){
                       prefManager.clearSharedPreferences().then((value){
+                        mainBloc.bearerToken = null;
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context)
                             => SignInPage()));

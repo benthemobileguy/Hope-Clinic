@@ -276,7 +276,7 @@ class _HomePageState extends State<HomePage> {
                             builder: (context) => AlertDialog(
                               contentPadding: EdgeInsets.all(0.0),
                               content: Container(
-                                height: 350,
+                                height: 400,
                                 width: double.infinity,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(4),

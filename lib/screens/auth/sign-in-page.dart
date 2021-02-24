@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hope_clinic/model/user.dart';
+import 'package:hope_clinic/services/api-exception.dart';
 import 'package:provider/provider.dart';
 import 'package:hope_clinic/bloc/index.dart';
 import 'package:hope_clinic/screens/auth/sign-up-page.dart';
@@ -261,12 +262,12 @@ class _SignInPageState extends State<SignInPage> {
       setState(() {
         _loading = false;
       });
-    }catch(e){
+    } on ApiException catch (e){
       setState(() {
         _loading = false;
       });
       Fluttertoast.showToast(
-        msg: "Login Fail: Your email or password is incorrect.",
+        msg: e.message.toString(),
         timeInSecForIosWeb: 2,
         toastLength: Toast.LENGTH_LONG,
       );
