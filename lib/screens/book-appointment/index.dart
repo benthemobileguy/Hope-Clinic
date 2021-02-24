@@ -94,7 +94,7 @@ class _BookAppointmentState extends State<BookAppointment> {
                                 borderColor, width: 1)
                             ),
                             child: Container(
-                              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                              padding: EdgeInsets.only(left: 16, right: 16, bottom: 20),
                               child:  Column(
                                 mainAxisSize: MainAxisSize.min,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -112,7 +112,10 @@ class _BookAppointmentState extends State<BookAppointment> {
                                         ),
                                       ),
                                       Spacer(),
-                                      new IconButton(icon:
+                                      new IconButton(
+                                        padding: EdgeInsets.only(top: 30),
+                                        color: textColor,
+                                          icon:
                                       Icon(!bloc.packages[index].isTapped?
                                       Mdi.chevronDown: Mdi.chevronUp),
                                           onPressed: (){
@@ -168,7 +171,7 @@ class _BookAppointmentState extends State<BookAppointment> {
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                bloc.packages[index].desc,
+                                          '${bloc.packages[globalIndex].plans[index].title}',
                                                 textAlign: TextAlign.start,
                                                 style: TextStyle(
                                                   fontSize: 14,
@@ -181,7 +184,7 @@ class _BookAppointmentState extends State<BookAppointment> {
                                                 height: 10,
                                               ),
                                               Text(
-                                                'NGN ${12000}',
+                                                '${bloc.packages[globalIndex].plans[index].price}',
                                                 textAlign: TextAlign.start,
                                                 style: TextStyle(
                                                   fontSize: 16,
