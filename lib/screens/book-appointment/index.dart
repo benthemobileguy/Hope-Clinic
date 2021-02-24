@@ -124,51 +124,63 @@ class _BookAppointmentState extends State<BookAppointment> {
                                           fontWeight: FontWeight.w500,
                                         ),
                                       ),
-                                      Container(
-                                        margin: EdgeInsets.only(top: 14),
-                                        padding: EdgeInsets.symmetric
-                                          (horizontal: 10, vertical: 10),
-                                        decoration: BoxDecoration(
-                                          color:containerBgColor,
-                                          borderRadius: BorderRadius
-                                              .all(Radius.circular(12))
-                                        ),
-                                        child: Row(
-                                          children: [
-                                            Container(
-                                              decoration: BoxDecoration(
+                                      ListView.builder(
+                                        itemBuilder: (context, index){
 
+                                        },
+                                        child: Container(
+                                          width: 230,
+                                          margin: EdgeInsets.only(top: 14),
+                                          padding: EdgeInsets.symmetric
+                                            (horizontal: 10, vertical: 10),
+                                          decoration: BoxDecoration(
+                                            color:containerBgColor,
+                                            borderRadius: BorderRadius
+                                                .all(Radius.circular(12))
+                                          ),
+                                          child: Row(
+                                            children: [
+                                              Container(
+                                                width:24,
+                                                height:24,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                 shape: BoxShape.circle,
+                                                ),
                                               ),
-                                            ),
-                                            Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  bloc.packages[index].desc,
-                                                  textAlign: TextAlign.start,
-                                                  style: TextStyle(
-                                                    fontSize: 14,
-                                                    fontFamily: 'Lato',
-                                                    color: textColor,
-                                                    fontWeight: FontWeight.w500,
+                                              SizedBox(
+                                                width: 16,
+                                              ),
+                                              Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    bloc.packages[index].desc,
+                                                    textAlign: TextAlign.start,
+                                                    style: TextStyle(
+                                                      fontSize: 14,
+                                                      fontFamily: 'Lato',
+                                                      color: textColor,
+                                                      fontWeight: FontWeight.w500,
+                                                    ),
                                                   ),
-                                                ),
-                                                SizedBox(
-                                                  height: 14,
-                                                ),
-                                                Text(
-                                                  'NGN ${bloc.packages[index].desc}',
-                                                  textAlign: TextAlign.start,
-                                                  style: TextStyle(
-                                                    fontSize: 16,
-                                                    fontFamily: 'Lato',
-                                                    color: normalText,
-                                                    fontWeight: FontWeight.w700,
+                                                  SizedBox(
+                                                    height: 10,
                                                   ),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
+                                                  Text(
+                                                    'NGN ${12000}',
+                                                    textAlign: TextAlign.start,
+                                                    style: TextStyle(
+                                                      fontSize: 16,
+                                                      fontFamily: 'Lato',
+                                                      color: normalText,
+                                                      fontWeight: FontWeight.w700,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ],
