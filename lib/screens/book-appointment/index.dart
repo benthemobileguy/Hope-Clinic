@@ -209,7 +209,7 @@ class _BookAppointmentState extends State<BookAppointment> {
                 ),
             SizedBox(
               height: 30,
-            )
+            ),
             Container(
               height: 60,
               child: MainButton(
