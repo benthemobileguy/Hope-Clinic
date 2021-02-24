@@ -208,7 +208,7 @@ class _BookAppointmentState extends State<BookAppointment> {
                   },
                 ),
             SizedBox(
-              height: 30,
+              height: 20,
             ),
             Container(
               height: 60,
@@ -230,7 +230,7 @@ class _BookAppointmentState extends State<BookAppointment> {
               ),
             ),
             SizedBox(
-              height: 30,
+              height: 20,
             )
           ],
         ),
