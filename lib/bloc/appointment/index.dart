@@ -88,4 +88,13 @@ class AppointmentBloc extends ChangeNotifier {
     notifyListeners();
     return _healthTips;
   }
+  ///fetch packages
+  Future<Packages> fetchPakages(BuildContext context) async {
+    AppointmentService appointmentService = new  AppointmentService(
+        context: context);
+    Packages _packages= await appointmentService.getPackages();
+    this._packages = _packages;
+    notifyListeners();
+    return _packages;
+  }
 }
