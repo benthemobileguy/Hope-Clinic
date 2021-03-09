@@ -90,32 +90,44 @@ class _BookAppointmentState extends State<BookAppointment> {
                         ),
                         child: Container(
                           padding: EdgeInsets.only(left: 16, right: 16, bottom: 10, top: 10),
-                          child:  Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                          child:  Row(
                             children: [
-                              Text(
-                                bloc.plans[index].title,
-                                textAlign: TextAlign.start,
-                                style: TextStyle(
-                                  fontSize: 17,
-                                  fontFamily: 'Lato',
-                                  color: normalTextBold,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                              SizedBox(
-                               height: 10,
-                              ),
-                              Text(
-                                "NGN ${bloc.plans[index].price}",
-                                textAlign: TextAlign.start,
-                                style: TextStyle(
-                                  fontSize: 17,
-                                  fontFamily: 'Lato',
+                              Container(
+                                width:24,
+                                height:24,
+                                decoration: BoxDecoration(
                                   color: primaryColor,
-                                  fontWeight: FontWeight.w500,
+                                  shape: BoxShape.circle
                                 ),
+                              ),
+                              Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    bloc.plans[index].title,
+                                    textAlign: TextAlign.start,
+                                    style: TextStyle(
+                                      fontSize: 17,
+                                      fontFamily: 'Lato',
+                                      color: normalTextBold,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                   height: 10,
+                                  ),
+                                  Text(
+                                    "NGN ${bloc.plans[index].price}",
+                                    textAlign: TextAlign.start,
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontFamily: 'Lato',
+                                      color: primaryColor,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
