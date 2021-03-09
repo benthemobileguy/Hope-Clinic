@@ -3,7 +3,7 @@ import 'package:hope_clinic/bloc/index.dart';
 import 'package:hope_clinic/model/days-left-count.dart';
 import 'package:hope_clinic/model/health-tips.dart';
 import 'package:hope_clinic/model/next-appointment.dart';
-import 'package:hope_clinic/model/packages.dart';
+import 'package:hope_clinic/model/plans.dart';
 import 'package:hope_clinic/model/upcoming-appointment.dart';
 import 'package:hope_clinic/services/index.dart';
 import 'package:provider/provider.dart';
@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 class  AppointmentService extends ApiService {
   BuildContext context;
   MainBloc bloc;
+
   AppointmentService({@required this.context}) : super(context: context);
 
   /// get upcoming appointment
@@ -36,6 +37,7 @@ class  AppointmentService extends ApiService {
     bloc.nextAppointment = _nextAppointment;
     return _nextAppointment;
   }
+
   /// get days left count
   Future<DaysLeftCount> getDaysLeftCount() async {
     bloc = Provider.of<MainBloc>(context, listen: false);
@@ -60,16 +62,17 @@ class  AppointmentService extends ApiService {
     bloc.healthTips = _healthTips;
     return _healthTips;
   }
+
+
   /// get packages
-  Future<List<Packages>> getPackages() async {
+  Future<List<Plans>> getPlans() async {
     bloc = Provider.of<MainBloc>(context, listen: false);
     Map<String, dynamic> _data =
-    await get('packages');
+    await get('plan');
     print(_data);
-    List<Packages> _packages;
-    _packages = Packages.fromJsonList(_data['data']['packages']);
-    bloc.packages = _packages;
-    return _packages;
+    List<Plans> _plans;
+    _plans = Plans.fromJsonList(_data['data']['plans']);
+    bloc.plans = _plans;
+    return _plans;
   }
-
 }

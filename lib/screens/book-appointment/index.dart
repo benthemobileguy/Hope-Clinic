@@ -4,9 +4,8 @@ import 'package:hope_clinic/bloc/index.dart';
 import 'package:hope_clinic/screens/components/main-button.dart';
 import 'package:hope_clinic/shimmers/shimmer-list-view.dart';
 import 'package:hope_clinic/theme/style.dart';
-import 'package:hope_clinic/utils/color.dart';
 import 'package:provider/provider.dart';
-import 'package:mdi/mdi.dart';
+
 class BookAppointment extends StatefulWidget {
   @override
   _BookAppointmentState createState() => _BookAppointmentState();
@@ -26,7 +25,7 @@ class _BookAppointmentState extends State<BookAppointment> {
   @override
   Widget build(BuildContext context) {
     if (!isInitialised) {
-      fetchRequests();
+    fetchRequests();
       isInitialised = true;
     }
     return Scaffold(
@@ -62,7 +61,7 @@ class _BookAppointmentState extends State<BookAppointment> {
               height: 30,
             ),
             Text(
-              "SELECT A PACKAGE",
+              "AVAILABLE PLANS FOR YOU",
               textAlign: TextAlign.start,
               style: TextStyle(
                 fontSize: 12,
@@ -78,7 +77,7 @@ class _BookAppointmentState extends State<BookAppointment> {
                 ListView.builder(
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
-                  itemCount: bloc.packages.length,
+                  itemCount: bloc.plans.length,
                   itemBuilder: (context, index){
                     return Container(
                       margin: EdgeInsets.only(bottom: 5),
@@ -90,42 +89,26 @@ class _BookAppointmentState extends State<BookAppointment> {
                             borderColor, width: 1)
                         ),
                         child: Container(
-                          padding: EdgeInsets.only(left: 16, right: 16, bottom: 20),
+                          padding: EdgeInsets.only(left: 16, right: 16, bottom: 10, top: 10),
                           child:  Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Row(
-                                children: [
-                                  Text(
-                                    bloc.packages[index].title,
-                                    textAlign: TextAlign.start,
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontFamily: 'Lato',
-                                      color: primaryColor,
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                  ),
-                                  Spacer(),
-                                  new IconButton(
-                                    padding: EdgeInsets.only(top: 30),
-                                    color: textColor,
-                                      icon:
-                                  Icon(!bloc.packages[index].isTapped?
-                                  Mdi.chevronDown: Mdi.chevronUp),
-                                      onPressed: (){
-                                    setState(() {
-                                      globalIndex = index;
-                                      bloc.packages[index].isTapped =
-                                      ! bloc.packages[index].isTapped;
-                                    });
+                              Text(
+                                bloc.plans[index].title,
+                                textAlign: TextAlign.start,
+                                style: TextStyle(
+                                  fontSize: 17,
+                                  fontFamily: 'Lato',
+                                  color: normalTextBold,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                              SizedBox(
 
-                                      })
-                                ],
                               ),
                               Text(
-                                bloc.packages[index].desc,
+                                "NGN ${bloc.plans[index].price}",
                                 textAlign: TextAlign.start,
                                 style: TextStyle(
                                   fontSize: 14,
@@ -134,73 +117,6 @@ class _BookAppointmentState extends State<BookAppointment> {
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
-                              bloc.packages[index].isTapped?
-                              ListView.builder(
-                                physics: NeverScrollableScrollPhysics(),
-                                shrinkWrap: true,
-                                itemCount: bloc.packages[globalIndex].plans.length,
-                                itemBuilder: (context, index){
-                                return Container(
-                                  margin: EdgeInsets.only(top: 14),
-                                  padding: EdgeInsets.symmetric
-                                    (horizontal: 10, vertical: 10),
-                                  decoration: BoxDecoration(
-                                      color:containerBgColor,
-                                      borderRadius: BorderRadius
-                                          .all(Radius.circular(12))
-                                  ),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Container(
-                                        width:24,
-                                        height:24,
-                                        decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          shape: BoxShape.circle,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 16,
-                                      ),
-                                      Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Container(
-                                            width:210,
-                                            child: Text(
-                                      '${bloc.packages[globalIndex].plans[index].title}',
-                                              textAlign: TextAlign.start,
-                                              style: TextStyle(
-                                                fontSize: 14,
-                                                fontFamily: 'Lato',
-                                                color: textColor,
-                                                fontWeight: FontWeight.w500,
-                                              ),
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            height: 10,
-                                          ),
-                                          Text(
-                                            '${bloc.packages[globalIndex].plans[index].price}',
-                                            textAlign: TextAlign.start,
-                                            style: TextStyle(
-                                              fontSize: 16,
-                                              fontFamily: 'Lato',
-                                              color: normalText,
-                                              fontWeight: FontWeight.w700,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                );
-                                },
-                              )
-                                  :Container(),
                             ],
                           ),
                         ),
@@ -246,13 +162,13 @@ class _BookAppointmentState extends State<BookAppointment> {
       ),
     );
   }
-  Future fetchRequests() async {
-    Future.wait([
-      bloc.fetchPakages(context),
-    ]).then((value) {
-      setState(() {
-        isDataLoaded = true;
-      });
-    });
+
+  void fetchRequests() {
+ bloc.fetchPlans(context).then((value){
+   setState(() {
+     isDataLoaded = true;
+   });
+ });
   }
+
 }

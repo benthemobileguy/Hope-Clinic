@@ -15,6 +15,7 @@ final Color lightGreen = HexColor("#D7F4EF");
 final Color borderColor = HexColor("#E5EEEC");
 final Color textRed = HexColor("#E33A3A");
 final Color normalText = HexColor("#222222");
+final Color normalTextBold = HexColor("#212121");
 final Color normalTexth1 = HexColor("#444444");
 final Color bottomSheetBg = HexColor("#CDCDCD");
 final Color normalText2 = HexColor("#444444");

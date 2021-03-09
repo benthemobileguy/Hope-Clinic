@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:hope_clinic/model/days-left-count.dart';
 import 'package:hope_clinic/model/health-tips.dart';
 import 'package:hope_clinic/model/next-appointment.dart';
-import 'package:hope_clinic/model/packages.dart';
+import 'package:hope_clinic/model/plans.dart';
 import 'package:hope_clinic/model/upcoming-appointment.dart';
 import 'package:hope_clinic/services/appointment/index.dart';
 
 class AppointmentBloc extends ChangeNotifier {
   NextAppointment _nextAppointment;
   DaysLeftCount _daysLeftCount;
-  List<Packages> _packages;
+  List<Plans> _plans;
   List<HealthTips> _healthTips;
   UpcomingAppointment _upcomingAppointment;
   UpcomingAppointment get upcomingAppointment {
@@ -19,18 +19,17 @@ class AppointmentBloc extends ChangeNotifier {
     this._healthTips = _data;
     notifyListeners();
   }
-
+  set plans(List<Plans> _data) {
+    this._plans = _data;
+    notifyListeners();
+  }
   List<HealthTips> get healthTips {
     return _healthTips;
   }
-  set packages(List<Packages> _data) {
-    this._packages = _data;
-    notifyListeners();
+  List<Plans> get plans {
+    return _plans;
   }
 
-  List<Packages> get packages {
-    return _packages;
-  }
   set upcomingAppointment(UpcomingAppointment _data) {
     this._upcomingAppointment = _data;
     notifyListeners();
@@ -88,13 +87,13 @@ class AppointmentBloc extends ChangeNotifier {
     notifyListeners();
     return _healthTips;
   }
-  ///fetch packages
-  Future<List<Packages>> fetchPakages(BuildContext context) async {
+  ///fetch plans
+  Future<List<Plans>> fetchPlans(BuildContext context) async {
     AppointmentService appointmentService = new  AppointmentService(
         context: context);
-    List<Packages> _packages= await appointmentService.getPackages();
-    this._packages = _packages;
+    List<Plans> _plans = await appointmentService.getPlans();
+    this._plans= _plans;
     notifyListeners();
-    return _packages;
+    return _plans;
   }
 }
