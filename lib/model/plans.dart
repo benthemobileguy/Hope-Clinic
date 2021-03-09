@@ -1,5 +1,6 @@
 
 class Plans {
+  bool isTapped = false;
   int id;
   String title;
   String price;
