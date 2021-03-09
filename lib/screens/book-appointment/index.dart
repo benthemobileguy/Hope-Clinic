@@ -105,15 +105,15 @@ class _BookAppointmentState extends State<BookAppointment> {
                                 ),
                               ),
                               SizedBox(
-
+                               height: 10,
                               ),
                               Text(
                                 "NGN ${bloc.plans[index].price}",
                                 textAlign: TextAlign.start,
                                 style: TextStyle(
-                                  fontSize: 14,
+                                  fontSize: 17,
                                   fontFamily: 'Lato',
-                                  color: textColor,
+                                  color: primaryColor,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
