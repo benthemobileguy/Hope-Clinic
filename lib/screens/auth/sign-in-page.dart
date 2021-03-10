@@ -256,7 +256,7 @@ class _SignInPageState extends State<SignInPage> {
     try{
       Map<String, dynamic> _res = await
       authenticationService.login(_email, _password);
-      Navigator.push(context,
+      Navigator.pushReplacement(context,
           MaterialPageRoute(builder: (context)
           => Base()));
       setState(() {

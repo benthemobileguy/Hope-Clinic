@@ -6,6 +6,7 @@ import 'package:flutter_calendar_carousel/classes/event.dart';
 import 'package:hope_clinic/screens/components/main-button.dart';
 import 'package:hope_clinic/shimmers/shimmer-list-view.dart';
 import 'package:hope_clinic/theme/style.dart';
+import 'package:hope_clinic/utils/color.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart'
     show CalendarCarousel, EventList;
@@ -413,6 +414,67 @@ class _BookAppointmentState extends State<BookAppointment> {
                  ),
                  SizedBox(
                    height: 30,
+                 ),
+               ],
+             ),
+           ),
+           //Page Three
+           Padding(
+             padding: const EdgeInsets
+                 .symmetric(horizontal: 14),
+             child: ListView(
+               children: [
+                 SizedBox(
+                   height: 20,
+                 ),
+                 Row(
+                   children: [
+                     Container(
+                       padding: EdgeInsets.all(12),
+                       decoration: BoxDecoration(
+                         color: accentColor,
+                         shape: BoxShape.circle
+                       ),
+                       child: Text(
+                         "1",
+                         textAlign: TextAlign.center,
+                         style: TextStyle(
+                           fontSize: 18,
+                           fontFamily: 'Lato',
+                           color: primaryColor,
+                           fontWeight: FontWeight.w700,
+                         ),
+                       ),
+                     ),
+                     SizedBox(
+                       width: 10,
+                     ),
+                     Column(
+                       crossAxisAlignment: CrossAxisAlignment.start,
+                       children: [
+                         Text(
+                           "Tuesday, January 10th, 2021",
+                           textAlign: TextAlign.center,
+                           style: TextStyle(
+                             fontSize: 16,
+                             fontFamily: 'Lato',
+                             color: HexColor("#505050"),
+                             fontWeight: FontWeight.w400,
+                           ),
+                         ),
+                         Text(
+                           "10 AM - 11 AM",
+                           textAlign: TextAlign.center,
+                           style: TextStyle(
+                             fontSize: 16,
+                             fontFamily: 'Lato',
+                             color: HexColor("#505050"),
+                             fontWeight: FontWeight.w700,
+                           ),
+                         ),
+                       ],
+                     ),
+                   ],
                  ),
                ],
              ),

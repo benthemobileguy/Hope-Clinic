@@ -8,6 +8,8 @@ class PainReportPage extends StatefulWidget {
 }
 
 class _PainReportPageState extends State<PainReportPage> {
+  List<String> images = ["images/person_front.png", "images/person_side.png", "images/person_back.png"];
+  int index = 0;
   @override
   Widget build(BuildContext context) {
     return  SafeArea(
@@ -32,7 +34,7 @@ class _PainReportPageState extends State<PainReportPage> {
               ),
               Stack(
                   children: [
-                Image.asset('images/person_front.png', height: 500, width: double.infinity,),
+                Image.asset(images[index], height: 500, width: double.infinity,),
                     Positioned(
                       right: 20.0,
                       bottom: 70.0,
@@ -63,7 +65,13 @@ class _PainReportPageState extends State<PainReportPage> {
                             ],
                           ),
                           onPressed: (){
-
+                           setState(() {
+                             if(index==2){
+                               index = 0;
+                             }else{
+                               index++;
+                             }
+                           });
                           },
                         ),
                       ),
