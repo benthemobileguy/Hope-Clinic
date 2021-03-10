@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hope_clinic/screens/components/main-button.dart';
 import 'package:hope_clinic/theme/style.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 class PainReportPage extends StatefulWidget {
@@ -29,7 +30,35 @@ class _PainReportPageState extends State<PainReportPage> {
                 ),
               ),
             ),
-            Image.asset('images/person_side.png', height: 600, width: 272,)
+            Image.asset('images/person_front.png', height: 600, width: 272,),
+            Container(
+              height: 60,
+              child: MainButton(
+                color: primaryColor,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    new Image.asset('images/icons/bookmark.png',
+                      height: 16,
+                      width: 10,),
+                    SizedBox(
+                      width: 14,
+                    ),
+                    Text(
+                      "Next",
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontFamily: 'Lato',
+                        color: Colors.white,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ],
+                ),
+                onPressed:null,
+              ),
+            ),
           ],
         ),
       ),
