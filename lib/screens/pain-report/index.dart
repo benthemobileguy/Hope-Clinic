@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hope_clinic/screens/components/main-button.dart';
 import 'package:hope_clinic/theme/style.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
 class PainReportPage extends StatefulWidget {
   @override
   _PainReportPageState createState() => _PainReportPageState();
@@ -14,7 +14,6 @@ class _PainReportPageState extends State<PainReportPage> {
       child: Scaffold(
         body: SingleChildScrollView(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
                 height: 30,
@@ -33,33 +32,40 @@ class _PainReportPageState extends State<PainReportPage> {
               ),
               Stack(
                   children: [
-                Image.asset('images/person_front.png', height: 500, width: 272,),
-                    Container(
-                      height: 60,
-                      child: MainButton(
-                        color: primaryColor,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            new Image.asset('images/icons/bookmark.png',
-                              height: 16,
-                              width: 10,),
-                            SizedBox(
-                              width: 14,
-                            ),
-                            Text(
-                              "Next",
-                              textAlign: TextAlign.start,
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontFamily: 'Lato',
-                                color: Colors.white,
-                                fontWeight: FontWeight.w700,
+                Image.asset('images/person_front.png', height: 500, width: double.infinity,),
+                    Positioned(
+                      right: 20.0,
+                      bottom: 70.0,
+                      child: Container(
+                        width: 100,
+                        height: 48,
+                        child: MainButton(
+                          color: primaryColor,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              new Image.asset('images/rotate.png',
+                                height: 16,
+                                width: 16,),
+                              SizedBox(
+                                width: 14,
                               ),
-                            ),
-                          ],
+                              Text(
+                                "Turn",
+                                textAlign: TextAlign.start,
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontFamily: 'Lato',
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                            ],
+                          ),
+                          onPressed: (){
+
+                          },
                         ),
-                        onPressed: null,
                       ),
                     ),
                   ],
