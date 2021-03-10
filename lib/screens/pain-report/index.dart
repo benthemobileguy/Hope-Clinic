@@ -48,7 +48,7 @@ class _PainReportPageState extends State<PainReportPage> {
                               width: 14,
                             ),
                             Text(
-                              "Book Appointment",
+                              "Next",
                               textAlign: TextAlign.start,
                               style: TextStyle(
                                 fontSize: 14,
