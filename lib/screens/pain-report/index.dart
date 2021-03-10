@@ -30,31 +30,24 @@ class _PainReportPageState extends State<PainReportPage> {
                 ),
               ),
             ),
-            Image.asset('images/person_front.png', height: 600, width: 272,),
+            Image.asset('images/person_front.png', height: 500, width: 272,),
+            SizedBox(
+              height: 10,
+            ),
             Container(
+              margin: EdgeInsets.symmetric(horizontal: 20),
               height: 60,
               child: MainButton(
                 color: primaryColor,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    new Image.asset('images/icons/bookmark.png',
-                      height: 16,
-                      width: 10,),
-                    SizedBox(
-                      width: 14,
-                    ),
-                    Text(
-                      "Next",
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontFamily: 'Lato',
-                        color: Colors.white,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ],
+                child: Text(
+                  "Next",
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontFamily: 'Lato',
+                    color: Colors.white,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
                 onPressed:null,
               ),
