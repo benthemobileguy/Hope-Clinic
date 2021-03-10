@@ -29,7 +29,7 @@ class _PainReportPageState extends State<PainReportPage> {
                 ),
               ),
             ),
-            SvgP
+            Image.asset('images/person_side.png', height: 600, width: 272,)
           ],
         ),
       ),
