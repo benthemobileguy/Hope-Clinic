@@ -2,11 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hope_clinic/bloc/index.dart';
 import 'package:hope_clinic/model/plans.dart';
+import 'package:flutter_calendar_carousel/classes/event.dart';
 import 'package:hope_clinic/screens/components/main-button.dart';
 import 'package:hope_clinic/shimmers/shimmer-list-view.dart';
 import 'package:hope_clinic/theme/style.dart';
 import 'package:provider/provider.dart';
-
+import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart'
+    show CalendarCarousel, EventList;
 class BookAppointment extends StatefulWidget {
   @override
   _BookAppointmentState createState() => _BookAppointmentState();
@@ -14,7 +16,20 @@ class BookAppointment extends StatefulWidget {
 
 class _BookAppointmentState extends State<BookAppointment> {
   bool isDataLoaded = false;
+  DateTime _currentDate = DateTime(2019, 2, 3);
+  DateTime _currentDate2 = DateTime(2019, 2, 3);
+  static Widget _eventIcon = new Container(
+    decoration: new BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.all(Radius.circular(1000)),
+        border: Border.all(color: textColor, width: 2.0)),
+    child: new Icon(
+      Icons.person,
+      color: Colors.amber,
+    ),
+  );
   bool isInitialised = false;
+  CalendarCarousel  _calendarCarousel;
   int globalIndex = -1;
   PageController pageController = PageController();
   MainBloc bloc;
@@ -35,6 +50,71 @@ class _BookAppointmentState extends State<BookAppointment> {
   @override
   Widget build(BuildContext context) {
     if (!isInitialised) {
+      EventList<Event> _markedDateMap = new EventList<Event>(
+        events: {
+          new DateTime(2019, 2, 10): [
+            new Event(
+              date: new DateTime(2019, 2, 10),
+              title: 'Event 1',
+              icon: _eventIcon,
+              dot: Container(
+                margin: EdgeInsets.symmetric(horizontal: 1.0),
+                color: textColor,
+                height: 5.0,
+                width: 5.0,
+              ),
+            ),
+            new Event(
+              date: new DateTime(2019, 2, 10),
+              title: 'Event 2',
+              icon: _eventIcon,
+            ),
+            new Event(
+              date: new DateTime(2019, 2, 10),
+              title: 'Event 3',
+              icon: _eventIcon,
+            ),
+          ],
+        },
+      );
+      _calendarCarousel = CalendarCarousel<Event>(
+        onDayPressed: (DateTime date, List<Event> events) {
+          this.setState(() => _currentDate = date);
+          events.forEach((event) => print(event.title));
+        },
+        weekendTextStyle: TextStyle(
+          color: textColor,
+        ),
+        thisMonthDayBorderColor: Colors.grey,
+//          weekDays: null, /// for pass null when you do not want to render weekDays
+        headerText: 'December 2016',
+        weekFormat: false,
+        markedDatesMap: _markedDateMap,
+        height: 370.0,
+        selectedDateTime: _currentDate2,
+        showIconBehindDayText: true,
+//          daysHaveCircularBorder: false, /// null for not rendering any border, true for circular border, false for rectangular border
+        customGridViewPhysics: NeverScrollableScrollPhysics(),
+        markedDateShowIcon: true,
+        markedDateIconMaxShown: 2,
+        selectedDayTextStyle: TextStyle(
+          color: Colors.yellow,
+        ),
+        todayTextStyle: TextStyle(
+          color: textColor,
+        ),
+        markedDateIconBuilder: (event) {
+          return event.icon;
+        },
+        minSelectedDate: _currentDate.subtract(Duration(days: 360)),
+        maxSelectedDate: _currentDate.add(Duration(days: 360)),
+        todayButtonColor: Colors.transparent,
+        todayBorderColor: Colors.green,
+        markedDateMoreShowTotal:
+        true, // null for not showing hidden events indicator
+//          markedDateIconMargin: 9,
+//          markedDateIconOffset: 3,
+      );
     fetchRequests();
       isInitialised = true;
     }
@@ -44,7 +124,7 @@ class _BookAppointmentState extends State<BookAppointment> {
         appBar: AppBar(
           backgroundColor: Colors.white,
           title: Text(
-            "Book An Appointment",
+            pagePos==0?"Book An Appointment":pagePos==1?"Pick Your Preferred Day(s)":"Scheduled Time Slots",
             textAlign: TextAlign.start,
             style: TextStyle(
               fontSize: 16,
@@ -60,7 +140,7 @@ class _BookAppointmentState extends State<BookAppointment> {
             ),
             color: textColor,
             onPressed: () {
-              Navigator.pop(context);
+            onWillPop();
             },
           ),
         ),
@@ -224,6 +304,7 @@ class _BookAppointmentState extends State<BookAppointment> {
                ],
              ),
            ),
+           //Page Two
            Padding(
              padding: const EdgeInsets
                  .symmetric(horizontal: 14),
@@ -232,17 +313,107 @@ class _BookAppointmentState extends State<BookAppointment> {
                  SizedBox(
                    height: 30,
                  ),
-                 Text(
-                   "AVAILABLE PLANS FOR YOU",
-                   textAlign: TextAlign.start,
-                   style: TextStyle(
-                     fontSize: 12,
-                     fontFamily: 'Lato',
-                     color: textColor,
-                     fontWeight: FontWeight.w700,
+                 Row(
+                   children: [
+                     Spacer(),
+                     Column(
+                       children: [
+                         Container(
+                           width: 8,
+                           height: 8,
+                           decoration: BoxDecoration(
+                               border: Border.all(color: primaryColor, width: 2),
+                               shape: BoxShape.circle
+                           ),
+                         ),
+                         SizedBox(
+                           height: 5,
+                         ),
+                         Text(
+                           "AVAILABLE",
+                           textAlign: TextAlign.center,
+                           style: TextStyle(
+                             fontSize: 12,
+                             fontFamily: 'Lato',
+                             color: primaryColor,
+                             fontWeight: FontWeight.w700,
+                           ),
+                         ),
+                       ],
+                     ),
+                     Spacer(),
+                     Column(
+                       children: [
+                         Container(
+                           width: 8,
+                           height: 8,
+                           decoration: BoxDecoration(
+                               border: Border.all(color: textRed, width: 2),
+                               shape: BoxShape.circle
+                           ),
+                         ),
+                         SizedBox(
+                           height: 5,
+                         ),
+                         Text(
+                           "UNAVAILABLE",
+                           textAlign: TextAlign.center,
+                           style: TextStyle(
+                             fontSize: 12,
+                             fontFamily: 'Lato',
+                             color: textRed,
+                             fontWeight: FontWeight.w700,
+                           ),
+                         ),
+                       ],
+                     ),
+                     Spacer(),
+                   ],
+                 ),
+                 SizedBox(
+                   height: 30,
+                 ),
+                 Container(
+                   child: _calendarCarousel,
+                 ), //
+                 SizedBox(
+                   height: 30,
+                 ),
+                 Container(
+                   height: 60,
+                   child: MainButton(
+                     color: primaryColor,
+                     child: Row(
+                       mainAxisAlignment: MainAxisAlignment.center,
+                       children: [
+                         new Image.asset('images/icons/bookmark.png',
+                           height: 16,
+                           width: 10,),
+                         SizedBox(
+                           width: 14,
+                         ),
+                         Text(
+                           "Book Appointment",
+                           textAlign: TextAlign.start,
+                           style: TextStyle(
+                             fontSize: 14,
+                             fontFamily: 'Lato',
+                             color: Colors.white,
+                             fontWeight: FontWeight.w700,
+                           ),
+                         ),
+                       ],
+                     ),
+                     onPressed: selectedPlansData !=null? () {
+                       pageController.nextPage(
+                           duration: Duration(milliseconds: 300),
+                           curve: Curves.linear);
+                     }:null,
                    ),
                  ),
-
+                 SizedBox(
+                   height: 30,
+                 ),
                ],
              ),
            ),

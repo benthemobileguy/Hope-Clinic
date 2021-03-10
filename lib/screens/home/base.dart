@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hope_clinic/screens/home/index.dart';
+import 'package:hope_clinic/screens/pain-report/index.dart';
 import 'package:hope_clinic/screens/profile/index.dart';
 import 'package:hope_clinic/screens/schedule/index.dart';
 import 'package:hope_clinic/screens/shop/index.dart';
+import 'package:hope_clinic/theme/style.dart';
 import 'package:hope_clinic/utils/color.dart';
 
 class Base extends StatefulWidget {
@@ -40,6 +42,7 @@ class _BaseState extends State<Base> {
     List<Widget> _children = [
       new HomePage(),
       new SchedulePage(),
+      new PainReportPage(),
       new ProfilePage(),
       new ShopPage(),
     ];
@@ -93,11 +96,35 @@ class _BaseState extends State<Base> {
             ),
           ),
           new BottomNavigationBarItem(
+            icon: Container(
+              padding: const EdgeInsets.all(10.0),
+              decoration: BoxDecoration(
+                color: primaryColor,
+                shape: BoxShape.circle
+              ),
+              child: ImageIcon(
+                AssetImage(
+                 "images/pain_report.png",
+                ),
+                size: 25,
+                color: Colors.white,
+              ),
+            ),
+            title: Text(
+              "",
+              style: TextStyle(
+                fontWeight: FontWeight.w700,
+                fontFamily: 'Lato',
+                fontSize: 10,
+              ),
+            ),
+          ),
+          new BottomNavigationBarItem(
             icon: Padding(
                 padding: const EdgeInsets.all(5.0),
                 child:ImageIcon(
                   AssetImage(
-                    _currentIndex!=2? "images/icons/profile.png":
+                    _currentIndex!=3? "images/icons/profile.png":
                     "images/icons/profile_green.png",
                   ),
                   size: 25,
@@ -117,7 +144,7 @@ class _BaseState extends State<Base> {
                 padding: const EdgeInsets.all(5.0),
                 child:ImageIcon(
                   AssetImage(
-                    _currentIndex!=3? "images/icons/shop.png"
+                    _currentIndex!=4? "images/icons/shop.png"
                         :"images/icons/shop_green.png",
                   ),
                   size: 25,
