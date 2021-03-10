@@ -18,7 +18,7 @@ class _BookAppointmentState extends State<BookAppointment> {
   int globalIndex = -1;
   PageController pageController = PageController();
   MainBloc bloc;
-  index pagePos = 0;
+  int pagePos = 0;
   Plans selectedPlansData;
   @override
   void didChangeDependencies() {
