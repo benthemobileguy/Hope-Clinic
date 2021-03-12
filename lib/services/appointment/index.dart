@@ -75,7 +75,7 @@ class  AppointmentService extends ApiService {
     bloc.plans = _plans;
     return _plans;
   }
-  /// get packages
+  /// get date slots
   Future<List<Plans>> getPlans() async {
     bloc = Provider.of<MainBloc>(context, listen: false);
     Map<String, dynamic> _data =
