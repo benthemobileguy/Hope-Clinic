@@ -87,6 +87,14 @@ class _BookAppointmentState extends State<BookAppointment> {
           this.setState(() => _currentDate2 = date);
           events.forEach((event) => print(event.title));
         },
+        headerTextStyle: TextStyle(
+          fontSize: 16,
+          fontFamily: 'Lato',
+          color: normalText,
+          fontWeight: FontWeight.w700,
+        ),
+        iconColor: normalText,
+        selectedDayBorderColor: Colors.green,
         daysHaveCircularBorder: true,
         showOnlyCurrentMonthDate: true,
         weekendTextStyle: TextStyle(
@@ -101,7 +109,7 @@ class _BookAppointmentState extends State<BookAppointment> {
         targetDateTime: _targetDateTime,
         customGridViewPhysics: NeverScrollableScrollPhysics(),
 
-        minSelectedDate: _currentDate.subtract(Duration(days: 360)),
+        minSelectedDate: _currentDate,
         maxSelectedDate: _currentDate.add(Duration(days: 360)),
 
         inactiveDaysTextStyle: TextStyle(
