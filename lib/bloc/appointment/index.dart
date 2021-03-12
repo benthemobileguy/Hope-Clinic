@@ -29,9 +29,10 @@ class AppointmentBloc extends ChangeNotifier {
     this._plans = _data;
     notifyListeners();
   }
-  List<HealthTips> get healthTips {
-    return _healthTips;
+  List<Dateslots> get dateSlots {
+    return _dateSlots;
   }
+
   List<Plans> get plans {
     return _plans;
   }
