@@ -108,12 +108,17 @@ class _BookAppointmentState extends State<BookAppointment> {
         selectedDateTime: _currentDate2,
         targetDateTime: _targetDateTime,
         customGridViewPhysics: NeverScrollableScrollPhysics(),
-
+        daysTextStyle: TextStyle(
+          fontSize: 16,
+          fontFamily: 'Lato',
+          color: normalText,
+          fontWeight: FontWeight.w700,
+        ),
         minSelectedDate: _currentDate,
         maxSelectedDate: _currentDate.add(Duration(days: 360)),
 
         inactiveDaysTextStyle: TextStyle(
-          color: Colors.tealAccent,
+          color: Colors.grey,
           fontSize: 16,
         ),
         onCalendarChanged: (DateTime date) {
