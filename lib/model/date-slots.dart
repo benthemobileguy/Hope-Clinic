@@ -33,6 +33,10 @@ class Dateslots {
     }
     return data;
   }
+
+  static List<Dateslots> fromJsonList(List<dynamic> dates) {
+    return dates.map((_dates) => Dateslots.fromJson(_dates)).toList();
+  }
 }
 
 class Timeslots {

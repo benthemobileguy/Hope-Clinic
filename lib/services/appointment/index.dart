@@ -84,7 +84,7 @@ class  AppointmentService extends ApiService {
     print(_data);
     List<Dateslots> _dateSlots;
     _dateSlots = Dateslots.fromJsonList(_data['data']['dateslots']);
-    bloc.plans = _dateSlots;
+    bloc.dateSlots = _dateSlots;
     return _dateSlots;
   }
 }
