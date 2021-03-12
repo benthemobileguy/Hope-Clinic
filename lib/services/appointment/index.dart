@@ -75,4 +75,15 @@ class  AppointmentService extends ApiService {
     bloc.plans = _plans;
     return _plans;
   }
+  /// get packages
+  Future<List<Plans>> getPlans() async {
+    bloc = Provider.of<MainBloc>(context, listen: false);
+    Map<String, dynamic> _data =
+    await get('plan');
+    print(_data);
+    List<Plans> _plans;
+    _plans = Plans.fromJsonList(_data['data']['plans']);
+    bloc.plans = _plans;
+    return _plans;
+  }
 }

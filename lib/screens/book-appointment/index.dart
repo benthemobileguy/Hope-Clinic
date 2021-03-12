@@ -422,7 +422,7 @@ class _BookAppointmentState extends State<BookAppointment> {
            Padding(
              padding: const EdgeInsets
                  .symmetric(horizontal: 14),
-             child: ListView(
+             child: Column(
                children: [
                  SizedBox(
                    height: 20,
@@ -462,6 +462,9 @@ class _BookAppointmentState extends State<BookAppointment> {
                              fontWeight: FontWeight.w400,
                            ),
                          ),
+                         SizedBox(
+                           height: 6,
+                         ),
                          Text(
                            "10 AM - 11 AM",
                            textAlign: TextAlign.center,
@@ -475,6 +478,86 @@ class _BookAppointmentState extends State<BookAppointment> {
                        ],
                      ),
                    ],
+                 ),
+                 SizedBox(
+                   height: 16,
+                 ),
+                 Row(
+                   children: [
+                     Container(
+                       padding: EdgeInsets.all(12),
+                       decoration: BoxDecoration(
+                           color: accentColor,
+                           shape: BoxShape.circle
+                       ),
+                       child: Text(
+                         "2",
+                         textAlign: TextAlign.center,
+                         style: TextStyle(
+                           fontSize: 18,
+                           fontFamily: 'Lato',
+                           color: primaryColor,
+                           fontWeight: FontWeight.w700,
+                         ),
+                       ),
+                     ),
+                     SizedBox(
+                       width: 10,
+                     ),
+                     Column(
+                       crossAxisAlignment: CrossAxisAlignment.start,
+                       children: [
+                         Text(
+                           "Friday, January 13th, 2021",
+                           textAlign: TextAlign.center,
+                           style: TextStyle(
+                             fontSize: 16,
+                             fontFamily: 'Lato',
+                             color: HexColor("#505050"),
+                             fontWeight: FontWeight.w400,
+                           ),
+                         ),
+                         SizedBox(
+                           height: 6,
+                         ),
+                         Text(
+                           "12 AM - 17 AM",
+                           textAlign: TextAlign.center,
+                           style: TextStyle(
+                             fontSize: 16,
+                             fontFamily: 'Lato',
+                             color: HexColor("#505050"),
+                             fontWeight: FontWeight.w700,
+                           ),
+                         ),
+                       ],
+                     ),
+                   ],
+                 ),
+                Spacer(),
+                 Container(
+                   height: 60,
+                   child: MainButton(
+                     color: primaryColor,
+                     child: Text(
+                       "Schedule",
+                       textAlign: TextAlign.start,
+                       style: TextStyle(
+                         fontSize: 14,
+                         fontFamily: 'Lato',
+                         color: Colors.white,
+                         fontWeight: FontWeight.w700,
+                       ),
+                     ),
+                     onPressed: selectedPlansData !=null? () {
+                       pageController.nextPage(
+                           duration: Duration(milliseconds: 300),
+                           curve: Curves.linear);
+                     }:null,
+                   ),
+                 ),
+                 SizedBox(
+                   height: 20,
                  ),
                ],
              ),
