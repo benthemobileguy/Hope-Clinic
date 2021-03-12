@@ -29,8 +29,8 @@ class AppointmentBloc extends ChangeNotifier {
     this._plans = _data;
     notifyListeners();
   }
-  List<Dateslots> get dateSlots {
-    return _dateSlots;
+  List<HealthTips> get healthTips {
+    return _healthTips;
   }
 
   List<Plans> get plans {
@@ -102,5 +102,14 @@ class AppointmentBloc extends ChangeNotifier {
     this._plans= _plans;
     notifyListeners();
     return _plans;
+  }
+  ///fetch date slots
+  Future<List<Dateslots>> fetchDateSlots(BuildContext context) async {
+    AppointmentService appointmentService = new  AppointmentService(
+        context: context);
+    List<Dateslots> _dateSlots = await appointmentService.getDateSlots();
+    this._dateSlots= _dateSlots;
+    notifyListeners();
+    return _dateSlots;
   }
 }

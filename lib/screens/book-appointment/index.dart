@@ -8,6 +8,7 @@ import 'package:hope_clinic/shimmers/shimmer-list-view.dart';
 import 'package:hope_clinic/theme/style.dart';
 import 'package:hope_clinic/utils/color.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart'
     show CalendarCarousel, EventList;
 class BookAppointment extends StatefulWidget {
@@ -17,8 +18,10 @@ class BookAppointment extends StatefulWidget {
 
 class _BookAppointmentState extends State<BookAppointment> {
   bool isDataLoaded = false;
-  DateTime _currentDate = DateTime(2019, 2, 3);
-  DateTime _currentDate2 = DateTime(2019, 2, 3);
+  DateTime _currentDate = DateTime.now();
+  DateTime _currentDate2 = DateTime.now();
+  String _currentMonth = DateFormat.yMMM().format(DateTime.now());
+  DateTime _targetDateTime = DateTime.now();
   static Widget _eventIcon = new Container(
     decoration: new BoxDecoration(
         color: Colors.white,
@@ -30,7 +33,7 @@ class _BookAppointmentState extends State<BookAppointment> {
     ),
   );
   bool isInitialised = false;
-  CalendarCarousel  _calendarCarousel;
+  CalendarCarousel  _calendarCarouselNoHeader;
   int globalIndex = -1;
   PageController pageController = PageController();
   MainBloc bloc;
@@ -78,45 +81,45 @@ class _BookAppointmentState extends State<BookAppointment> {
           ],
         },
       );
-      _calendarCarousel = CalendarCarousel<Event>(
+      _calendarCarouselNoHeader = CalendarCarousel<Event>(
+        todayBorderColor: Colors.green,
         onDayPressed: (DateTime date, List<Event> events) {
-          this.setState(() => _currentDate = date);
+          this.setState(() => _currentDate2 = date);
           events.forEach((event) => print(event.title));
         },
+        daysHaveCircularBorder: true,
+        showOnlyCurrentMonthDate: true,
         weekendTextStyle: TextStyle(
-          color: textColor,
+          color: Colors.black,
         ),
         thisMonthDayBorderColor: Colors.grey,
-//          weekDays: null, /// for pass null when you do not want to render weekDays
-        headerText: 'December 2016',
         weekFormat: false,
+//      firstDayOfWeek: 4,
         markedDatesMap: _markedDateMap,
-        height: 370.0,
+        height: 420.0,
         selectedDateTime: _currentDate2,
-        showIconBehindDayText: true,
-//          daysHaveCircularBorder: false, /// null for not rendering any border, true for circular border, false for rectangular border
+        targetDateTime: _targetDateTime,
         customGridViewPhysics: NeverScrollableScrollPhysics(),
-        markedDateShowIcon: true,
-        markedDateIconMaxShown: 2,
-        selectedDayTextStyle: TextStyle(
-          color: Colors.yellow,
-        ),
-        todayTextStyle: TextStyle(
-          color: textColor,
-        ),
-        markedDateIconBuilder: (event) {
-          return event.icon;
-        },
+
         minSelectedDate: _currentDate.subtract(Duration(days: 360)),
         maxSelectedDate: _currentDate.add(Duration(days: 360)),
-        todayButtonColor: Colors.transparent,
-        todayBorderColor: Colors.green,
-        markedDateMoreShowTotal:
-        true, // null for not showing hidden events indicator
-//          markedDateIconMargin: 9,
-//          markedDateIconOffset: 3,
+
+        inactiveDaysTextStyle: TextStyle(
+          color: Colors.tealAccent,
+          fontSize: 16,
+        ),
+        onCalendarChanged: (DateTime date) {
+          this.setState(() {
+            _targetDateTime = date;
+            _currentMonth = DateFormat.yMMM().format(_targetDateTime);
+          });
+        },
+        onDayLongPressed: (DateTime date) {
+          print('long pressed date $date');
+        },
       );
-    fetchRequests();
+
+      fetchRequests();
       isInitialised = true;
     }
     return WillPopScope(
@@ -375,7 +378,7 @@ class _BookAppointmentState extends State<BookAppointment> {
                    height: 30,
                  ),
                  Container(
-                   child: _calendarCarousel,
+                   child: _calendarCarouselNoHeader,
                  ), //
                  SizedBox(
                    height: 30,
