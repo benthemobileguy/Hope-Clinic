@@ -21,6 +21,10 @@ class AppointmentBloc extends ChangeNotifier {
     this._healthTips = _data;
     notifyListeners();
   }
+  set dateSlots(List<Dateslots> _data) {
+    this._dateSlots = _data;
+    notifyListeners();
+  }
   set plans(List<Plans> _data) {
     this._plans = _data;
     notifyListeners();
