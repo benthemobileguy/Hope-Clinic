@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hope_clinic/bloc/index.dart';
+import 'package:hope_clinic/model/date-slots.dart';
 import 'package:hope_clinic/model/days-left-count.dart';
 import 'package:hope_clinic/model/health-tips.dart';
 import 'package:hope_clinic/model/next-appointment.dart';
@@ -76,14 +77,14 @@ class  AppointmentService extends ApiService {
     return _plans;
   }
   /// get date slots
-  Future<List<Plans>> getPlans() async {
+  Future<List<Dateslots>> getDateSlots() async {
     bloc = Provider.of<MainBloc>(context, listen: false);
     Map<String, dynamic> _data =
-    await get('plan');
+    await get('dateslot');
     print(_data);
-    List<Plans> _plans;
-    _plans = Plans.fromJsonList(_data['data']['plans']);
-    bloc.plans = _plans;
-    return _plans;
+    List<Dateslots> _dateSlots;
+    _dateSlots = Dateslots.fromJsonList(_data['data']['dateslots']);
+    bloc.plans = _dateSlots;
+    return _dateSlots;
   }
 }

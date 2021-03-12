@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hope_clinic/model/date-slots.dart';
 import 'package:hope_clinic/model/days-left-count.dart';
 import 'package:hope_clinic/model/health-tips.dart';
 import 'package:hope_clinic/model/next-appointment.dart';
@@ -11,6 +12,7 @@ class AppointmentBloc extends ChangeNotifier {
   DaysLeftCount _daysLeftCount;
   List<Plans> _plans;
   List<HealthTips> _healthTips;
+  List<Dateslots> _dateSlots;
   UpcomingAppointment _upcomingAppointment;
   UpcomingAppointment get upcomingAppointment {
     return _upcomingAppointment;
