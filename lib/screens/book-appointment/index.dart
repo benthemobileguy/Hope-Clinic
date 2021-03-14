@@ -6,11 +6,13 @@ import 'package:flutter_calendar_carousel/classes/event.dart';
 import 'package:hope_clinic/screens/components/main-button.dart';
 import 'package:hope_clinic/shimmers/shimmer-list-view.dart';
 import 'package:hope_clinic/theme/style.dart';
+import 'package:hope_clinic/utils/alert-manager.dart';
 import 'package:hope_clinic/utils/color.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart'
     show CalendarCarousel, EventList;
+
 class BookAppointment extends StatefulWidget {
   @override
   _BookAppointmentState createState() => _BookAppointmentState();
@@ -24,9 +26,9 @@ class _BookAppointmentState extends State<BookAppointment> {
   DateTime _targetDateTime = DateTime.now();
   static Widget _eventIcon = new Container(
     decoration: new BoxDecoration(
-        color: Colors.white,
+        color: Colors.lime,
         borderRadius: BorderRadius.all(Radius.circular(1000)),
-        border: Border.all(color: textColor, width: 2.0)),
+        border: Border.all(color: textColor, width: 6.0)),
     child: new Icon(
       Icons.person,
       color: Colors.amber,
@@ -50,43 +52,32 @@ class _BookAppointmentState extends State<BookAppointment> {
     // TODO: implement initState
     super.initState();
 
+
   }
   @override
   Widget build(BuildContext context) {
-    if (!isInitialised) {
+
       EventList<Event> _markedDateMap = new EventList<Event>(
         events: {
-          new DateTime(2019, 2, 10): [
+          new DateTime(2021, 3, 16): [
             new Event(
-              date: new DateTime(2019, 2, 10),
+              date: new DateTime(2021, 3, 16),
               title: 'Event 1',
-              icon: _eventIcon,
-              dot: Container(
-                margin: EdgeInsets.symmetric(horizontal: 1.0),
-                color: textColor,
-                height: 5.0,
-                width: 5.0,
-              ),
-            ),
-            new Event(
-              date: new DateTime(2019, 2, 10),
-              title: 'Event 2',
-              icon: _eventIcon,
-            ),
-            new Event(
-              date: new DateTime(2019, 2, 10),
-              title: 'Event 3',
               icon: _eventIcon,
             ),
           ],
         },
       );
       _calendarCarouselNoHeader = CalendarCarousel<Event>(
-        todayBorderColor: Colors.green,
+        pageScrollPhysics: NeverScrollableScrollPhysics(),
         onDayPressed: (DateTime date, List<Event> events) {
-          this.setState(() => _currentDate2 = date);
+          this.setState(() {
+            _currentDate2 = date;
+            print(date);
+          });
           events.forEach((event) => print(event.title));
         },
+        markedDateShowIcon: true,
         headerTextStyle: TextStyle(
           fontSize: 16,
           fontFamily: 'Lato',
@@ -100,6 +91,20 @@ class _BookAppointmentState extends State<BookAppointment> {
           fontWeight: FontWeight.w800,
         ),
         iconColor: normalText,
+        markedDateCustomTextStyle: TextStyle(
+          fontSize: 16,
+          fontFamily: 'Lato',
+          color: normalText,
+          fontWeight: FontWeight.w700,
+        ),
+        todayTextStyle: TextStyle(
+          fontSize: 16,
+          fontFamily: 'Lato',
+          color: normalText,
+          fontWeight: FontWeight.w700,
+        ),
+        todayButtonColor: Colors.white,
+        weekDayMargin: EdgeInsets.all(5),
         selectedDayBorderColor: primaryColor,
         selectedDayButtonColor: primaryColor,
         selectedDayTextStyle:  TextStyle(
@@ -142,11 +147,12 @@ class _BookAppointmentState extends State<BookAppointment> {
             _currentMonth = DateFormat.yMMM().format(_targetDateTime);
           });
         },
+
         onDayLongPressed: (DateTime date) {
           print('long pressed date $date');
         },
       );
-
+      if (!isInitialised) {
       fetchRequests();
       isInitialised = true;
     }
@@ -581,9 +587,8 @@ class _BookAppointmentState extends State<BookAppointment> {
                        ),
                      ),
                      onPressed: selectedPlansData !=null? () {
-                       pageController.nextPage(
-                           duration: Duration(milliseconds: 300),
-                           curve: Curves.linear);
+                       Navigator.pop(context);
+                       AlertManager.showToast("Appointment Scheduled");
                      }:null,
                    ),
                  ),
