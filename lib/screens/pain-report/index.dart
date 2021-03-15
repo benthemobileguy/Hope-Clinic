@@ -201,6 +201,7 @@ class _PainReportPageState extends State<PainReportPage> {
                             child: PainSelection(
                         title: "Dull Pain",
                         image: "images/dull.png",
+                       textColor: painPointIndex!=0?greyColor2:Colors.white,
                        bgColor: painPointIndex!=1?Colors.white:primaryColor,
                       ),
                           )),
@@ -220,6 +221,7 @@ class _PainReportPageState extends State<PainReportPage> {
                             },
                             child: PainSelection(
                         title: "Stabbing Pain",
+                              textColor: painPointIndex!=1?greyColor2:Colors.white,
                         image: "images/knife.png",
                               bgColor: painPointIndex!=2?Colors.white:primaryColor,
                       ),
@@ -237,6 +239,7 @@ class _PainReportPageState extends State<PainReportPage> {
                             child: PainSelection(
                         title: "Burning Pain",
                         image: "images/fire.png",
+                              textColor: painPointIndex!=3?greyColor2:Colors.white,
                               bgColor: painPointIndex!=3?Colors.white:primaryColor,
                       ),
                           )),
@@ -256,6 +259,7 @@ class _PainReportPageState extends State<PainReportPage> {
                             },
                             child: PainSelection(
                         title: "Tingling",
+                              textColor: painPointIndex!=4?greyColor2:Colors.white,
                         image: "images/fire.png",
                        bgColor: painPointIndex!=4?Colors.white:primaryColor,
                             ),
@@ -271,6 +275,7 @@ class _PainReportPageState extends State<PainReportPage> {
                               });
                             },
                             child: PainSelection(
+                              textColor: painPointIndex!=5?greyColor2:Colors.white,
                         title: "Radiating",
                         image: "images/dull.png",
                               bgColor: painPointIndex!=5?Colors.white:primaryColor,
