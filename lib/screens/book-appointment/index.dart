@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hope_clinic/bloc/index.dart';
@@ -24,7 +22,7 @@ class _BookAppointmentState extends State<BookAppointment> {
   bool isDataLoaded = false;
   String serverDateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z";
   DateTime _currentDate = DateTime.now();
-  DateTime _currentDate2 = DateTime.now();
+  DateTime _currentDate2 = DateTime.now().subtract(Duration(days: 100));
   String _currentMonth = DateFormat.yMMM().format(DateTime.now());
   DateTime _targetDateTime = DateTime.now();
   static Widget _eventIcon = new Container(
@@ -61,24 +59,6 @@ class _BookAppointmentState extends State<BookAppointment> {
   }
   @override
   Widget build(BuildContext context) {
-    _markedDateMap = new EventList<Event>(
-        events: {
-          new DateTime(2021, 3, 19): [
-            new Event(
-              date: new DateTime(2021, 3, 19),
-              title: 'Event 1',
-              icon: _eventIcon,
-            ),
-          ],
-          new DateTime(2021, 3, 22): [
-            new Event(
-              date: new DateTime(2021, 3, 22),
-              title: 'Event 1',
-              icon: _eventIcon,
-            ),
-          ],
-        },
-      );
       _calendarCarouselNoHeader = CalendarCarousel<Event>(
         pageScrollPhysics: NeverScrollableScrollPhysics(),
         onDayPressed: (DateTime date, List<Event> events) {
@@ -95,6 +75,7 @@ class _BookAppointmentState extends State<BookAppointment> {
           color: normalText,
           fontWeight: FontWeight.w700,
         ),
+        
         weekdayTextStyle: TextStyle(
           fontSize: 16,
           fontFamily: 'Lato',
@@ -456,10 +437,11 @@ class _BookAppointmentState extends State<BookAppointment> {
                          ),
                        ],
                      ),
-                     onPressed: selectedPlansData !=null? () {
-                       pageController.nextPage(
-                           duration: Duration(milliseconds: 300),
-                           curve: Curves.linear);
+                     onPressed:
+                         isDataLoaded&&_markedDateMap!=null &&
+                     _markedDateMap.events.containsKey(_currentDate2)
+                         ? () {
+                     showTimeSlots();
                      }:null,
                    ),
                  ),
@@ -628,15 +610,13 @@ class _BookAppointmentState extends State<BookAppointment> {
         isDataLoaded = true;
       });
       for (int i =0; i < bloc.dateSlots.length; i++){
-        setState(() {
-          // _markedDateMap.add(
-          //     new DateFormat(serverDateFormat).parse(bloc.dateSlots[i].date),
-          //     new Event(
-          //       date: new DateFormat(serverDateFormat).parse(bloc.dateSlots[i].date),
-          //       title: 'Event 5',
-          //       icon: _eventIcon,
-          //     ));
-        });
+        _markedDateMap.add(
+            new DateFormat(serverDateFormat).parse(bloc.dateSlots[i].date),
+            new Event(
+              date: new DateFormat(serverDateFormat).parse(bloc.dateSlots[i].date),
+              title: 'Event 5',
+              icon: _eventIcon,
+            ));
       };
 
     });
@@ -651,5 +631,12 @@ class _BookAppointmentState extends State<BookAppointment> {
    }else{
      Navigator.pop(context);
    }
+  }
+
+  void showTimeSlots() {
+
+    pageController.nextPage(
+        duration: Duration(milliseconds: 300),
+        curve: Curves.linear);
   }
 }
