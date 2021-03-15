@@ -36,7 +36,9 @@ class AppointmentBloc extends ChangeNotifier {
   List<Plans> get plans {
     return _plans;
   }
-
+  List<Dateslots> get dateSlots {
+    return _dateSlots;
+  }
   set upcomingAppointment(UpcomingAppointment _data) {
     this._upcomingAppointment = _data;
     notifyListeners();

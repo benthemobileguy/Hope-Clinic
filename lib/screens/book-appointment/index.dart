@@ -20,6 +20,7 @@ class BookAppointment extends StatefulWidget {
 
 class _BookAppointmentState extends State<BookAppointment> {
   bool isDataLoaded = false;
+  EventList<Event> _markedDateMap;
   DateTime _currentDate = DateTime.now();
   DateTime _currentDate2 = DateTime.now();
   String _currentMonth = DateFormat.yMMM().format(DateTime.now());
@@ -56,11 +57,18 @@ class _BookAppointmentState extends State<BookAppointment> {
   }
   @override
   Widget build(BuildContext context) {
-      EventList<Event> _markedDateMap = new EventList<Event>(
+       _markedDateMap = new EventList<Event>(
         events: {
-          new DateTime(2021, 3, 16): [
+          new DateTime(2021, 3, 19): [
             new Event(
-              date: new DateTime(2021, 3, 16),
+              date: new DateTime(2021, 3, 19),
+              title: 'Event 1',
+              icon: _eventIcon,
+            ),
+          ],
+          new DateTime(2021, 3, 22): [
+            new Event(
+              date: new DateTime(2021, 3, 22),
               title: 'Event 1',
               icon: _eventIcon,
             ),
@@ -615,6 +623,10 @@ class _BookAppointmentState extends State<BookAppointment> {
       setState(() {
         isDataLoaded = true;
       });
+      for (int i =0; i < bloc.dateSlots.length; i++){
+
+      };
+
     });
   }
 
