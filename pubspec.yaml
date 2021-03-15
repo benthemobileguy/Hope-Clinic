@@ -36,6 +36,7 @@ dev_dependencies:
   flutter_rating_bar: ^3.0.1+1
   cached_network_image: ^2.2.0+1
   provider: ^3.2.0
+  emojis: ^0.9.3
   shimmer: ^1.1.2
   fluttertoast: ^7.0.1+1
   url_launcher: ^5.7.0
