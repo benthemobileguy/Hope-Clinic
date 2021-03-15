@@ -34,7 +34,15 @@ class _PainReportPageState extends State<PainReportPage> {
               ),
               Stack(
                   children: [
-                Image.asset(images[index], height: 500, width: double.infinity,),
+                GestureDetector(
+                  onTap: (){
+
+                  },
+
+                  child: Container(child:
+                  Image.asset(images[index],
+                    height: 500, width: double.infinity,)),
+                ),
                     Positioned(
                       right: 20.0,
                       bottom: 70.0,
