@@ -609,13 +609,13 @@ class _BookAppointmentState extends State<BookAppointment> {
   void fetchRequests() {
     Future.wait([
       bloc.fetchPlans(context),
+      bloc.fetchDateSlots(context)
 
-    ]);
- bloc.fetchPlans(context).then((value){
-   setState(() {
-     isDataLoaded = true;
-   });
- });
+    ]).then((value) {
+      setState(() {
+        isDataLoaded = true;
+      });
+    });
   }
 
 
