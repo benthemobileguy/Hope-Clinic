@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hope_clinic/bloc/index.dart';
@@ -21,7 +23,6 @@ class BookAppointment extends StatefulWidget {
 class _BookAppointmentState extends State<BookAppointment> {
   bool isDataLoaded = false;
   String serverDateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z";
-  EventList<Event> _markedDateMap;
   DateTime _currentDate = DateTime.now();
   DateTime _currentDate2 = DateTime.now();
   String _currentMonth = DateFormat.yMMM().format(DateTime.now());
@@ -49,6 +50,7 @@ class _BookAppointmentState extends State<BookAppointment> {
     super.didChangeDependencies();
     bloc = Provider.of<MainBloc>(context);
   }
+  EventList<Event> _markedDateMap = new EventList<Event>();
   @override
   void initState() {
     // TODO: implement initState
@@ -59,7 +61,7 @@ class _BookAppointmentState extends State<BookAppointment> {
   }
   @override
   Widget build(BuildContext context) {
-       _markedDateMap = new EventList<Event>(
+    _markedDateMap = new EventList<Event>(
         events: {
           new DateTime(2021, 3, 19): [
             new Event(
@@ -626,13 +628,15 @@ class _BookAppointmentState extends State<BookAppointment> {
         isDataLoaded = true;
       });
       for (int i =0; i < bloc.dateSlots.length; i++){
-        _markedDateMap.add(
-            new DateTime(2019, 2, 25),
-            new Event(
-              date: new DateTime(2019, 2, 25),
-              title: 'Event 5',
-              icon: _eventIcon,
-            ));
+        setState(() {
+          // _markedDateMap.add(
+          //     new DateFormat(serverDateFormat).parse(bloc.dateSlots[i].date),
+          //     new Event(
+          //       date: new DateFormat(serverDateFormat).parse(bloc.dateSlots[i].date),
+          //       title: 'Event 5',
+          //       icon: _eventIcon,
+          //     ));
+        });
       };
 
     });
