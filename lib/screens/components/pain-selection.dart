@@ -4,8 +4,9 @@ class PainSelection extends StatelessWidget {
   final String title;
   final String image;
   final Color bgColor;
+  final Color textColor;
 
-  const PainSelection({Key key, this.title, this.image, this.bgColor}) : super(key: key);
+  const PainSelection({Key key, this.title, this.image, this.bgColor, this.textColor}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

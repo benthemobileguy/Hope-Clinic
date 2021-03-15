@@ -177,7 +177,10 @@ class _PainReportPageState extends State<PainReportPage> {
                       Expanded(
                           child: GestureDetector(
                             onTap: (){
-                              painPointIndex = 0;
+                              setState(() {
+                                painPointIndex = 0;
+                              });
+
                             },
                             child: PainSelection(
                         title: "Sharp Pain",
@@ -191,7 +194,9 @@ class _PainReportPageState extends State<PainReportPage> {
                       Expanded(
                           child: GestureDetector(
                             onTap: (){
-                              painPointIndex = 1;
+                              setState(() {
+                                painPointIndex = 1;
+                              });
                             },
                             child: PainSelection(
                         title: "Dull Pain",
@@ -209,7 +214,9 @@ class _PainReportPageState extends State<PainReportPage> {
                       Expanded(
                           child: GestureDetector(
                             onTap: (){
-                              painPointIndex = 2;
+                              setState(() {
+                                painPointIndex = 2;
+                              });
                             },
                             child: PainSelection(
                         title: "Stabbing Pain",
@@ -223,7 +230,9 @@ class _PainReportPageState extends State<PainReportPage> {
                       Expanded(
                           child: GestureDetector(
                             onTap: (){
-                              painPointIndex = 3;
+                              setState(() {
+                                painPointIndex = 3;
+                              });
                             },
                             child: PainSelection(
                         title: "Burning Pain",
@@ -241,7 +250,9 @@ class _PainReportPageState extends State<PainReportPage> {
                       Expanded(
                           child: GestureDetector(
                             onTap: (){
-                              painPointIndex = 4;
+                              setState(() {
+                                painPointIndex = 4;
+                              });
                             },
                             child: PainSelection(
                         title: "Tingling",
@@ -255,7 +266,9 @@ class _PainReportPageState extends State<PainReportPage> {
                       Expanded(
                           child: GestureDetector(
                             onTap: (){
-                              painPointIndex = 5;
+                              setState(() {
+                                painPointIndex = 5;
+                              });
                             },
                             child: PainSelection(
                         title: "Radiating",
