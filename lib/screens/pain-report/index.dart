@@ -14,7 +14,7 @@ class PainReportPage extends StatefulWidget {
 
 class _PainReportPageState extends State<PainReportPage> {
   int painPointIndex = -1;
-  int painRateIndex =-1;
+  int painRateIndex = -1;
   StateSetter painModalState;
   List<String> images = [
     "images/person_front.png",
@@ -176,35 +176,37 @@ class _PainReportPageState extends State<PainReportPage> {
                     children: [
                       Expanded(
                           child: GestureDetector(
-                            onTap: (){
-                              setState(() {
-                                painPointIndex = 0;
-                              });
-
-                            },
-                            child: PainSelection(
-                        title: "Sharp Pain",
-                        bgColor: painPointIndex!=0?Colors.white:primaryColor,
-                        image: "images/flash.png",
-                      ),
-                          )),
+                        onTap: () {
+                          setState(() {
+                            painPointIndex = 0;
+                          });
+                        },
+                        child: PainSelection(
+                          title: "Sharp Pain",
+                          bgColor:
+                              painPointIndex != 0 ? Colors.white : primaryColor,
+                          image: "images/flash.png",
+                        ),
+                      )),
                       SizedBox(
                         width: 14,
                       ),
                       Expanded(
                           child: GestureDetector(
-                            onTap: (){
-                              setState(() {
-                                painPointIndex = 1;
-                              });
-                            },
-                            child: PainSelection(
-                        title: "Dull Pain",
-                        image: "images/dull.png",
-                       textColor: painPointIndex!=0?greyColor2:Colors.white,
-                       bgColor: painPointIndex!=1?Colors.white:primaryColor,
-                      ),
-                          )),
+                        onTap: () {
+                          setState(() {
+                            painPointIndex = 1;
+                          });
+                        },
+                        child: PainSelection(
+                          title: "Dull Pain",
+                          image: "images/dull.png",
+                          textColor:
+                              painPointIndex != 0 ? greyColor2 : Colors.white,
+                          bgColor:
+                              painPointIndex != 1 ? Colors.white : primaryColor,
+                        ),
+                      )),
                     ],
                   ),
                   SizedBox(
@@ -214,35 +216,39 @@ class _PainReportPageState extends State<PainReportPage> {
                     children: [
                       Expanded(
                           child: GestureDetector(
-                            onTap: (){
-                              setState(() {
-                                painPointIndex = 2;
-                              });
-                            },
-                            child: PainSelection(
-                        title: "Stabbing Pain",
-                              textColor: painPointIndex!=1?greyColor2:Colors.white,
-                        image: "images/knife.png",
-                              bgColor: painPointIndex!=2?Colors.white:primaryColor,
-                      ),
-                          )),
+                        onTap: () {
+                          setState(() {
+                            painPointIndex = 2;
+                          });
+                        },
+                        child: PainSelection(
+                          title: "Stabbing Pain",
+                          textColor:
+                              painPointIndex != 1 ? greyColor2 : Colors.white,
+                          image: "images/knife.png",
+                          bgColor:
+                              painPointIndex != 2 ? Colors.white : primaryColor,
+                        ),
+                      )),
                       SizedBox(
                         width: 16,
                       ),
                       Expanded(
                           child: GestureDetector(
-                            onTap: (){
-                              setState(() {
-                                painPointIndex = 3;
-                              });
-                            },
-                            child: PainSelection(
-                        title: "Burning Pain",
-                        image: "images/fire.png",
-                              textColor: painPointIndex!=3?greyColor2:Colors.white,
-                              bgColor: painPointIndex!=3?Colors.white:primaryColor,
-                      ),
-                          )),
+                        onTap: () {
+                          setState(() {
+                            painPointIndex = 3;
+                          });
+                        },
+                        child: PainSelection(
+                          title: "Burning Pain",
+                          image: "images/fire.png",
+                          textColor:
+                              painPointIndex != 3 ? greyColor2 : Colors.white,
+                          bgColor:
+                              painPointIndex != 3 ? Colors.white : primaryColor,
+                        ),
+                      )),
                     ],
                   ),
                   SizedBox(
@@ -252,35 +258,39 @@ class _PainReportPageState extends State<PainReportPage> {
                     children: [
                       Expanded(
                           child: GestureDetector(
-                            onTap: (){
-                              setState(() {
-                                painPointIndex = 4;
-                              });
-                            },
-                            child: PainSelection(
-                        title: "Tingling",
-                              textColor: painPointIndex!=4?greyColor2:Colors.white,
-                        image: "images/fire.png",
-                       bgColor: painPointIndex!=4?Colors.white:primaryColor,
-                            ),
-                          )),
+                        onTap: () {
+                          setState(() {
+                            painPointIndex = 4;
+                          });
+                        },
+                        child: PainSelection(
+                          title: "Tingling",
+                          textColor:
+                              painPointIndex != 4 ? greyColor2 : Colors.white,
+                          image: "images/fire.png",
+                          bgColor:
+                              painPointIndex != 4 ? Colors.white : primaryColor,
+                        ),
+                      )),
                       SizedBox(
                         width: 14,
                       ),
                       Expanded(
                           child: GestureDetector(
-                            onTap: (){
-                              setState(() {
-                                painPointIndex = 5;
-                              });
-                            },
-                            child: PainSelection(
-                              textColor: painPointIndex!=5?greyColor2:Colors.white,
-                        title: "Radiating",
-                        image: "images/dull.png",
-                              bgColor: painPointIndex!=5?Colors.white:primaryColor,
-                      ),
-                          )),
+                        onTap: () {
+                          setState(() {
+                            painPointIndex = 5;
+                          });
+                        },
+                        child: PainSelection(
+                          textColor:
+                              painPointIndex != 5 ? greyColor2 : Colors.white,
+                          title: "Radiating",
+                          image: "images/dull.png",
+                          bgColor:
+                              painPointIndex != 5 ? Colors.white : primaryColor,
+                        ),
+                      )),
                     ],
                   ),
                   SizedBox(
@@ -303,34 +313,40 @@ class _PainReportPageState extends State<PainReportPage> {
                     children: [
                       Expanded(
                         child: PainRateContainer(
-                          bgColor: painRateIndex!=0?HexColor("#C6F47A"):primaryColor,
+                          bgColor: painRateIndex != 0
+                              ? HexColor("#C6F47A")
+                              : primaryColor,
                           title: "Just\nCurious",
                           emoji: Emojis.neutralFace,
                         ),
                       ),
                       Expanded(
                         child: GestureDetector(
-                          onTap: (){
+                          onTap: () {
                             painModalState(() {
                               painRateIndex = 1;
                             });
                           },
                           child: PainRateContainer(
                             title: "Mild\nPain",
-                            bgColor: painRateIndex!=1?HexColor("#F9E770"):primaryColor,
+                            bgColor: painRateIndex != 1
+                                ? HexColor("#F9E770")
+                                : primaryColor,
                             emoji: Emojis.worriedFace,
                           ),
                         ),
                       ),
                       Expanded(
                         child: GestureDetector(
-                          onTap: (){
+                          onTap: () {
                             painModalState(() {
                               painRateIndex = 2;
                             });
                           },
                           child: PainRateContainer(
-                            bgColor: painRateIndex!=2?HexColor("#FAB96F"):primaryColor,
+                            bgColor: painRateIndex != 2
+                                ? HexColor("#FAB96F")
+                                : primaryColor,
                             title: "Moderate\nPain",
                             emoji: Emojis.sadButRelievedFace,
                           ),
@@ -338,13 +354,15 @@ class _PainReportPageState extends State<PainReportPage> {
                       ),
                       Expanded(
                         child: GestureDetector(
-                          onTap: (){
+                          onTap: () {
                             painModalState(() {
                               painRateIndex = 3;
                             });
                           },
                           child: PainRateContainer(
-                            bgColor: painRateIndex!=3?HexColor("#F6877E"):primaryColor,
+                            bgColor: painRateIndex != 3
+                                ? HexColor("#F6877E")
+                                : primaryColor,
                             title: "Severe\nPain",
                             emoji: Emojis.perseveringFace,
                           ),
@@ -352,14 +370,15 @@ class _PainReportPageState extends State<PainReportPage> {
                       ),
                       Expanded(
                         child: GestureDetector(
-                          onTap: (){
+                          onTap: () {
                             painModalState(() {
                               painRateIndex = 4;
                             });
                           },
                           child: PainRateContainer(
-                            bgColor: painRateIndex !=4?
-                            HexColor("#EF5B36"):primaryColor,
+                            bgColor: painRateIndex != 4
+                                ? HexColor("#EF5B36")
+                                : primaryColor,
                             title: "Worst\nPain",
                             emoji: Emojis.wearyFace,
                           ),
