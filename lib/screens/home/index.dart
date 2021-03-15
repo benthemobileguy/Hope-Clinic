@@ -375,11 +375,11 @@ class _HomePageState extends State<HomePage> {
                     Expanded(
                       child: GestureDetector(
                         onTap: (){
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context)
-                                  => BookAppointment()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context)
+                                    => BookAppointment()));
                         },
                         child: Container(
                           height: 130,

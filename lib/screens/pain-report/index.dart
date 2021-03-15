@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hope_clinic/screens/components/main-button.dart';
 import 'package:hope_clinic/screens/components/pain-rate-container.dart';
 import 'package:hope_clinic/screens/components/pain-selection.dart';
+import 'package:hope_clinic/screens/pain-report/pain-report-desc-page.dart';
 import 'package:hope_clinic/theme/style.dart';
 import 'package:hope_clinic/utils/color.dart';
 import 'package:mdi/mdi.dart';
@@ -185,6 +186,8 @@ class _PainReportPageState extends State<PainReportPage> {
                           title: "Sharp Pain",
                           bgColor:
                               painPointIndex != 0 ? Colors.white : primaryColor,
+                          textColor:
+                              painPointIndex != 0 ? greyColor2 : Colors.white,
                           image: "images/flash.png",
                         ),
                       )),
@@ -202,7 +205,7 @@ class _PainReportPageState extends State<PainReportPage> {
                           title: "Dull Pain",
                           image: "images/dull.png",
                           textColor:
-                              painPointIndex != 0 ? greyColor2 : Colors.white,
+                              painPointIndex != 1 ? greyColor2 : Colors.white,
                           bgColor:
                               painPointIndex != 1 ? Colors.white : primaryColor,
                         ),
@@ -224,7 +227,7 @@ class _PainReportPageState extends State<PainReportPage> {
                         child: PainSelection(
                           title: "Stabbing Pain",
                           textColor:
-                              painPointIndex != 1 ? greyColor2 : Colors.white,
+                              painPointIndex != 2 ? greyColor2 : Colors.white,
                           image: "images/knife.png",
                           bgColor:
                               painPointIndex != 2 ? Colors.white : primaryColor,
@@ -312,12 +315,19 @@ class _PainReportPageState extends State<PainReportPage> {
                   Row(
                     children: [
                       Expanded(
-                        child: PainRateContainer(
-                          bgColor: painRateIndex != 0
-                              ? HexColor("#C6F47A")
-                              : primaryColor,
-                          title: "Just\nCurious",
-                          emoji: Emojis.neutralFace,
+                        child: GestureDetector(
+                          onTap: () {
+                            painModalState(() {
+                              painRateIndex = 0;
+                            });
+                          },
+                          child: PainRateContainer(
+                            bgColor: HexColor("#C6F47A"),
+                            title: "Just\nCurious",
+                            emoji: painRateIndex == 0
+                                ? Emojis.checkMark
+                                : Emojis.neutralFace,
+                          ),
                         ),
                       ),
                       Expanded(
@@ -329,10 +339,10 @@ class _PainReportPageState extends State<PainReportPage> {
                           },
                           child: PainRateContainer(
                             title: "Mild\nPain",
-                            bgColor: painRateIndex != 1
-                                ? HexColor("#F9E770")
-                                : primaryColor,
-                            emoji: Emojis.worriedFace,
+                            bgColor: HexColor("#F9E770"),
+                            emoji: painRateIndex == 1
+                                ? Emojis.checkMark
+                                : Emojis.worriedFace,
                           ),
                         ),
                       ),
@@ -344,11 +354,11 @@ class _PainReportPageState extends State<PainReportPage> {
                             });
                           },
                           child: PainRateContainer(
-                            bgColor: painRateIndex != 2
-                                ? HexColor("#FAB96F")
-                                : primaryColor,
+                            bgColor: HexColor("#FAB96F"),
                             title: "Moderate\nPain",
-                            emoji: Emojis.sadButRelievedFace,
+                            emoji: painRateIndex == 2
+                                ? Emojis.checkMark
+                                : Emojis.sadButRelievedFace,
                           ),
                         ),
                       ),
@@ -360,11 +370,11 @@ class _PainReportPageState extends State<PainReportPage> {
                             });
                           },
                           child: PainRateContainer(
-                            bgColor: painRateIndex != 3
-                                ? HexColor("#F6877E")
-                                : primaryColor,
+                            bgColor: HexColor("#F6877E"),
                             title: "Severe\nPain",
-                            emoji: Emojis.perseveringFace,
+                            emoji: painRateIndex == 3
+                                ? Emojis.checkMark
+                                : Emojis.perseveringFace,
                           ),
                         ),
                       ),
@@ -376,11 +386,11 @@ class _PainReportPageState extends State<PainReportPage> {
                             });
                           },
                           child: PainRateContainer(
-                            bgColor: painRateIndex != 4
-                                ? HexColor("#EF5B36")
-                                : primaryColor,
+                            bgColor: HexColor("#EF5B36"),
                             title: "Worst\nPain",
-                            emoji: Emojis.wearyFace,
+                            emoji: painRateIndex == 4
+                                ? Emojis.checkMark
+                                : Emojis.wearyFace,
                           ),
                         ),
                       ),
@@ -408,7 +418,11 @@ class _PainReportPageState extends State<PainReportPage> {
                           ),
                         ],
                       ),
-                      onPressed: null,
+                      onPressed: painPointIndex != -1 && painRateIndex != -1
+                          ? () {
+                        addPain();
+                      }
+                          : null,
                     ),
                   ),
                   SizedBox(
@@ -419,5 +433,14 @@ class _PainReportPageState extends State<PainReportPage> {
             );
           });
         });
+  }
+
+  addPain() {
+  Navigator.pop(context);
+  Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context)
+          => PainReportDescPage()));
   }
 }

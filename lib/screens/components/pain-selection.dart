@@ -30,7 +30,7 @@ class PainSelection extends StatelessWidget {
             style: TextStyle(
               fontSize: 12,
               fontFamily: 'Lato',
-              color: greyColor2,
+              color: textColor,
               fontWeight: FontWeight.w400,
             ),
           ),
