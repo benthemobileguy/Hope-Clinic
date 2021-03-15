@@ -52,8 +52,6 @@ class _BookAppointmentState extends State<BookAppointment> {
   void initState() {
     // TODO: implement initState
     super.initState();
-
-
   }
   @override
   Widget build(BuildContext context) {
@@ -623,9 +621,15 @@ class _BookAppointmentState extends State<BookAppointment> {
       setState(() {
         isDataLoaded = true;
       });
-      for (int i =0; i < bloc.dateSlots.length; i++){
-
-      };
+      // for (int i =0; i < bloc.dateSlots.length; i++){
+      //   _markedDateMap.add(
+      //       new DateTime(2019, 2, 25),
+      //       new Event(
+      //         date: new DateTime(2019, 2, 25),
+      //         title: 'Event 5',
+      //         icon: _eventIcon,
+      //       ));
+      // };
 
     });
   }
