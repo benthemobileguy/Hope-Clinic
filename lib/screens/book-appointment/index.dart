@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mdi/mdi.dart';
 import 'package:hope_clinic/bloc/index.dart';
 import 'package:hope_clinic/model/plans.dart';
 import 'package:flutter_calendar_carousel/classes/event.dart';
@@ -20,6 +21,8 @@ class BookAppointment extends StatefulWidget {
 
 class _BookAppointmentState extends State<BookAppointment> {
   bool isDataLoaded = false;
+  int slotIndex = -1;
+  StateSetter timeStateSetter;
   String serverDateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z";
   DateTime _currentDate = DateTime.now();
   DateTime _currentDate2 = DateTime.now().subtract(Duration(days: 100));
@@ -634,9 +637,295 @@ class _BookAppointmentState extends State<BookAppointment> {
   }
 
   void showTimeSlots() {
+    // pageController.nextPage(
+    //     duration: Duration(milliseconds: 300),
+    //     curve: Curves.linear);
+    showModalBottomSheet(
+        isScrollControlled: true,
+        context: context,
+        builder: (context) {
+          return StatefulBuilder(
 
-    pageController.nextPage(
-        duration: Duration(milliseconds: 300),
-        curve: Curves.linear);
+            builder: (BuildContext context, StateSetter setState) {
+              timeStateSetter = setState;
+              return Container(
+                padding: EdgeInsets.all(14),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Row(
+                      children: [
+                        Text(
+                          "Select Time Slots",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontFamily: 'Lato',
+                            color: HexColor("#505050"),
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        Spacer(),
+                        GestureDetector(
+                          onTap: (){
+                            Navigator.pop(context);
+                          },
+                          child: Container(
+                            child: new Icon(
+                              Mdi.close,
+                              color: HexColor("#505050"),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      DateFormat.yMMMMd().format(_currentDate2),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontFamily: 'Lato',
+                        color: HexColor("#505050"),
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: GestureDetector(
+                            onTap: (){
+                              timeStateSetter(() {
+                                slotIndex = 0;
+                              });
+                            },
+                            child: Container(
+                              height: 60,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12),
+                                  color: containerBgColor
+                              ),
+                              child:   Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    width:24,
+                                    height:24,
+                                    decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: slotIndex!=0?Colors.white:primaryColor
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 14,
+                                  ),
+                                  Text(
+                                    "08:30 - 08:15",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 14.5,
+                                      fontFamily: 'Lato',
+                                      color: normalText,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 12,
+                        ),
+                        Expanded(
+                          child: GestureDetector(
+                            onTap: (){
+                              timeStateSetter(() {
+                                slotIndex = 1;
+                              });
+                            },
+                            child: Container(
+                              height: 60,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12),
+                                  color: containerBgColor
+                              ),
+                              child:   Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    width:24,
+                                    height:24,
+                                    decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: slotIndex!=1?Colors.white:primaryColor,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 14,
+                                  ),
+                                  Text(
+                                    "10:30 - 10:15",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 14.5,
+                                      fontFamily: 'Lato',
+                                      color: normalText,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 60,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            height: 60,
+                            child: MainButton(
+                              color: redBg,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  new Icon(Mdi.close,
+                                    color: textRed,size: 12,),
+                                  SizedBox(
+                                    width: 14,
+                                  ),
+                                  Text(
+                                    "Cancel",
+                                    textAlign: TextAlign.start,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontFamily: 'Lato',
+                                      color: textRed,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              onPressed: slotIndex !=-1? () {
+                               Navigator.pop(context);
+                              }:null,
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 12,),
+                        Expanded(
+                          child: Container(
+                            height: 60,
+                            child: MainButton(
+                              color: primaryColor,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  new Icon(Mdi.check,
+                                    color: Colors.white,size: 12,),
+                                  SizedBox(
+                                    width: 14,
+                                  ),
+                                  Text(
+                                    "Confirm",
+                                    textAlign: TextAlign.start,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontFamily: 'Lato',
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              onPressed: slotIndex !=-1? () {
+                             Navigator.pop(context);
+                             showConfirmBottomSheet();
+                              }:null,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              );
+            },
+          );
+  });
+
+  }
+
+  void showConfirmBottomSheet() {
+    showModalBottomSheet(
+      isScrollControlled: true,
+        context: context,
+        builder: (context) {
+          return StatefulBuilder(
+              builder: (BuildContext context, StateSetter setState /*You can rename this!*/) {
+                return Container(
+                  padding: EdgeInsets.all(14),
+                 child: Column(
+                   mainAxisSize: MainAxisSize.min,
+                   children: [
+                     Row(
+                        children: [
+                          Text(
+                            "Appointment",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontFamily: 'Lato',
+                              color: HexColor("#505050"),
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          Spacer(),
+                          GestureDetector(
+                            onTap: (){
+                              Navigator.pop(context);
+                            },
+                            child: Container(
+                              child: new Icon(
+                                Mdi.close,
+                                color: HexColor("#505050"),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                     SizedBox(
+                       height: 20,
+                     ),
+                     Text(
+                       "Great, your schedule calendar has also been sent to your mail. We will contact you shortly",
+                       textAlign: TextAlign.center,
+                       style: TextStyle(
+                         fontSize: 14,
+                         fontFamily: 'Lato',
+                         color: HexColor("#505050"),
+                         fontWeight: FontWeight.w700,
+                       ),
+                     ),
+                     SizedBox(
+                       height: 10,
+                     ),
+                   ],
+                 ),
+                );
+              });
+        });
   }
 }
