@@ -15,9 +15,9 @@ class PainSelection extends StatelessWidget {
       ),
       child:  Row(
         children: [
-          new Image.asset("images/fire.ng", width: 24, height: 24,),
+          new Image.asset(image, width: 24, height: 24,),
           Text(
-            "Sharp Pain",
+            title,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 12,
