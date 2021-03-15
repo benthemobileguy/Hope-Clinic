@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hope_clinic/screens/components/main-button.dart';
 import 'package:hope_clinic/theme/style.dart';
+import 'package:hope_clinic/utils/color.dart';
+import 'package:mdi/mdi.dart';
 
 class PainReportPage extends StatefulWidget {
   @override
@@ -36,9 +38,8 @@ class _PainReportPageState extends State<PainReportPage> {
                   children: [
                 GestureDetector(
                   onTap: (){
-
+                  showPainReportSheet();
                   },
-
                   child: Container(child:
                   Image.asset(images[index],
                     height: 500, width: double.infinity,)),
@@ -113,4 +114,57 @@ class _PainReportPageState extends State<PainReportPage> {
       ),
     );
   }
+
+  void showPainReportSheet() {
+    showModalBottomSheet(
+        isScrollControlled: true,
+        context: context,
+        builder: (context) {
+          return StatefulBuilder(
+              builder: (BuildContext context, StateSetter setState /*You can rename this!*/) {
+                return Container(
+                  padding: EdgeInsets.all(14),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            "Add Pain Point",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontFamily: 'Lato',
+                              color: HexColor("#505050"),
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          Spacer(),
+                          GestureDetector(
+                            onTap: (){
+                              Navigator.pop(context);
+                            },
+                            child: Container(
+                              child: new Icon(
+                                Mdi.close,
+                                color: HexColor("#505050"),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                    PainSelection(),
+                      SizedBox(
+                        height: 10,
+                      ),
+                    ],
+                  ),
+                );
+              });
+        });
+  }
 }
+
