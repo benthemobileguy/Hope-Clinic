@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hope_clinic/screens/book-appointment/index.dart';
 import 'package:hope_clinic/screens/components/main-button.dart';
 import 'package:hope_clinic/theme/style.dart';
 import 'package:hope_clinic/utils/color.dart';
@@ -197,7 +198,7 @@ setState(() {
                         ],
                       ),
                       SizedBox(
-                        height: 30,
+                        height: 16,
                       ),
                       Text(
                         "Pain Reported",
@@ -210,21 +211,21 @@ setState(() {
                         ),
                       ),
                       SizedBox(
-                        height: 10,
+                        height: 5,
                       ),
                       Text(
                         "Great, your schedule calendar has also been sent to your mail. We will contact you shortly",
                         textAlign: TextAlign.start,
                         style: TextStyle(
-                          fontSize: 14,
+                          fontSize: 12.5,
                           fontFamily: 'Lato',
                           color: HexColor("#999999"),
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w700,
                         ),
                       ),
 
                       SizedBox(
-                        height: 10,
+                        height: 16,
                       ),
                       Container(
                         height: 60,
@@ -234,7 +235,7 @@ setState(() {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                              Text(
-                                "Send Report",
+                                "Book An Appointment",
                                 textAlign: TextAlign.start,
                                 style: TextStyle(
                                   fontSize: 14,
@@ -245,11 +246,11 @@ setState(() {
                               )
                             ],
                           ),
-                          onPressed:isDescEntered
-                              ? () {
-                            addReport();
-                          }
-                              : null,
+                          onPressed: (){
+                            Navigator.pushReplacement(context,
+                                MaterialPageRoute(builder: (context)
+                                => BookAppointment()));
+                          },
                         ),
                       ),
                     ],

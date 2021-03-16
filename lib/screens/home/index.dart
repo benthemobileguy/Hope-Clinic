@@ -3,6 +3,7 @@ import 'package:hope_clinic/bloc/index.dart';
 import 'package:hope_clinic/model/health-tips.dart';
 import 'package:hope_clinic/screens/book-appointment/index.dart';
 import 'package:hope_clinic/screens/components/main-button.dart';
+import 'package:hope_clinic/screens/home/full-image-screen.dart';
 import 'package:hope_clinic/shimmers/shimmer-home.dart';
 import 'package:hope_clinic/shimmers/shimmer-list-view.dart';
 import 'package:hope_clinic/theme/style.dart';
@@ -275,19 +276,26 @@ class _HomePageState extends State<HomePage> {
                             context: context,
                             builder: (context) => AlertDialog(
                               contentPadding: EdgeInsets.all(0.0),
-                              content: Container(
-                                height: 400,
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(4),
-                                    border: Border.all(color:
-                                    primaryColor.withOpacity(0.3),
-                                        width: 2),
-                                    image: DecorationImage(
-                                        fit: BoxFit.fill,
-                                        image: NetworkImage(
-                                          "${bloc.healthTips[healthIndex].files[index]}",
-                                        ))),
+                              content: GestureDetector(
+                                onTap: (){
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (context)
+                                      => FullImageScreen(healthIndex: healthIndex,)));
+                                },
+                                child: Container(
+                                  height: 400,
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(4),
+                                      border: Border.all(color:
+                                      primaryColor.withOpacity(0.3),
+                                          width: 2),
+                                      image: DecorationImage(
+                                          fit: BoxFit.fill,
+                                          image: NetworkImage(
+                                            "${bloc.healthTips[healthIndex].files[index]}",
+                                          ))),
+                                ),
                               ),
                             ),
                           );
