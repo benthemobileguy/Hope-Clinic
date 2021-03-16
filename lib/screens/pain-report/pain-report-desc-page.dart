@@ -145,7 +145,7 @@ class _PainReportDescPageState extends State<PainReportDescPage> {
 setState(() {
   isSendingReport = true;
 });
-Future.delayed(const Duration(milliseconds: 5000), () {
+Future.delayed(const Duration(seconds: 5), () {
 
 
 });
