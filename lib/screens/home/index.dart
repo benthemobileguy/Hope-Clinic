@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hope_clinic/bloc/index.dart';
+import 'package:video_player/video_player.dart';
 import 'package:hope_clinic/model/health-tips.dart';
 import 'package:hope_clinic/screens/book-appointment/index.dart';
 import 'package:hope_clinic/screens/components/main-button.dart';
 import 'package:hope_clinic/screens/home/full-image-screen.dart';
-import 'package:hope_clinic/shimmers/shimmer-home.dart';
+import 'package:hope_clinic/utils/links.dart';
 import 'package:hope_clinic/shimmers/shimmer-list-view.dart';
 import 'package:hope_clinic/theme/style.dart';
-import 'package:hope_clinic/utils/color.dart';
 import 'package:hope_clinic/utils/global-variables.dart';
 import 'package:hope_clinic/utils/pref-manager.dart';
 import 'package:provider/provider.dart';
@@ -24,6 +24,8 @@ class _HomePageState extends State<HomePage> {
   bool isDataLoaded = false;
   bool isInitialised = false;
   HealthTips selectedHealthTip;
+  VideoPlayerController _controller;
+  Future<void> _initializeVideoPlayerFuture;
   @override
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
@@ -37,7 +39,13 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     fetchUser();
   }
-
+  @override
+  void dispose() {
+    super.dispose();
+    if(_controller!=null){
+      _controller.dispose();
+    }
+  }
   @override
   Widget build(BuildContext context) {
     if (!isInitialised) {
@@ -221,7 +229,7 @@ class _HomePageState extends State<HomePage> {
                           itemCount: bloc.healthTips.length,
                           itemBuilder: (context, index) {
                             return GestureDetector(
-                              onTap: () {
+                              onTap: () async {
                                 setState(() {
                                   healthIndex = index;
                                   bloc.healthTips[0].tapped = false;
@@ -272,17 +280,30 @@ class _HomePageState extends State<HomePage> {
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () async {
+                          if(!bloc.healthTips[healthIndex].files[index].contains(".jpg")){
+                            if(_controller!=null){
+                              _controller.dispose();
+                            }
+                            _controller = VideoPlayerController.network(
+                                bloc.healthTips[healthIndex].files[index]);
+                            _initializeVideoPlayerFuture = _controller.initialize();
+                            _controller.setLooping(true);
+                            _controller.setVolume(1.0);
+                            isInitialised = true;
+                          }
                           showDialog(
                             context: context,
                             builder: (context) => AlertDialog(
                               contentPadding: EdgeInsets.all(0.0),
                               content: GestureDetector(
                                 onTap: (){
+                                  Navigator.pop(context);
                                   Navigator.push(context,
                                       MaterialPageRoute(builder: (context)
-                                      => FullImageScreen(healthIndex: healthIndex,)));
+                                      => FullImageScreen(healthIndex: healthIndex,index:index)));
                                 },
-                                child: Container(
+                                child:bloc.healthTips[healthIndex].files[index]
+                                    .contains(".jpg")? Container(
                                   height: 400,
                                   width: double.infinity,
                                   decoration: BoxDecoration(
@@ -290,15 +311,36 @@ class _HomePageState extends State<HomePage> {
                                       border: Border.all(color:
                                       primaryColor.withOpacity(0.3),
                                           width: 2),
-                                      image: DecorationImage(
+                                      image:
+                                      DecorationImage(
                                           fit: BoxFit.fill,
                                           image: NetworkImage(
-                                            "${bloc.healthTips[healthIndex].files[index]}",
+                                            bloc.healthTips[healthIndex].files[index].contains(".jpg")
+                                            ?"${bloc.healthTips[healthIndex].files[index]}"
+                                                :Links.imageThumbnailLink,
                                           ))),
-                                ),
+                                ):FutureBuilder(
+                                future: _initializeVideoPlayerFuture,
+                                builder: (context, snapshot) {
+                                  if (snapshot.connectionState == ConnectionState.done) {
+                                    return Container(
+                                        height: 400,
+                                        width: double.infinity,
+                                        child:
+                                    VideoPlayer(_controller)
+                                    );
+                                  } else {
+                                    return Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  }
+                                },
+                              ),
                               ),
                             ),
-                          );
+                          ).then((value) {
+
+                          });
                         },
                         child: Container(
                           margin: EdgeInsets.only(right: 16),
@@ -308,7 +350,8 @@ class _HomePageState extends State<HomePage> {
                               image: DecorationImage(
                                   fit: BoxFit.fill,
                                   image: NetworkImage(
-                                    "${bloc.healthTips[healthIndex].files[index]}",
+                                    bloc.healthTips[healthIndex].files[index].contains(".jpg")
+                                        ?"${bloc.healthTips[healthIndex].files[index]}":Links.imageThumbnailLink,
                                   )),
                               borderRadius:
                                   BorderRadius.all(Radius.circular(16)),

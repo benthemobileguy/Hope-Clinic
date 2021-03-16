@@ -160,7 +160,9 @@ class _BookAppointmentState extends State<BookAppointment> {
         appBar: AppBar(
           backgroundColor: Colors.white,
           title: Text(
-            pagePos==0?"Book An Appointment":pagePos==1?"Pick Your Preferred Day(s)":"Scheduled Time Slots",
+            pagePos==0?"Book An Appointment":
+            pagePos==1?"Pick Your Preferred Day(s)"
+                :"Scheduled Time Slots",
             textAlign: TextAlign.start,
             style: TextStyle(
               fontSize: 16,
@@ -269,18 +271,21 @@ class _BookAppointmentState extends State<BookAppointment> {
                                    mainAxisSize: MainAxisSize.min,
                                    crossAxisAlignment: CrossAxisAlignment.start,
                                    children: [
-                                     Text(
-                                       bloc.plans[index].title,
-                                       textAlign: TextAlign.start,
-                                       style: TextStyle(
-                                         fontSize: 17,
-                                         fontFamily: 'Lato',
-                                         color: normalTextBold,
-                                         fontWeight: FontWeight.w700,
+                                     Container(
+                                       width:220,
+                                       child: Text(
+                                         bloc.plans[index].title,
+                                         textAlign: TextAlign.start,
+                                         style: TextStyle(
+                                           fontSize: 16,
+                                           fontFamily: 'Lato',
+                                           color: normalTextBold,
+                                           fontWeight: FontWeight.w700,
+                                         ),
                                        ),
                                      ),
                                      SizedBox(
-                                       height: 10,
+                                       height: 6,
                                      ),
                                      Text(
                                        "NGN ${bloc.plans[index].price}",
