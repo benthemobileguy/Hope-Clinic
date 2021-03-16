@@ -146,9 +146,14 @@ class _PainReportDescPageState extends State<PainReportDescPage> {
   void addReport() {
 setState(() {
   isSendingReport = true;
+  isDescEntered = false;
 });
 Future.delayed(const Duration(seconds: 5), () {
 showSuccessModal();
+setState(() {
+  isSendingReport = false;
+  isDescEntered = true;
+});
 });
   }
 
@@ -162,6 +167,7 @@ showSuccessModal();
                 return Container(
                   padding: EdgeInsets.all(14),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Row(
@@ -191,20 +197,60 @@ showSuccessModal();
                         ],
                       ),
                       SizedBox(
-                        height: 20,
+                        height: 30,
                       ),
                       Text(
-                        "Great, your schedule calendar has also been sent to your mail. We will contact you shortly",
+                        "Pain Reported",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontSize: 14,
+                          fontSize: 18.5,
                           fontFamily: 'Lato',
-                          color: HexColor("#505050"),
+                          color: normalTexth1,
                           fontWeight: FontWeight.w700,
                         ),
                       ),
                       SizedBox(
                         height: 10,
+                      ),
+                      Text(
+                        "Great, your schedule calendar has also been sent to your mail. We will contact you shortly",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontFamily: 'Lato',
+                          color: HexColor("#999999"),
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        height: 60,
+                        child: MainButton(
+                          color: primaryColor,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                             Text(
+                                "Send Report",
+                                textAlign: TextAlign.start,
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontFamily: 'Lato',
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              )
+                            ],
+                          ),
+                          onPressed:isDescEntered
+                              ? () {
+                            addReport();
+                          }
+                              : null,
+                        ),
                       ),
                     ],
                   ),
