@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hope_clinic/screens/components/main-button.dart';
 import 'package:hope_clinic/theme/style.dart';
 
 class PainReportDescPage extends StatefulWidget {
@@ -9,6 +10,7 @@ class PainReportDescPage extends StatefulWidget {
 class _PainReportDescPageState extends State<PainReportDescPage> {
   TextEditingController _controller = TextEditingController();
   bool isDescEntered = false;
+  bool isSendingReport = false;
   @override
   void initState() {
     // TODO: implement initState
@@ -71,7 +73,7 @@ class _PainReportDescPageState extends State<PainReportDescPage> {
               ),
             ),
             SizedBox(
-              height: 10,
+              height: 20,
             ),
             Container(
               height: 148,
@@ -81,20 +83,71 @@ class _PainReportDescPageState extends State<PainReportDescPage> {
                 maxLines: 10,
                 decoration: InputDecoration(
                   fillColor: containerBgColor,
+                  filled: true,
                   hintStyle: TextStyle(
                     fontSize: 15,
                     fontFamily: 'Lato',
                     color: textColor,
                     fontWeight: FontWeight.w400,
                   ),
-                    border: UnderlineInputBorder(
-                        borderRadius: BorderRadius.circular(5.0)),
+                    border: OutlineInputBorder(
+                        borderSide: BorderSide(color: containerBgColor),
+                        borderRadius: BorderRadius.circular(12.0)),
                     hintText: 'Provide extra info for the doctor'),
               ),
             ),
+            Spacer(),
+            Container(
+              height: 60,
+              child: MainButton(
+                color: primaryColor,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                   !isSendingReport ?Text(
+                      "Send Report",
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontFamily: 'Lato',
+                        color: Colors.white,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ):SizedBox(
+                height: 20,
+                width: 20,
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                  valueColor:
+                  new AlwaysStoppedAnimation<Color>(
+                      Colors.white),
+                ),
+              ),
+                  ],
+                ),
+                onPressed:isDescEntered
+                    ? () {
+                  addReport();
+                }
+                    : null,
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            )
           ],
         ),
       ),
     );
+  }
+
+  void addReport() {
+setState(() {
+  isSendingReport = true;
+});
+Future.delayed(const Duration(milliseconds: 5000), () {
+
+
+});
   }
 }
