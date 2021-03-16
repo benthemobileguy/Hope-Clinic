@@ -7,18 +7,16 @@ import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart'
     show CalendarCarousel, EventList;
 import 'package:flutter_calendar_carousel/classes/event.dart';
 import 'package:intl/intl.dart' show DateFormat;
-
 class SchedulePage extends StatefulWidget {
   @override
   _SchedulePageState createState() => _SchedulePageState();
 }
 
 class _SchedulePageState extends State<SchedulePage> {
-  CalendarCarousel _calendarCarousel;
+  CalendarCarousel  _calendarCarouselNoHeader;
   DateTime _targetDateTime = DateTime.now();
   EventList<Event> _markedDateMap = new EventList<Event>();
   MainBloc mainBloc;
-  CalendarCarousel _calendarCarouselNoHeader;
   String serverDateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z";
   DateTime _currentDate = DateTime.now();
   DateTime _currentDate2 = DateTime.now().subtract(Duration(days: 100));
@@ -39,7 +37,6 @@ class _SchedulePageState extends State<SchedulePage> {
     super.didChangeDependencies();
     mainBloc = Provider.of<MainBloc>(context);
   }
-
   @override
   Widget build(BuildContext context) {
     _calendarCarouselNoHeader = CalendarCarousel<Event>(
@@ -60,7 +57,7 @@ class _SchedulePageState extends State<SchedulePage> {
       ),
 
       weekdayTextStyle: TextStyle(
-        fontSize: 16,
+        fontSize: 14,
         fontFamily: 'Lato',
         color: normalText,
         fontWeight: FontWeight.w800,
@@ -82,14 +79,15 @@ class _SchedulePageState extends State<SchedulePage> {
       weekDayMargin: EdgeInsets.all(5),
       selectedDayBorderColor: primaryColor,
       selectedDayButtonColor: primaryColor,
-      selectedDayTextStyle: TextStyle(
+      selectedDayTextStyle:  TextStyle(
         fontSize: 16,
         fontFamily: 'Lato',
         color: Colors.white,
         fontWeight: FontWeight.w700,
       ),
-      markedDateCustomShapeBorder:
-          CircleBorder(side: BorderSide(color: primaryColor, width: 2)),
+      markedDateCustomShapeBorder: CircleBorder(
+          side: BorderSide(color: primaryColor, width: 2)
+      ),
       daysHaveCircularBorder: true,
       // showOnlyCurrentMonthDate: true,
       weekendTextStyle: TextStyle(
@@ -147,14 +145,16 @@ class _SchedulePageState extends State<SchedulePage> {
                           width: 8,
                           height: 8,
                           decoration: BoxDecoration(
-                              color: primaryColor, shape: BoxShape.circle),
+                              color: primaryColor,
+                              shape: BoxShape.circle
+                          ),
                         ),
                         SizedBox(
                           height: 5,
                         ),
                         Text(
                           "UPCOMING"
-                          "\nAPPOINTMENT",
+                              "\nAPPOINTMENT",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 12,
@@ -172,14 +172,16 @@ class _SchedulePageState extends State<SchedulePage> {
                           width: 8,
                           height: 8,
                           decoration: BoxDecoration(
-                              color: textRed, shape: BoxShape.circle),
+                              color: textRed,
+                              shape: BoxShape.circle
+                          ),
                         ),
                         SizedBox(
                           height: 5,
                         ),
                         Text(
                           "MISSED"
-                          "\nAPPOINTMENT",
+                              "\nAPPOINTMENT",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 12,
@@ -197,14 +199,16 @@ class _SchedulePageState extends State<SchedulePage> {
                           width: 8,
                           height: 8,
                           decoration: BoxDecoration(
-                              color: customYellow, shape: BoxShape.circle),
+                              color: customYellow,
+                              shape: BoxShape.circle
+                          ),
                         ),
                         SizedBox(
                           height: 5,
                         ),
                         Text(
                           "PAST"
-                          "\nAPPOINTMENT",
+                              "\nAPPOINTMENT",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 12,
@@ -221,7 +225,7 @@ class _SchedulePageState extends State<SchedulePage> {
                   height: 30,
                 ),
                 Container(
-                  child: _calendarCarousel,
+                  child: _calendarCarouselNoHeader,
                 ), //
                 SizedBox(
                   height: 30,
@@ -239,30 +243,23 @@ class _SchedulePageState extends State<SchedulePage> {
                 SizedBox(
                   height: 10,
                 ),
-                Container(
-                  child: _calendarCarouselNoHeader,
-                ),
-                SizedBox(
-                  height: 10,
-                ),
                 Row(
                   children: [
                     Expanded(
                       child: Container(
                         height: 130,
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 35, vertical: 17),
+                        padding: EdgeInsets.symmetric(horizontal: 35, vertical: 17),
                         decoration: BoxDecoration(
-                            color: lightGreen,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(16))),
+                            color:lightGreen,
+                            borderRadius: BorderRadius.all(Radius.circular(16))
+                        ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              mainBloc.daysLeftCount != null
-                                  ? "${mainBloc.daysLeftCount.count}"
-                                  : 0,
+                              mainBloc.daysLeftCount!=null?
+                              "${mainBloc.daysLeftCount.count}"
+                                  :0,
                               textAlign: TextAlign.start,
                               style: TextStyle(
                                 fontSize: 32,
@@ -293,28 +290,27 @@ class _SchedulePageState extends State<SchedulePage> {
                     ),
                     Expanded(
                       child: GestureDetector(
-                        onTap: () {
+                        onTap: (){
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => BookAppointment()));
+                                  builder: (context)
+                                  => BookAppointment()));
                         },
                         child: Container(
                           height: 130,
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 40, vertical: 20),
+                          padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
                           decoration: BoxDecoration(
-                              color: primaryColor,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(16))),
+                              color:primaryColor,
+                              borderRadius: BorderRadius.all(Radius.circular(16))
+                          ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset(
                                 'images/icons/add_appointment.png',
                                 height: 24,
-                                width: 24,
-                              ),
+                                width: 24,),
                               SizedBox(
                                 height: 15,
                               ),
