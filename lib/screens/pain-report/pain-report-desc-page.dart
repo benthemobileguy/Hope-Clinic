@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hope_clinic/screens/components/main-button.dart';
 import 'package:hope_clinic/theme/style.dart';
+import 'package:hope_clinic/utils/color.dart';
+import 'package:mdi/mdi.dart';
 
 class PainReportDescPage extends StatefulWidget {
   @override
@@ -151,6 +153,63 @@ showSuccessModal();
   }
 
   void showSuccessModal() {
-
+    showModalBottomSheet(
+        isScrollControlled: true,
+        context: context,
+        builder: (context) {
+          return StatefulBuilder(
+              builder: (BuildContext context, StateSetter setState /*You can rename this!*/) {
+                return Container(
+                  padding: EdgeInsets.all(14),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            "Appointment",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontFamily: 'Lato',
+                              color: HexColor("#505050"),
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          Spacer(),
+                          GestureDetector(
+                            onTap: (){
+                              Navigator.pop(context);
+                            },
+                            child: Container(
+                              child: new Icon(
+                                Mdi.close,
+                                color: HexColor("#505050"),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Text(
+                        "Great, your schedule calendar has also been sent to your mail. We will contact you shortly",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontFamily: 'Lato',
+                          color: HexColor("#505050"),
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                    ],
+                  ),
+                );
+              });
+        });
   }
 }
