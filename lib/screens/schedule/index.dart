@@ -14,11 +14,14 @@ class SchedulePage extends StatefulWidget {
 
 class _SchedulePageState extends State<SchedulePage> {
   CalendarCarousel  _calendarCarousel;
+  DateTime _targetDateTime = DateTime.now();
+  EventList<Event> _markedDateMap = new EventList<Event>();
   MainBloc mainBloc;
-  DateTime _currentDate = DateTime(2019, 2, 3);
-  DateTime _currentDate2 = DateTime(2019, 2, 3);
-  String _currentMonth = DateFormat.yMMM().format(DateTime(2019, 2, 3));
-  DateTime _targetDateTime = DateTime(2019, 2, 3);
+  CalendarCarousel  _calendarCarouselNoHeader;
+  String serverDateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z";
+  DateTime _currentDate = DateTime.now();
+  DateTime _currentDate2 = DateTime.now().subtract(Duration(days: 100));
+  String _currentMonth = DateFormat.yMMM().format(DateTime.now());
   static Widget _eventIcon = new Container(
     decoration: new BoxDecoration(
         color: Colors.white,
@@ -38,70 +41,93 @@ class _SchedulePageState extends State<SchedulePage> {
   @override
   Widget build(BuildContext context) {
 
-    EventList<Event> _markedDateMap = new EventList<Event>(
-      events: {
-        new DateTime(2019, 2, 10): [
-          new Event(
-            date: new DateTime(2019, 2, 10),
-            title: 'Event 1',
-            icon: _eventIcon,
-            dot: Container(
-              margin: EdgeInsets.symmetric(horizontal: 1.0),
-              color: textColor,
-              height: 5.0,
-              width: 5.0,
-            ),
-          ),
-          new Event(
-            date: new DateTime(2019, 2, 10),
-            title: 'Event 2',
-            icon: _eventIcon,
-          ),
-          new Event(
-            date: new DateTime(2019, 2, 10),
-            title: 'Event 3',
-            icon: _eventIcon,
-          ),
-        ],
-      },
-    );
-    _calendarCarousel = CalendarCarousel<Event>(
+    _calendarCarouselNoHeader = CalendarCarousel<Event>(
+      pageScrollPhysics: NeverScrollableScrollPhysics(),
       onDayPressed: (DateTime date, List<Event> events) {
-        this.setState(() => _currentDate = date);
+        this.setState(() {
+          _currentDate2 = date;
+          print(date);
+        });
         events.forEach((event) => print(event.title));
       },
-      weekendTextStyle: TextStyle(
-        color: textColor,
-      ),
-      thisMonthDayBorderColor: Colors.grey,
-//          weekDays: null, /// for pass null when you do not want to render weekDays
-      headerText: 'December 2016',
-      weekFormat: false,
-      markedDatesMap: _markedDateMap,
-      height: 370.0,
-      selectedDateTime: _currentDate2,
-      showIconBehindDayText: true,
-//          daysHaveCircularBorder: false, /// null for not rendering any border, true for circular border, false for rectangular border
-      customGridViewPhysics: NeverScrollableScrollPhysics(),
       markedDateShowIcon: true,
-      markedDateIconMaxShown: 2,
-      selectedDayTextStyle: TextStyle(
-        color: Colors.yellow,
+      headerTextStyle: TextStyle(
+        fontSize: 16,
+        fontFamily: 'Lato',
+        color: normalText,
+        fontWeight: FontWeight.w700,
+      ),
+
+      weekdayTextStyle: TextStyle(
+        fontSize: 16,
+        fontFamily: 'Lato',
+        color: normalText,
+        fontWeight: FontWeight.w800,
+      ),
+      iconColor: normalText,
+      markedDateCustomTextStyle: TextStyle(
+        fontSize: 16,
+        fontFamily: 'Lato',
+        color: normalText,
+        fontWeight: FontWeight.w700,
       ),
       todayTextStyle: TextStyle(
-        color: textColor,
+        fontSize: 16,
+        fontFamily: 'Lato',
+        color: normalText,
+        fontWeight: FontWeight.w700,
       ),
-      markedDateIconBuilder: (event) {
-        return event.icon;
-      },
-      minSelectedDate: _currentDate.subtract(Duration(days: 360)),
+      todayButtonColor: Colors.white,
+      weekDayMargin: EdgeInsets.all(5),
+      selectedDayBorderColor: primaryColor,
+      selectedDayButtonColor: primaryColor,
+      selectedDayTextStyle:  TextStyle(
+        fontSize: 16,
+        fontFamily: 'Lato',
+        color: Colors.white,
+        fontWeight: FontWeight.w700,
+      ),
+      markedDateCustomShapeBorder: CircleBorder(
+          side: BorderSide(color: primaryColor, width: 2)
+      ),
+      daysHaveCircularBorder: true,
+      // showOnlyCurrentMonthDate: true,
+      weekendTextStyle: TextStyle(
+        fontSize: 16,
+        fontFamily: 'Lato',
+        color: normalText,
+        fontWeight: FontWeight.w800,
+      ),
+      thisMonthDayBorderColor: textRed,
+      weekFormat: false,
+//      firstDayOfWeek: 4,
+      markedDatesMap: _markedDateMap,
+      height: 420.0,
+      selectedDateTime: _currentDate2,
+      targetDateTime: _targetDateTime,
+      customGridViewPhysics: NeverScrollableScrollPhysics(),
+      daysTextStyle: TextStyle(
+        fontSize: 16,
+        fontFamily: 'Lato',
+        color: normalText,
+        fontWeight: FontWeight.w700,
+      ),
+      minSelectedDate: _currentDate.subtract(Duration(days: 1)),
       maxSelectedDate: _currentDate.add(Duration(days: 360)),
-      todayButtonColor: Colors.transparent,
-      todayBorderColor: Colors.green,
-      markedDateMoreShowTotal:
-      true, // null for not showing hidden events indicator
-//          markedDateIconMargin: 9,
-//          markedDateIconOffset: 3,
+      inactiveDaysTextStyle: TextStyle(
+        color: Colors.grey,
+        fontSize: 16,
+      ),
+      onCalendarChanged: (DateTime date) {
+        this.setState(() {
+          _targetDateTime = date;
+          _currentMonth = DateFormat.yMMM().format(_targetDateTime);
+        });
+      },
+
+      onDayLongPressed: (DateTime date) {
+        print('long pressed date $date');
+      },
     );
     return SafeArea(
       child: Scaffold(
