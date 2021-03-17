@@ -60,6 +60,7 @@ class _PainReportPageState extends State<PainReportPage> {
                       width: double.infinity,
                     )),
                   ),
+                  addIndicatorImage(_tapPosition),
                   Positioned(
                     right: 20.0,
                     bottom: 70.0,
@@ -451,13 +452,21 @@ class _PainReportPageState extends State<PainReportPage> {
     setState(() {
       _tapPosition = referenceBox.globalToLocal(details.globalPosition);
       print(_tapPosition);
-      addIndicatorImage(details);
+      addIndicatorImage(_tapPosition);
     });
   }
 
-  Widget addIndicatorImage(TapDownDetails details) {
-    return Positioned(child:
-    new Image.asset('images/pain_report_indicator.png',
-      height: 32, width: 32,));
+  Widget addIndicatorImage(Offset offset) {
+    if(_tapPosition!=null){
+      return Positioned(
+        left: offset.dx,
+        top: offset.dy,
+          child:
+      new Image.asset('images/pain_report_indicator.png',
+        height: 32, width: 32,));
+    }else{
+      return Container();
+    }
+
   }
 }
