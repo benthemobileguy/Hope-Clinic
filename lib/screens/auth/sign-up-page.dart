@@ -104,113 +104,124 @@ class _RegisterPageState extends State<SignUpPage> {
                   SizedBox(
                     height: 30,
                   ),
-              Container(
-                padding: EdgeInsets.all(14),
-                decoration: BoxDecoration(
-                  color: greenLight,
-                  borderRadius: BorderRadius.circular(14),
-                ),
-                child: Row(
-                  children: [
-                    Container(
-                      width:24,
-                      height:24,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                      color: Colors.white,
-                        border: Border.all(color: primaryColor,width: 1)
+              GestureDetector(
+                onTap: (){
+                  selectStatusIndex = 0;
+                },
+                child: Container(
+                  padding: EdgeInsets.all(14),
+                  decoration: BoxDecoration(
+                    color: greenLight,
+                    borderRadius: BorderRadius.circular(14),
+                  ),
+                  child: Row(
+                    children: [
+                      Container(
+                        width:24,
+                        height:24,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                        color: Colors.white,
+                          border: Border.all(color: primaryColor,width: 1)
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      width: 16,
-                    ),
-                    Flexible(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "First Time Patient",
-                            textAlign: TextAlign.start,
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontFamily: 'Lato',
-                              color: normalTextBold,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 6,
-                          ),
-                          Text(
-                            "You have never gone to the Hope chiropractic clinic before.",
-                            textAlign: TextAlign.start,
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontFamily: 'Lato',
-                              color: HexColor("#787878"),
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ],
+                      SizedBox(
+                        width: 16,
                       ),
-                    ),
-                  ],
+                      Flexible(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "First Time Patient",
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontFamily: 'Lato',
+                                color: normalTextBold,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 6,
+                            ),
+                            Text(
+                              "You have never gone to the Hope chiropractic clinic before.",
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontFamily: 'Lato',
+                                color: HexColor("#787878"),
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               SizedBox(
                 height: 25,
               ),
-                  Container(
-                    padding: EdgeInsets.all(14),
-                    decoration: BoxDecoration(
-                      color: greenLight,
-                      borderRadius: BorderRadius.circular(14),
-                    ),
-                    child: Row(
-                      children: [
-                        Container(
-                          width:24,
-                          height:24,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.white,
-                              border: Border.all(color: primaryColor,width: 1)
+                  GestureDetector(
+                    onTap: (){
+                      selectStatusIndex = 1;
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(14),
+                      decoration: BoxDecoration(
+                        color: selectStatusIndex!=0?greenLight:primaryColor,
+                        borderRadius: BorderRadius.circular(14),
+                      ),
+                      child: Row(
+                        children: [
+                          Container(
+                            width:24,
+                            height:24,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: selectStatusIndex!=0?Colors.white:primaryColor,
+                                border: Border.all(color: selectStatusIndex!=0?
+                                primaryColor:Colors.white,width: 1)
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 16,
-                        ),
-                        Flexible(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "First Time Patient",
-                                textAlign: TextAlign.start,
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontFamily: 'Lato',
-                                  color: normalTextBold,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 6,
-                              ),
-                              Text(
-                                "You have never gone to the Hope chiropractic clinic before.",
-                                textAlign: TextAlign.start,
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  fontFamily: 'Lato',
-                                  color: HexColor("#787878"),
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ],
+                          SizedBox(
+                            width: 16,
                           ),
-                        ),
-                      ],
+                          Flexible(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "First Time Patient",
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: 'Lato',
+                                    color: normalTextBold,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 6,
+                                ),
+                                Text(
+                                  "You have never gone to the Hope chiropractic clinic before.",
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    fontFamily: 'Lato',
+                                    color: HexColor("#787878"),
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
               Spacer(),
@@ -228,24 +239,13 @@ class _RegisterPageState extends State<SignUpPage> {
                           fontWeight: FontWeight.w700,
                         ),
                       ),
-                      onPressed: () {
-                        if (sexBtnIndex != -1 &&
-                            _formKey1.currentState.validate()) {
-                          controller.nextPage(
-                            duration: Duration(milliseconds: 500),
-                            curve: Curves.ease,
-                          );
-                        } else if (_formKey1.currentState.validate() &&
-                            sexBtnIndex == -1) {
-                          Fluttertoast.showToast(
-                              msg: "Please select your gender",
-                              toastLength: Toast.LENGTH_LONG,
-                              gravity: ToastGravity.BOTTOM,
-                              timeInSecForIosWeb: 4,
-                              backgroundColor: primaryColor,
-                              textColor: HexColor("#FFFFFF"));
-                        }
-                      },
+                      onPressed: selectStatusIndex!=-1?() {
+                       controller.nextPage(
+                         duration: Duration(milliseconds: 500),
+                         curve: Curves.ease,
+                       );
+
+                      }:null,
                     ),
                   ),
                   Row(
