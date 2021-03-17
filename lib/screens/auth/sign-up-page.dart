@@ -24,6 +24,7 @@ class _RegisterPageState extends State<SignUpPage> {
   AuthenticationService authenticationService;
   int sexBtnIndex = -1;
   int pageindex = 0;
+  int selectStatusIndex = -1;
   MainBloc mainBloc;
   bool _isLoading = false;
   TextEditingController dobController = TextEditingController();
@@ -157,7 +158,7 @@ class _RegisterPageState extends State<SignUpPage> {
                 ),
               ),
               SizedBox(
-                height: 30,
+                height: 25,
               ),
                   Container(
                     padding: EdgeInsets.all(14),
