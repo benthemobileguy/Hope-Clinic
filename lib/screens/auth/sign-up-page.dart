@@ -70,6 +70,148 @@ class _RegisterPageState extends State<SignUpPage> {
             physics: NeverScrollableScrollPhysics(),
             controller: controller,
             children: [
+              ///Page One
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: 50,
+                  ),
+                  Hero(
+                    tag: "logo",
+                    child: new Image.asset(
+                      'images/logo.png',
+                      fit: BoxFit.cover,
+                      width: 167,
+                      height: 59,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Text(
+                    "Please Select",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      fontSize: 22.5,
+                      fontFamily: 'Lato',
+                      color: HexColor("#444444"),
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+              Container(
+                decoration: BoxDecoration(
+                  color: greenLight,
+                  borderRadius: BorderRadius.circular(14),
+                ),
+                child: Column(
+                  children: [
+                    Text(
+                      "First Time Patient",
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontFamily: 'Lato',
+                        color: normalTextBold,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      "Next",
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontFamily: 'Lato',
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Spacer(),
+                  Container(
+                    height: 60,
+                    child: MainButton(
+                      color: primaryColor,
+                      child: Text(
+                        "Next",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontFamily: 'Lato',
+                          color: Colors.white,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      onPressed: () {
+                        if (sexBtnIndex != -1 &&
+                            _formKey1.currentState.validate()) {
+                          controller.nextPage(
+                            duration: Duration(milliseconds: 500),
+                            curve: Curves.ease,
+                          );
+                        } else if (_formKey1.currentState.validate() &&
+                            sexBtnIndex == -1) {
+                          Fluttertoast.showToast(
+                              msg: "Please select your gender",
+                              toastLength: Toast.LENGTH_LONG,
+                              gravity: ToastGravity.BOTTOM,
+                              timeInSecForIosWeb: 4,
+                              backgroundColor: primaryColor,
+                              textColor: HexColor("#FFFFFF"));
+                        }
+                      },
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Already have an account?",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontFamily: 'Lato',
+                          color: HexColor("#444444"),
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      FlatButton(
+                        padding: EdgeInsets.only(left: 5, right: 5),
+                        minWidth: 40,
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SignInPage()));
+                        },
+                        child: Text(
+                          "Sign In",
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontFamily: 'Lato',
+                            color: primaryColor,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 40,
+                  ),
+                ],
+              ),
+              ///Page Two
               SingleChildScrollView(
                 child: Form(
                   key: _formKey1,
@@ -430,7 +572,7 @@ class _RegisterPageState extends State<SignUpPage> {
                 ),
               ),
 
-              ///Page One
+              ///Page Three
               SingleChildScrollView(
                 child: Form(
                   key: _formKey2,
@@ -622,7 +764,7 @@ class _RegisterPageState extends State<SignUpPage> {
                 ),
               ),
 
-              ///Page Two
+              ///Page Four
               SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -772,7 +914,7 @@ class _RegisterPageState extends State<SignUpPage> {
                 ),
               ),
 
-              ///Page Three
+
             ],
           ),
         ),
