@@ -101,37 +101,48 @@ class _RegisterPageState extends State<SignUpPage> {
                     ),
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 30,
                   ),
               Container(
+                padding: EdgeInsets.all(14),
                 decoration: BoxDecoration(
                   color: greenLight,
                   borderRadius: BorderRadius.circular(14),
                 ),
-                child: Column(
+                child: Row(
                   children: [
-                    Text(
-                      "First Time Patient",
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontFamily: 'Lato',
-                        color: normalTextBold,
-                        fontWeight: FontWeight.w700,
+                    Container(
+                      decoration: BoxDecoration(
+
                       ),
                     ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      "Next",
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontFamily: 'Lato',
-                        color: Colors.white,
-                        fontWeight: FontWeight.w400,
-                      ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "First Time Patient",
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontFamily: 'Lato',
+                            color: normalTextBold,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          "You have never gone to the Hope chiropractic clinic before.",
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontFamily: 'Lato',
+                            color: HexColor("#787878"),
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
