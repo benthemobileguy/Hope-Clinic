@@ -112,41 +112,106 @@ class _RegisterPageState extends State<SignUpPage> {
                 child: Row(
                   children: [
                     Container(
+                      width:24,
+                      height:24,
                       decoration: BoxDecoration(
-
+                        shape: BoxShape.circle,
+                      color: Colors.white,
+                        border: Border.all(color: primaryColor,width: 1)
                       ),
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "First Time Patient",
-                          textAlign: TextAlign.start,
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontFamily: 'Lato',
-                            color: normalTextBold,
-                            fontWeight: FontWeight.w700,
+                    SizedBox(
+                      width: 16,
+                    ),
+                    Flexible(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "First Time Patient",
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontFamily: 'Lato',
+                              color: normalTextBold,
+                              fontWeight: FontWeight.w700,
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          "You have never gone to the Hope chiropractic clinic before.",
-                          textAlign: TextAlign.start,
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontFamily: 'Lato',
-                            color: HexColor("#787878"),
-                            fontWeight: FontWeight.w400,
+                          SizedBox(
+                            height: 6,
                           ),
-                        ),
-                      ],
+                          Text(
+                            "You have never gone to the Hope chiropractic clinic before.",
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontFamily: 'Lato',
+                              color: HexColor("#787878"),
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
               ),
+              SizedBox(
+                height: 30,
+              ),
+                  Container(
+                    padding: EdgeInsets.all(14),
+                    decoration: BoxDecoration(
+                      color: greenLight,
+                      borderRadius: BorderRadius.circular(14),
+                    ),
+                    child: Row(
+                      children: [
+                        Container(
+                          width:24,
+                          height:24,
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.white,
+                              border: Border.all(color: primaryColor,width: 1)
+                          ),
+                        ),
+                        SizedBox(
+                          width: 16,
+                        ),
+                        Flexible(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "First Time Patient",
+                                textAlign: TextAlign.start,
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontFamily: 'Lato',
+                                  color: normalTextBold,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 6,
+                              ),
+                              Text(
+                                "You have never gone to the Hope chiropractic clinic before.",
+                                textAlign: TextAlign.start,
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontFamily: 'Lato',
+                                  color: HexColor("#787878"),
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
               Spacer(),
                   Container(
                     height: 60,
