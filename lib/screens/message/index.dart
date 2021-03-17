@@ -68,7 +68,8 @@ class _MessageScreenState extends State<MessageScreen> {
                   width: 10,
                 ),
                 Container(
-                  child: new Image.asset('images/send.png', width: 16,height: 16,),
+                  child: Center(child:
+                  Image.asset('images/send.png', width: 12,height: 12,)),
                   decoration: BoxDecoration(
                     color: primaryColor,
                     borderRadius: BorderRadius.all(Radius.circular(16)),
