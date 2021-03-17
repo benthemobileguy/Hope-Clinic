@@ -15,6 +15,7 @@ class PainReportPage extends StatefulWidget {
 
 class _PainReportPageState extends State<PainReportPage> {
   int painPointIndex = -1;
+  Offset _tapPosition;
   int painRateIndex = -1;
   StateSetter painModalState;
   List<String> images = [
@@ -48,8 +49,9 @@ class _PainReportPageState extends State<PainReportPage> {
               Stack(
                 children: [
                   GestureDetector(
+                    onTapDown: _handleTapDown,
                     onTap: () {
-                      showPainReportSheet();
+
                     },
                     child: Container(
                         child: Image.asset(
@@ -442,5 +444,20 @@ class _PainReportPageState extends State<PainReportPage> {
       MaterialPageRoute(
           builder: (context)
           => PainReportDescPage()));
+  }
+
+  void _handleTapDown(TapDownDetails details) {
+    final RenderBox referenceBox = context.findRenderObject();
+    setState(() {
+      _tapPosition = referenceBox.globalToLocal(details.globalPosition);
+      print(_tapPosition);
+      addIndicatorImage(details);
+    });
+  }
+
+  Widget addIndicatorImage(TapDownDetails details) {
+    return Positioned(child:
+    new Image.asset('images/pain_report_indicator.png',
+      height: 32, width: 32,));
   }
 }

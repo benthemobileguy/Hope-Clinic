@@ -154,13 +154,21 @@ class _MessageScreenState extends State<MessageScreen> {
                 SizedBox(
                   width: 10,
                 ),
-                FlatButton(
-                  color: primaryColor,
-                  onPressed: (){
-                    messageController.text == "";
-                  },
-                  child: Image.asset('images/send.png',
-                    width: 24,height: 24,),
+                ButtonTheme(
+                  minWidth: 48,
+                  height: 50,
+                  child: RaisedButton(
+                    padding: EdgeInsets.all(0),
+                    color: primaryColor,
+                    onPressed: (){
+                      messageController.text == "";
+                    },
+                    shape: new RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(16)
+                    ),
+                    child: Image.asset('images/send.png',
+                      width: 24,height: 24,),
+                  ),
                 )
               ],
             ),
