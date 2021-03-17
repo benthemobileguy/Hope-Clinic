@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hope_clinic/bloc/index.dart';
+import 'package:hope_clinic/screens/message/index.dart';
 import 'package:video_player/video_player.dart';
 import 'package:hope_clinic/model/health-tips.dart';
 import 'package:hope_clinic/screens/book-appointment/index.dart';
@@ -138,7 +139,12 @@ class _HomePageState extends State<HomePage> {
                               ],
                             ),
                             color: primaryColor,
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => MessageScreen())));
+                            },
                           ),
                         ),
                         Text(
