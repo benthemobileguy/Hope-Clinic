@@ -106,12 +106,15 @@ class _RegisterPageState extends State<SignUpPage> {
                   ),
               GestureDetector(
                 onTap: (){
-                  selectStatusIndex = 0;
+                  setState(() {
+                    selectStatusIndex = 0;
+                  });
+
                 },
                 child: Container(
                   padding: EdgeInsets.all(14),
                   decoration: BoxDecoration(
-                    color: greenLight,
+                    color: selectStatusIndex!=0?greenLight:primaryColor,
                     borderRadius: BorderRadius.circular(14),
                   ),
                   child: Row(
@@ -120,9 +123,10 @@ class _RegisterPageState extends State<SignUpPage> {
                         width:24,
                         height:24,
                         decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                        color: Colors.white,
-                          border: Border.all(color: primaryColor,width: 1)
+                            shape: BoxShape.circle,
+                            color: selectStatusIndex!=0?Colors.white:primaryColor,
+                            border: Border.all(color: selectStatusIndex!=0?
+                            primaryColor:Colors.white,width: selectStatusIndex!=0?1:2)
                         ),
                       ),
                       SizedBox(
@@ -138,7 +142,7 @@ class _RegisterPageState extends State<SignUpPage> {
                               style: TextStyle(
                                 fontSize: 16,
                                 fontFamily: 'Lato',
-                                color: normalTextBold,
+                                color: selectStatusIndex!=0?normalTextBold:Colors.white,
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
@@ -151,7 +155,7 @@ class _RegisterPageState extends State<SignUpPage> {
                               style: TextStyle(
                                 fontSize: 12,
                                 fontFamily: 'Lato',
-                                color: HexColor("#787878"),
+                                color: selectStatusIndex!=0?HexColor("#787878"):ashGreen,
                                 fontWeight: FontWeight.w400,
                               ),
                             ),
@@ -167,12 +171,14 @@ class _RegisterPageState extends State<SignUpPage> {
               ),
                   GestureDetector(
                     onTap: (){
-                      selectStatusIndex = 1;
+                      setState(() {
+                        selectStatusIndex = 1;
+                      });
                     },
                     child: Container(
                       padding: EdgeInsets.all(14),
                       decoration: BoxDecoration(
-                        color: selectStatusIndex!=0?greenLight:primaryColor,
+                        color: selectStatusIndex!=1?greenLight:primaryColor,
                         borderRadius: BorderRadius.circular(14),
                       ),
                       child: Row(
@@ -182,9 +188,9 @@ class _RegisterPageState extends State<SignUpPage> {
                             height:24,
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: selectStatusIndex!=0?Colors.white:primaryColor,
-                                border: Border.all(color: selectStatusIndex!=0?
-                                primaryColor:Colors.white,width: 1)
+                                color: selectStatusIndex!=1?Colors.white:primaryColor,
+                                border: Border.all(color: selectStatusIndex!=1?
+                                primaryColor:Colors.white,width: selectStatusIndex!=1?1:2)
                             ),
                           ),
                           SizedBox(
@@ -195,12 +201,12 @@ class _RegisterPageState extends State<SignUpPage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "First Time Patient",
+                                  "Already a Patient",
                                   textAlign: TextAlign.start,
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontFamily: 'Lato',
-                                    color: normalTextBold,
+                                    color: selectStatusIndex!=1?normalTextBold:Colors.white,
                                     fontWeight: FontWeight.w700,
                                   ),
                                 ),
@@ -208,12 +214,12 @@ class _RegisterPageState extends State<SignUpPage> {
                                   height: 6,
                                 ),
                                 Text(
-                                  "You have never gone to the Hope chiropractic clinic before.",
+                                  "You have been to the Hope clinic before for check up or consultation.",
                                   textAlign: TextAlign.start,
                                   style: TextStyle(
                                     fontSize: 12,
                                     fontFamily: 'Lato',
-                                    color: HexColor("#787878"),
+                                    color: selectStatusIndex!=1?HexColor("#787878"):ashGreen,
                                     fontWeight: FontWeight.w400,
                                   ),
                                 ),
