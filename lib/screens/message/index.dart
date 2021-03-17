@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hope_clinic/theme/style.dart';
+import 'package:bubble/bubble.dart';
 class MessageScreen extends StatefulWidget {
   @override
   _MessageScreenState createState() => _MessageScreenState();
@@ -9,6 +10,23 @@ class _MessageScreenState extends State<MessageScreen> {
   TextEditingController messageController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    double pixelRatio = MediaQuery.of(context).devicePixelRatio;
+    double px = 1 / pixelRatio;
+
+    BubbleStyle styleSomebody = BubbleStyle(
+      nip: BubbleNip.leftTop,
+      color: Colors.white,
+      elevation: 1 * px,
+      margin: BubbleEdges.only(top: 8.0, right: 50.0),
+      alignment: Alignment.topLeft,
+    );
+    BubbleStyle styleMe = BubbleStyle(
+      nip: BubbleNip.rightTop,
+      color: Color.fromARGB(255, 225, 255, 199),
+      elevation: 1 * px,
+      margin: BubbleEdges.only(top: 8.0, left: 50.0),
+      alignment: Alignment.topRight,
+    );
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -69,7 +87,7 @@ class _MessageScreenState extends State<MessageScreen> {
                 ),
                 Container(
                   child: Center(child:
-                  Image.asset('images/send.png', width: 12,height: 12,)),
+                  Image.asset('images/send.png', width: 24,height: 24,)),
                   decoration: BoxDecoration(
                     color: primaryColor,
                     borderRadius: BorderRadius.all(Radius.circular(16)),

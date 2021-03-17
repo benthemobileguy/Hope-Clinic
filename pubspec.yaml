@@ -36,6 +36,7 @@ dev_dependencies:
   flutter_rating_bar: ^3.0.1+1
   cached_network_image: ^2.2.0+1
   provider: ^3.2.0
+  bubble: ^1.1.9+1
   emojis: ^0.9.3
   video_player: ^1.0.1
   shimmer: ^1.1.2
