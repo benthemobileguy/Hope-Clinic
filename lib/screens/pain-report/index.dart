@@ -124,7 +124,9 @@ class _PainReportPageState extends State<PainReportPage> {
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-                  onPressed: null,
+                  onPressed:_tapPosition!=null?(){
+                  showPainReportSheet();
+                  }:null,
                 ),
               ),
             ],
@@ -459,8 +461,8 @@ class _PainReportPageState extends State<PainReportPage> {
   Widget addIndicatorImage(Offset offset) {
     if(_tapPosition!=null){
       return Positioned(
-        left: offset.dx,
-        top: offset.dy,
+        left: offset.dx-10,
+        top: offset.dy - 105,
           child:
       new Image.asset('images/pain_report_indicator.png',
         height: 32, width: 32,));

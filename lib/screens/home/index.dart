@@ -353,6 +353,7 @@ class _HomePageState extends State<HomePage> {
                           height: 160,
                           width: 130,
                           decoration: BoxDecoration(
+                            color: primaryColor,
                               image: DecorationImage(
                                   fit: BoxFit.fill,
                                   image: NetworkImage(

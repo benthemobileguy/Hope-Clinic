@@ -646,6 +646,9 @@ class _BookAppointmentState extends State<BookAppointment> {
     //     duration: Duration(milliseconds: 300),
     //     curve: Curves.linear);
     showModalBottomSheet(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30)),
+        ),
         isScrollControlled: true,
         context: context,
         builder: (context) {
@@ -656,6 +659,7 @@ class _BookAppointmentState extends State<BookAppointment> {
               return Container(
                 padding: EdgeInsets.all(14),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Row(
@@ -688,7 +692,7 @@ class _BookAppointmentState extends State<BookAppointment> {
                       height: 20,
                     ),
                     Text(
-                      DateFormat.yMMMMd().format(_currentDate2),
+                     DateFormat.yMMMMEEEEd().format(_currentDate2),
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 16,
@@ -700,98 +704,47 @@ class _BookAppointmentState extends State<BookAppointment> {
                     SizedBox(
                       height: 30,
                     ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: GestureDetector(
-                            onTap: (){
-                              timeStateSetter(() {
-                                slotIndex = 0;
-                              });
-                            },
-                            child: Container(
-                              height: 60,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(12),
-                                  color: containerBgColor
-                              ),
-                              child:   Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    width:24,
-                                    height:24,
-                                    decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: slotIndex!=0?Colors.white:primaryColor
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 14,
-                                  ),
-                                  Text(
-                                    "08:30 - 08:15",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontSize: 14.5,
-                                      fontFamily: 'Lato',
-                                      color: normalText,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
+                    ListView.builder(
+                      itemBuilder: (BuildContext context, int index) {
+                        return Container(
+                          height: 60,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              color: containerBgColor
                           ),
-                        ),
-                        SizedBox(
-                          width: 12,
-                        ),
-                        Expanded(
-                          child: GestureDetector(
-                            onTap: (){
-                              timeStateSetter(() {
-                                slotIndex = 1;
-                              });
-                            },
-                            child: Container(
-                              height: 60,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(12),
-                                  color: containerBgColor
+                          child:   Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                width:24,
+                                height:24,
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: slotIndex!=0?Colors.white:primaryColor
+                                ),
                               ),
-                              child:   Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    width:24,
-                                    height:24,
-                                    decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: slotIndex!=1?Colors.white:primaryColor,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 14,
-                                  ),
-                                  Text(
-                                    "10:30 - 10:15",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontSize: 14.5,
-                                      fontFamily: 'Lato',
-                                      color: normalText,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
-                                ],
+                              SizedBox(
+                                width: 14,
                               ),
-                            ),
+                              Text(
+                                "08:30 - 08:15",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 14.5,
+                                  fontFamily: 'Lato',
+                                  color: normalText,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
-                      ],
+                        );
+
+                      },
+                    ),
+                    SizedBox(
+                      width: 12,
                     ),
                     SizedBox(
                       height: 60,

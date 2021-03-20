@@ -5,7 +5,7 @@ import 'package:hope_clinic/screens/profile/index.dart';
 import 'package:hope_clinic/screens/schedule/index.dart';
 import 'package:hope_clinic/screens/shop/index.dart';
 import 'package:hope_clinic/theme/style.dart';
-import 'package:hope_clinic/utils/color.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class Base extends StatefulWidget {
   final int currentIndex;
@@ -102,13 +102,9 @@ class _BaseState extends State<Base> {
                 color: primaryColor,
                 shape: BoxShape.circle
               ),
-              child: ImageIcon(
-                AssetImage(
-                 "images/pain_report.png",
-                ),
-                size: 25,
-                color: Colors.white,
-              ),
+              child: new SvgPicture.asset(
+                "images/pain_report.svg",
+              )
             ),
             title: Text(
               "",
