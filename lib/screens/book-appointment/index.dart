@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hope_clinic/model/date-slots.dart';
 import 'package:mdi/mdi.dart';
 import 'package:hope_clinic/bloc/index.dart';
 import 'package:hope_clinic/model/plans.dart';
@@ -20,6 +21,7 @@ class BookAppointment extends StatefulWidget {
 }
 
 class _BookAppointmentState extends State<BookAppointment> {
+  Timeslots selectedTimeslots;
   bool isDataLoaded = false;
   int slotIndex = -1;
   StateSetter timeStateSetter;
@@ -66,8 +68,12 @@ class _BookAppointmentState extends State<BookAppointment> {
         pageScrollPhysics: NeverScrollableScrollPhysics(),
         onDayPressed: (DateTime date, List<Event> events) {
           this.setState(() {
+            if(slotIndex != -1){
+              bloc.dateSlots[0].timeslots[slotIndex].isTapped =false;
+            }
+            slotIndex = -1;
             _currentDate2 = date;
-            print(date);
+            print(date.toString().substring(0,10));
           });
           events.forEach((event) => print(event.title));
         },
@@ -134,7 +140,7 @@ class _BookAppointmentState extends State<BookAppointment> {
           fontWeight: FontWeight.w700,
         ),
         minSelectedDate: _currentDate.subtract(Duration(days: 1)),
-        maxSelectedDate: _currentDate.add(Duration(days: 360)),
+        maxSelectedDate: _currentDate.add(Duration(days: 3600)),
         inactiveDaysTextStyle: TextStyle(
           color: Colors.grey,
           fontSize: 16,
@@ -704,44 +710,69 @@ class _BookAppointmentState extends State<BookAppointment> {
                     SizedBox(
                       height: 30,
                     ),
-                    ListView.builder(
-                      itemBuilder: (BuildContext context, int index) {
-                        return Container(
-                          height: 60,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12),
-                              color: containerBgColor
-                          ),
-                          child:   Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Container(
-                                width:24,
-                                height:24,
-                                decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: slotIndex!=0?Colors.white:primaryColor
-                                ),
+                    Container(
+                      height: 60,
+                      width:double.infinity,
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: bloc.dateSlots[0].timeslots.length,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (BuildContext context, int index) {
+                          return GestureDetector(
+                          onTap: (){
+                            setState(() {
+                              slotIndex = index;
+                              if (selectedTimeslots != null) {
+                                selectedTimeslots.isTapped =
+                                false;
+                              }
+                              bloc.dateSlots[0].timeslots[index].isTapped =
+                              !bloc.dateSlots[0].timeslots[index].isTapped;
+                              selectedTimeslots =
+                              bloc.dateSlots[0].timeslots[index];
+                            });
+                          },
+                            child: Container(
+                              margin: EdgeInsets.only(right: 14),
+                              height: 60,
+                              width: 200,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12),
+                                  color: containerBgColor
                               ),
-                              SizedBox(
-                                width: 14,
+                              child:   Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    width:24,
+                                    height:24,
+                                    decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: !bloc.dateSlots[0].timeslots[index].isTapped?Colors.white:primaryColor
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 14,
+                                  ),
+                                  Text(
+                                    '${bloc.dateSlots[0].timeslots[index].startTime} '
+                                        '- ${bloc.dateSlots[0].timeslots[index].endTime}',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 14.5,
+                                      fontFamily: 'Lato',
+                                      color: normalText,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                ],
                               ),
-                              Text(
-                                "08:30 - 08:15",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 14.5,
-                                  fontFamily: 'Lato',
-                                  color: normalText,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ],
-                          ),
-                        );
+                            ),
+                          );
 
-                      },
+                        },
+                      ),
                     ),
                     SizedBox(
                       width: 12,

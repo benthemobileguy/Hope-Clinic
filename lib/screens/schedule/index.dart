@@ -111,7 +111,7 @@ class _SchedulePageState extends State<SchedulePage> {
         fontWeight: FontWeight.w700,
       ),
       minSelectedDate: _currentDate.subtract(Duration(days: 1)),
-      maxSelectedDate: _currentDate.add(Duration(days: 360)),
+      maxSelectedDate: _currentDate.add(Duration(days: 3600)),
       inactiveDaysTextStyle: TextStyle(
         color: Colors.grey,
         fontSize: 16,

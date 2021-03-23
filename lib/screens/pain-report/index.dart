@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hope_clinic/model/pain-report.dart';
 import 'package:hope_clinic/screens/components/main-button.dart';
 import 'package:hope_clinic/screens/components/pain-rate-container.dart';
 import 'package:hope_clinic/screens/components/pain-selection.dart';
@@ -15,13 +16,19 @@ class PainReportPage extends StatefulWidget {
 
 class _PainReportPageState extends State<PainReportPage> {
   int painPointIndex = -1;
-  Offset _tapPosition;
+  bool isPainAdded = false;
+  String selectedImage = "";
   int painRateIndex = -1;
+  List<PainReport> painReportsFront = [];
+  List<PainReport> painReportsSide = [];
+  List<PainReport> painReportsBack = [];
+  List<PainReport> painReportsOtherSide = [];
   StateSetter painModalState;
   List<String> images = [
     "images/person_front.png",
     "images/person_side.png",
-    "images/person_back.png"
+    "images/person_back.png",
+    "images/person_other_side.png"
   ];
   int index = 0;
   @override
@@ -50,9 +57,6 @@ class _PainReportPageState extends State<PainReportPage> {
                 children: [
                   GestureDetector(
                     onTapDown: _handleTapDown,
-                    onTap: () {
-
-                    },
                     child: Container(
                         child: Image.asset(
                       images[index],
@@ -60,7 +64,19 @@ class _PainReportPageState extends State<PainReportPage> {
                       width: double.infinity,
                     )),
                   ),
-                  addIndicatorImage(_tapPosition),
+                     Positioned(
+                      top: 0.0,
+                       bottom: 0.0,
+                       left: 0.0,
+                       right: 0.0,
+                       child: Stack(
+                         children:
+                         painReportsFront.asMap().map((i, value) => MapEntry(i,
+                           addIndicatorImage
+                           (value.offset, value.image),
+                         )).values.toList(),
+                       ),
+                     ),
                   Positioned(
                     right: 20.0,
                     bottom: 70.0,
@@ -94,7 +110,7 @@ class _PainReportPageState extends State<PainReportPage> {
                         ),
                         onPressed: () {
                           setState(() {
-                            if (index == 2) {
+                            if (index == 3) {
                               index = 0;
                             } else {
                               index++;
@@ -124,8 +140,13 @@ class _PainReportPageState extends State<PainReportPage> {
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-                  onPressed:_tapPosition!=null?(){
-                  showPainReportSheet();
+                  onPressed: isPainAdded?(){
+
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context)
+                            => PainReportDescPage()));
                   }:null,
                 ),
               ),
@@ -136,14 +157,20 @@ class _PainReportPageState extends State<PainReportPage> {
     );
   }
 
-  void showPainReportSheet() {
+  void showPainReportSheet(Offset offset) {
+    setState(() {
+      painPointIndex=-1;
+      painRateIndex=-1;
+    });
     showModalBottomSheet(
         isScrollControlled: true,
         context: context,
         builder: (context) {
           return StatefulBuilder(builder: (BuildContext context,
-              StateSetter setState /*You can rename this!*/) {
-            painModalState = setState;
+              StateSetter customState /*You can rename this!*/) {
+            painModalState = customState;
+            painModalState(() {
+            });
             return Container(
               padding: EdgeInsets.all(14),
               child: Column(
@@ -183,8 +210,13 @@ class _PainReportPageState extends State<PainReportPage> {
                       Expanded(
                           child: GestureDetector(
                         onTap: () {
+                          painModalState(() {
+                            painPointIndex = 0;
+                            selectedImage = "images/flash.png";
+                          });
                           setState(() {
                             painPointIndex = 0;
+                            selectedImage = "images/flash.png";
                           });
                         },
                         child: PainSelection(
@@ -202,8 +234,13 @@ class _PainReportPageState extends State<PainReportPage> {
                       Expanded(
                           child: GestureDetector(
                         onTap: () {
+                          painModalState(() {
+                            painPointIndex = 1;
+                            selectedImage =  "images/dull.png";
+                          });
                           setState(() {
                             painPointIndex = 1;
+                            selectedImage =  "images/dull.png";
                           });
                         },
                         child: PainSelection(
@@ -225,8 +262,13 @@ class _PainReportPageState extends State<PainReportPage> {
                       Expanded(
                           child: GestureDetector(
                         onTap: () {
+                          painModalState(() {
+                            painPointIndex = 2;
+                            selectedImage = "images/knife.png";
+                          });
                           setState(() {
                             painPointIndex = 2;
+                            selectedImage = "images/knife.png";
                           });
                         },
                         child: PainSelection(
@@ -244,8 +286,13 @@ class _PainReportPageState extends State<PainReportPage> {
                       Expanded(
                           child: GestureDetector(
                         onTap: () {
+                          painModalState(() {
+                            painPointIndex = 3;
+                            selectedImage = "images/fire.png";
+                          });
                           setState(() {
                             painPointIndex = 3;
+                            selectedImage = "images/fire.png";
                           });
                         },
                         child: PainSelection(
@@ -267,8 +314,13 @@ class _PainReportPageState extends State<PainReportPage> {
                       Expanded(
                           child: GestureDetector(
                         onTap: () {
+                          painModalState(() {
+                            painPointIndex = 4;
+                            selectedImage = "images/fire.png";
+                          });
                           setState(() {
                             painPointIndex = 4;
+                            selectedImage = "images/fire.png";
                           });
                         },
                         child: PainSelection(
@@ -286,6 +338,9 @@ class _PainReportPageState extends State<PainReportPage> {
                       Expanded(
                           child: GestureDetector(
                         onTap: () {
+                          painModalState(() {
+                            painPointIndex = 5;
+                          });
                           setState(() {
                             painPointIndex = 5;
                           });
@@ -423,9 +478,27 @@ class _PainReportPageState extends State<PainReportPage> {
                           ),
                         ],
                       ),
-                      onPressed: painPointIndex != -1 && painRateIndex != -1
+                      onPressed: painPointIndex !=
+                          -1 && painRateIndex != -1
                           ? () {
-                        addPain();
+                        setState(() {
+                          isPainAdded = true;
+                          if(index==0){
+                            painReportsFront.add(PainReport(image: selectedImage,
+                                offset: offset));
+                          }else if(index==1){
+                            painReportsSide.add(PainReport(image: selectedImage,
+                                offset: offset));
+                          }else if(index==2){
+                            painReportsOtherSide.add(PainReport(image: selectedImage,
+                                offset: offset));
+                          }else{
+                            painReportsBack.add(PainReport(image: selectedImage,
+                                offset: offset));
+                          }
+
+                        });
+                        Navigator.pop(context);
                       }
                           : null,
                     ),
@@ -440,35 +513,31 @@ class _PainReportPageState extends State<PainReportPage> {
         });
   }
 
-  addPain() {
-  Navigator.pop(context);
-  Navigator.push(
-      context,
-      MaterialPageRoute(
-          builder: (context)
-          => PainReportDescPage()));
-  }
 
   void _handleTapDown(TapDownDetails details) {
     final RenderBox referenceBox = context.findRenderObject();
     setState(() {
-      _tapPosition = referenceBox.globalToLocal(details.globalPosition);
+    Offset _tapPosition = referenceBox.globalToLocal(details.globalPosition);
       print(_tapPosition);
-      addIndicatorImage(_tapPosition);
+      showPainReportSheet(_tapPosition);
+
     });
   }
 
-  Widget addIndicatorImage(Offset offset) {
-    if(_tapPosition!=null){
-      return Positioned(
-        left: offset.dx-10,
-        top: offset.dy - 105,
-          child:
-      new Image.asset('images/pain_report_indicator.png',
-        height: 32, width: 32,));
-    }else{
-      return Container();
-    }
-
+  Widget addIndicatorImage(Offset offset, String image) {
+    return  Positioned(
+      left: offset.dx-10,
+      top: offset.dy - 105,
+      child:
+      Container(
+        padding: EdgeInsets.all(7),
+        decoration: BoxDecoration(
+          color: primaryColor,
+          shape: BoxShape.circle,
+        ),
+        child: new Image.asset(image,
+          height: 19, width: 19,),
+      ),
+    );
   }
 }

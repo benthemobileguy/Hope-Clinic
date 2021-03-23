@@ -40,6 +40,7 @@ class Dateslots {
 }
 
 class Timeslots {
+  bool isTapped = false;
   int id;
   int dateSlotId;
   String startTime;
@@ -50,6 +51,7 @@ class Timeslots {
 
   Timeslots(
       {this.id,
+        this.isTapped,
         this.dateSlotId,
         this.startTime,
         this.endTime,

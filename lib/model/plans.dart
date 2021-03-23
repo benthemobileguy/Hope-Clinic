@@ -8,8 +8,7 @@ class Plans {
   String createdAt;
   String updatedAt;
 
-  Plans(
-      {this.id,
+  Plans({this.id,
         this.title,
         this.price,
         this.accountType,
