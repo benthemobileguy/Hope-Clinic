@@ -71,10 +71,22 @@ class _PainReportPageState extends State<PainReportPage> {
                        right: 0.0,
                        child: Stack(
                          children:
-                         painReportsFront.asMap().map((i, value) => MapEntry(i,
+                        index==0? painReportsFront.asMap().map((i, value) => MapEntry(i,
                            addIndicatorImage
                            (value.offset, value.image),
-                         )).values.toList(),
+                         )).values.toList():
+                        index==1? painReportsSide.asMap().map((i, value) => MapEntry(i,
+                          addIndicatorImage
+                            (value.offset, value.image),
+                        )).values.toList():
+                         index ==2?  painReportsOtherSide.asMap().map((i, value) => MapEntry(i,
+                           addIndicatorImage
+                             (value.offset, value.image),
+                         )).values.toList():
+                         index==3?  painReportsBack.asMap().map((i, value) => MapEntry(i,
+                           addIndicatorImage
+                             (value.offset, value.image),
+                         )).values.toList():null,
                        ),
                      ),
                   Positioned(
