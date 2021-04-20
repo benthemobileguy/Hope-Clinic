@@ -206,14 +206,28 @@ class _BookAppointmentState extends State<BookAppointment> {
                  SizedBox(
                    height: 30,
                  ),
-                 Text(
-                   "AVAILABLE PLANS FOR YOU",
-                   textAlign: TextAlign.start,
-                   style: TextStyle(
-                     fontSize: 12,
-                     fontFamily: 'Lato',
-                     color: textColor,
-                     fontWeight: FontWeight.w700,
+                 Center(
+                   child: Text(
+                     "See Hospital Account Details",
+                     textAlign: TextAlign.start,
+                     style: TextStyle(
+                       fontSize: 14,
+                       fontFamily: 'Lato',
+                       color: textColor,
+                       fontWeight: FontWeight.w700,
+                     ),
+                   ),
+                 ),
+                 Center(
+                   child: Text(
+                     "AVAILABLE PLANS FOR YOU",
+                     textAlign: TextAlign.start,
+                     style: TextStyle(
+                       fontSize: 12,
+                       fontFamily: 'Lato',
+                       color: textColor,
+                       fontWeight: FontWeight.w700,
+                     ),
                    ),
                  ),
                  SizedBox(
