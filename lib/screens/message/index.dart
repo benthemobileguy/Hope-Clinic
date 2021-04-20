@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hope_clinic/bloc/index.dart';
 import 'package:hope_clinic/theme/style.dart';
 import 'package:bubble/bubble.dart';
+import 'package:hope_clinic/utils/alert-manager.dart';
 import 'package:hope_clinic/utils/color.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -13,6 +14,7 @@ class MessageScreen extends StatefulWidget {
 class _MessageScreenState extends State<MessageScreen> {
   TextEditingController messageController = TextEditingController();
   MainBloc mainBloc;
+  int msgTypeIndex = -1;
   @override
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
@@ -99,38 +101,58 @@ class _MessageScreenState extends State<MessageScreen> {
             ),
             Row(
               children: [
-                Container(
-                  padding: EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    color: containerBgColor,
-                    borderRadius: BorderRadius.all(Radius.circular(12))
-                  ),
-                  child: Text(
-                    "Pain In The Body",
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontFamily: 'Lato',
-                      color: HexColor('#666666'),
-                      fontWeight: FontWeight.w700,
+                Expanded(
+                  child: GestureDetector(
+                    onTap: (){
+                      setState(() {
+                        msgTypeIndex = 1;
+                      });
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                        color: msgTypeIndex==1?
+                        primaryColor:
+                        containerBgColor,
+                        borderRadius: BorderRadius.all(Radius.circular(12))
+                      ),
+                      child: Text(
+                        "Pain In The Body",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontFamily: 'Lato',
+                          color:msgTypeIndex==1?Colors.white: HexColor('#666666'),
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
                     ),
                   ),
                 ),
-                Container(
-                  padding: EdgeInsets.all(20),
-                  margin: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                      color: containerBgColor,
-                      borderRadius: BorderRadius.all(Radius.circular(12))
-                  ),
-                  child: Text(
-                    "Missed Appointment",
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontFamily: 'Lato',
-                      color: HexColor('#666666'),
-                      fontWeight: FontWeight.w700,
+                Expanded(
+                  child: GestureDetector(
+                    onTap: (){
+                      setState(() {
+                        msgTypeIndex = 2;
+                      });
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(20),
+                      margin: EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                          color: msgTypeIndex==2?primaryColor:containerBgColor,
+                          borderRadius: BorderRadius.all(Radius.circular(12))
+                      ),
+                      child: Text(
+                        "Missed Appointment",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontFamily: 'Lato',
+                          color: msgTypeIndex==2?Colors.white:HexColor('#666666'),
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -138,38 +160,56 @@ class _MessageScreenState extends State<MessageScreen> {
             ),
             Row(
               children: [
-                Container(
-                  padding: EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                      color: containerBgColor,
-                      borderRadius: BorderRadius.all(Radius.circular(12))
-                  ),
-                  child: Text(
-                    "Leave A Review",
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontFamily: 'Lato',
-                      color: HexColor('#666666'),
-                      fontWeight: FontWeight.w700,
+                Expanded(
+                  child: GestureDetector(
+                    onTap: (){
+                      setState(() {
+                        msgTypeIndex = 3;
+                      });
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                          color: msgTypeIndex==3?primaryColor:containerBgColor,
+                          borderRadius: BorderRadius.all(Radius.circular(12))
+                      ),
+                      child: Text(
+                        "Leave A Review",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontFamily: 'Lato',
+                          color: msgTypeIndex==3?Colors.white:HexColor('#666666'),
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
                     ),
                   ),
                 ),
-                Container(
-                  padding: EdgeInsets.all(20),
-                  margin: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                      color: containerBgColor,
-                      borderRadius: BorderRadius.all(Radius.circular(12))
-                  ),
-                  child: Text(
-                    "Complaint",
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontFamily: 'Lato',
-                      color: HexColor('#666666'),
-                      fontWeight: FontWeight.w700,
+                Expanded(
+                  child: GestureDetector(
+                    onTap: (){
+                      setState(() {
+                        msgTypeIndex = 4;
+                      });
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(20),
+                      margin: EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                          color: msgTypeIndex==4?primaryColor:containerBgColor,
+                          borderRadius: BorderRadius.all(Radius.circular(12))
+                      ),
+                      child: Text(
+                        "Complaint",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontFamily: 'Lato',
+                          color: msgTypeIndex==4?Colors.white:HexColor('#666666'),
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -211,7 +251,19 @@ class _MessageScreenState extends State<MessageScreen> {
                     padding: EdgeInsets.all(0),
                     color: primaryColor,
                     onPressed: (){
-                      messageController.text == "";
+                      if(msgTypeIndex!=-1){
+                        if(messageController.text!=""){
+                          setState(() {
+                            msgTypeIndex = -1;
+                            messageController.clear();
+                          });
+                          AlertManager.showShortToast("Your message has been sent!");
+                        }
+
+                      } else{
+                        AlertManager.showShortToast("Please select a message type");
+                      }
+
                     },
                     shape: new RoundedRectangleBorder(
                       borderRadius: new BorderRadius.circular(16)

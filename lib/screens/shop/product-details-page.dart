@@ -208,8 +208,8 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
     });
     print(quantityNo);
     Map<String, dynamic> data = new Map();
-    data = {"quantity": widget.item.quantity,
-      "store_id": quantityNo.toString()};
+    data = {"quantity": quantityNo.toString(),
+      "store_id": widget.item.id};
     try {
       Map<String, dynamic> _res = await marketService.reserveProduct(data);
       setState(() {

@@ -12,4 +12,13 @@ class AlertManager {
         backgroundColor: primaryColor,
         textColor: HexColor("#FFFFFF"));
   }
+  static showShortToast(String message) {
+    Fluttertoast.showToast(
+        msg: message,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 4,
+        backgroundColor: textColor,
+        textColor: HexColor("#FFFFFF"));
+  }
 }

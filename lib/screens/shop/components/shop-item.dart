@@ -84,7 +84,7 @@ class ShopItem extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 10),
                   child: Text(
-                    "${shopItem[index].quantity} Products Reserved",
+                    "${shopItem[index].quantity} Products Available",
                     textAlign: TextAlign.start,
                     style: TextStyle(
                       fontSize: 12,

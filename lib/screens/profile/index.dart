@@ -64,7 +64,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         child: ClipOval(
                             child: Image.network(
                           mainBloc.user.profilePhotoUrl!="hope_clinic/hope_clinic.png"?
-                          mainBloc.user.profilePhotoUrl:Links.defaultProfileImg,
+                          Links.cloudinaryLink+mainBloc.user.profilePhotoUrl:Links.defaultProfileImg,
                           fit: BoxFit.cover,
                           width: 120.0,
                           height: 120.0,
@@ -341,6 +341,7 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Future<List<dynamic>> uploadtoServer(PickedFile image) async {
+    print("path: "+ image.path.toString());
     Dio dio = new Dio();
     String fileName = image.path
         .split('/')
@@ -357,15 +358,23 @@ class _ProfilePageState extends State<ProfilePage> {
               "user/upload/image",
           data: formData,
           options: Options(
+              followRedirects: false,
+              validateStatus: (status){
+                return status <  500;
+              },
               responseType: ResponseType.json,
               headers: {
-                "Authorization": "Bearer ${mainBloc.bearerToken}"
+                "Authorization": "Bearer ${mainBloc.bearerToken}",
+                "Accept": "application/json",
               }
           ));
        print(response.toString());
+       print(response.statusCode.toString());
        if(response.data[0]["status"] == true){
          setState(() {
-           mainBloc.user.profilePhotoUrl = response.data[1]['profile_photo_url'];
+           mainBloc.user.profilePhotoUrl = Links.cloudinaryLink+
+               response.data[1]['profile_photo_url'];
+
          });
          prefManager.setUserData(response.data[1]);
          mainBloc.user = User.fromJson(response.data[1]);
