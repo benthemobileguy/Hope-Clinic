@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hope_clinic/model/date-slots.dart';
 import 'package:mdi/mdi.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:hope_clinic/bloc/index.dart';
 import 'package:hope_clinic/model/plans.dart';
 import 'package:flutter_calendar_carousel/classes/event.dart';
@@ -23,6 +25,7 @@ class BookAppointment extends StatefulWidget {
 class _BookAppointmentState extends State<BookAppointment> {
   Timeslots selectedTimeslots;
   bool isDataLoaded = false;
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   int slotIndex = -1;
   StateSetter timeStateSetter;
   String serverDateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z";
@@ -163,11 +166,13 @@ class _BookAppointmentState extends State<BookAppointment> {
     return WillPopScope(
       onWillPop: onWillPop,
       child: Scaffold(
+        key: _scaffoldKey,
         appBar: AppBar(
           backgroundColor: Colors.white,
           title: Text(
             pagePos==0?"Book An Appointment":
-            pagePos==1?"Pick Your Preferred Day(s)"
+            pagePos==1?"Payment Confirmation":
+                pagePos==2?"Pick Your Preferred Day(s)"
                 :"Scheduled Time Slots",
             textAlign: TextAlign.start,
             style: TextStyle(
@@ -384,6 +389,246 @@ class _BookAppointmentState extends State<BookAppointment> {
            Padding(
              padding: const EdgeInsets
                  .symmetric(horizontal: 14),
+             child: Column(
+               crossAxisAlignment: CrossAxisAlignment.start,
+               children: [
+                 SizedBox(
+                   height: 30,
+                 ),
+                 Text(
+                   "To continue scheduling. please make payment to the bank account and get confirmation",
+                   textAlign: TextAlign.start,
+                   style: TextStyle(
+                     fontSize: 16,
+                     fontFamily: 'Lato',
+                     color: greyColor2,
+                     fontWeight: FontWeight.w400,
+                   ),
+                 ),
+                 SizedBox(
+                   height: 20,
+                 ),
+                 Text(
+                   "Account Name",
+                   textAlign: TextAlign.center,
+                   style: TextStyle(
+                     fontSize: 12,
+                     fontFamily: 'Lato',
+                     color: greyColor2,
+                     fontWeight: FontWeight.w700,
+                   ),
+                 ),
+                 SizedBox(
+                   height: 10,
+                 ),
+                 Text(
+                   "HOPE Chiropractic Clinic",
+                   textAlign: TextAlign.center,
+                   style: TextStyle(
+                     fontSize: 16,
+                     fontFamily: 'Lato',
+                     color: greyColor2,
+                     fontWeight: FontWeight.w400,
+                   ),
+                 ),
+                 SizedBox(
+                   height: 20,
+                 ),
+                 Text(
+                   "1. Access Bank",
+                   textAlign: TextAlign.center,
+                   style: TextStyle(
+                     fontSize: 20,
+                     fontFamily: 'Lato',
+                     color: normalTexth1,
+                     fontWeight: FontWeight.w700,
+                   ),
+                 ),
+                 SizedBox(
+                   height: 10,
+                 ),
+                 Container(
+                   width: double.infinity,
+                   padding: EdgeInsets.all(12),
+                   decoration: BoxDecoration(
+                       color: containerBgColor,
+                       borderRadius: BorderRadius.all(Radius.circular(14))
+
+                   ),
+                   child: Text(
+                     "0796900357",
+                     textAlign: TextAlign.start,
+                     style: TextStyle(
+                       fontSize: 16,
+                       fontFamily: 'Lato',
+                       color: normalTextBold,
+                       fontWeight: FontWeight.w600,
+                     ),
+                   ),
+                 ),
+                 SizedBox(
+                   height: 10,
+                 ),
+                 GestureDetector(
+                   onTap: (){
+                     copyToClipboard("0796900357");
+                   },
+                   child: Container(
+                     padding: EdgeInsets.all(12),
+                     decoration: BoxDecoration(
+                         color: lightGreen,
+                         borderRadius: BorderRadius.all(Radius.circular(14))
+
+                     ),
+                     child: Row(
+                       mainAxisSize: MainAxisSize.min,
+                       children: [
+                         Text(
+                           "Copy acc. number",
+                           textAlign: TextAlign.start,
+                           style: TextStyle(
+                             fontSize: 12,
+                             fontFamily: 'Lato',
+                             color: HexColor("#505050"),
+                             fontWeight: FontWeight.w600,
+                           ),
+                         ),
+                         SizedBox(
+                           width: 16,
+                         ),
+                         new Icon(Icons.copy,size: 24,)
+                       ],
+                     ),
+                   ),
+                 ),
+                 SizedBox(
+                   height:10,
+                 ),
+                 Text(
+                   "Or",
+                   textAlign: TextAlign.start,
+                   style: TextStyle(
+                     fontSize: 16,
+                     fontFamily: 'Lato',
+                     color: HexColor("#787878"),
+                     fontWeight: FontWeight.w600,
+                   ),
+                 ),
+                 SizedBox(
+                   height:10,
+                 ),
+                 Text(
+                   "2. Access (Diamond) Bank",
+                   textAlign: TextAlign.center,
+                   style: TextStyle(
+                     fontSize: 20,
+                     fontFamily: 'Lato',
+                     color: normalTexth1,
+                     fontWeight: FontWeight.w700,
+                   ),
+                 ),
+                 SizedBox(
+                   height: 10,
+                 ),
+                 Container(
+                   width: double.infinity,
+                   padding: EdgeInsets.all(12),
+                   decoration: BoxDecoration(
+                       color: containerBgColor,
+                       borderRadius: BorderRadius.all(Radius.circular(14))
+
+                   ),
+                   child: Text(
+                     "0099797462",
+                     textAlign: TextAlign.start,
+                     style: TextStyle(
+                       fontSize: 16,
+                       fontFamily: 'Lato',
+                       color: normalTextBold,
+                       fontWeight: FontWeight.w600,
+                     ),
+                   ),
+                 ),
+                 SizedBox(
+                   height: 10,
+                 ),
+                 GestureDetector(
+                   onTap: (){
+                     copyToClipboard("0099797462");
+                   },
+                   child: Container(
+                     padding: EdgeInsets.all(12),
+                     decoration: BoxDecoration(
+                         color: lightGreen,
+                         borderRadius: BorderRadius.all(Radius.circular(14))
+
+                     ),
+                     child: Row(
+                       mainAxisSize: MainAxisSize.min,
+                       children: [
+                         Text(
+                           "Copy acc. number",
+                           textAlign: TextAlign.start,
+                           style: TextStyle(
+                             fontSize: 12,
+                             fontFamily: 'Lato',
+                             color: HexColor("#505050"),
+                             fontWeight: FontWeight.w600,
+                           ),
+                         ),
+                         SizedBox(
+                           width: 16,
+                         ),
+                         new Icon(Icons.copy,size: 24,)
+                       ],
+                     ),
+                   ),
+                 ),
+                 SizedBox(
+                   height:40,
+                 ),
+                 Text(
+                   "Kindly click here only if you have completed payment as required.",
+                   textAlign: TextAlign.start,
+                   style: TextStyle(
+                     fontSize: 14,
+                     height: 1.5,
+                     fontFamily: 'Lato',
+                     color: HexColor("#505050"),
+                     fontWeight: FontWeight.w400,
+                   ),
+                 ),
+                 SizedBox(
+                   height:20,
+                 ),
+                 Container(
+                   height: 60,
+                   child: MainButton(
+                     color: primaryColor,
+                     child: Text(
+                       "Payment Completed",
+                       textAlign: TextAlign.start,
+                       style: TextStyle(
+                         fontSize: 14,
+                         fontFamily: 'Lato',
+                         color: Colors.white,
+                         fontWeight: FontWeight.w700,
+                       ),
+                     ),
+                     onPressed:() {
+                       pageController.nextPage(
+                           duration: Duration(milliseconds: 300),
+                           curve: Curves.linear);
+                     },
+                   ),
+                 ),
+               ],
+             ),
+           ),
+           //Page Three
+           Padding(
+             padding: const EdgeInsets
+                 .symmetric(horizontal: 14),
              child: ListView(
                children: [
                  SizedBox(
@@ -494,7 +739,7 @@ class _BookAppointmentState extends State<BookAppointment> {
                ],
              ),
            ),
-           //Page Three
+           //Page Four
            Padding(
              padding: const EdgeInsets
                  .symmetric(horizontal: 14),
@@ -954,5 +1199,220 @@ class _BookAppointmentState extends State<BookAppointment> {
         });
   }
 
-  void showFullBottomSheet() {}
+  void showFullBottomSheet() {
+    showBarModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return Container(
+          padding: EdgeInsets.all(16),
+        child:  Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: 30,
+            ),
+            Text(
+              "To continue scheduling. please make payment to the bank account and get confirmation",
+              textAlign: TextAlign.start,
+              style: TextStyle(
+                fontSize: 16,
+                fontFamily: 'Lato',
+                color: greyColor2,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+              "Account Name",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 12,
+                fontFamily: 'Lato',
+                color: greyColor2,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              "HOPE Chiropractic Clinic",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 16,
+                fontFamily: 'Lato',
+                color: greyColor2,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+              "1. Access Bank",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 20,
+                fontFamily: 'Lato',
+                color: normalTexth1,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Container(
+              width: double.infinity,
+              padding: EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: containerBgColor,
+                borderRadius: BorderRadius.all(Radius.circular(14))
+                
+              ),
+              child: Text(
+                "0796900357",
+                textAlign: TextAlign.start,
+                style: TextStyle(
+                  fontSize: 16,
+                  fontFamily: 'Lato',
+                  color: normalTextBold,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            GestureDetector(
+              onTap: (){
+                copyToClipboard("0796900357");
+              },
+              child: Container(
+                padding: EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                    color: lightGreen,
+                    borderRadius: BorderRadius.all(Radius.circular(14))
+
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      "Copy acc. number",
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontFamily: 'Lato',
+                        color: HexColor("#505050"),
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 16,
+                    ),
+                    new Icon(Icons.copy,size: 24,)
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(
+              height:10,
+            ),
+            Text(
+              "Or",
+              textAlign: TextAlign.start,
+              style: TextStyle(
+                fontSize: 16,
+                fontFamily: 'Lato',
+                color: HexColor("#787878"),
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            SizedBox(
+              height:10,
+            ),
+            Text(
+              "2. Access (Diamond) Bank",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 20,
+                fontFamily: 'Lato',
+                color: normalTexth1,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Container(
+              width: double.infinity,
+              padding: EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                  color: containerBgColor,
+                  borderRadius: BorderRadius.all(Radius.circular(14))
+
+              ),
+              child: Text(
+                "0099797462",
+                textAlign: TextAlign.start,
+                style: TextStyle(
+                  fontSize: 16,
+                  fontFamily: 'Lato',
+                  color: normalTextBold,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            GestureDetector(
+              onTap: (){
+                copyToClipboard("0099797462");
+              },
+              child: Container(
+                padding: EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                    color: lightGreen,
+                    borderRadius: BorderRadius.all(Radius.circular(14))
+
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      "Copy acc. number",
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontFamily: 'Lato',
+                        color: HexColor("#505050"),
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 16,
+                    ),
+                    new Icon(Icons.copy,size: 24,)
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(
+              height:10,
+            ),
+          ],
+        ),
+        );
+      },
+    );
+  }
+
+  void copyToClipboard(String text) {
+    Clipboard.setData(new ClipboardData(text: text)).then((_){
+    AlertManager.showToast("Account number copied to clipboard");
+    });
+  }
 }

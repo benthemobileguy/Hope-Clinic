@@ -161,7 +161,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               width: 10,
                             ),
                             Text(
-                              "Doctors Report",
+                              "View Reports",
                               textAlign: TextAlign.start,
                               style: TextStyle(
                                 fontSize: 14,

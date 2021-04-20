@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hope_clinic/bloc/index.dart';
 import 'package:hope_clinic/theme/style.dart';
 import 'package:bubble/bubble.dart';
+import 'package:hope_clinic/utils/color.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 class MessageScreen extends StatefulWidget {
   @override
   _MessageScreenState createState() => _MessageScreenState();
@@ -8,6 +12,13 @@ class MessageScreen extends StatefulWidget {
 
 class _MessageScreenState extends State<MessageScreen> {
   TextEditingController messageController = TextEditingController();
+  MainBloc mainBloc;
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+    mainBloc = Provider.of<MainBloc>(context);
+  }
   @override
   Widget build(BuildContext context) {
     double pixelRatio = MediaQuery.of(context).devicePixelRatio;
@@ -15,7 +26,7 @@ class _MessageScreenState extends State<MessageScreen> {
 
     BubbleStyle styleSomebody = BubbleStyle(
       nip: BubbleNip.leftTop,
-      color: Colors.white,
+      color: lightGreen,
       elevation: 1 * px,
       margin: BubbleEdges.only(top: 8.0, right: 50.0),
       alignment: Alignment.topLeft,
@@ -55,75 +66,114 @@ class _MessageScreenState extends State<MessageScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         child: Column(
           children: [
-            Bubble(
-              alignment: Alignment.center,
-              color: Color.fromARGB(255, 212, 234, 244),
-              elevation: 1 * px,
-              margin: BubbleEdges.only(top: 8.0),
-              child: Text('TODAY', style: TextStyle(fontSize: 10)),
+            SizedBox(
+              height: 20,
             ),
-            Bubble(
-              style: styleSomebody,
-              child: Text('Hi Doctor, i just scheduled the appointment as you instructed',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontFamily: 'Lato',
-                  color: chatTextColor,
-                  fontWeight: FontWeight.normal,
-                ),),
+            Row(
+              children: [
+                SvgPicture.asset('images/robot.svg'),
+                SizedBox(
+                  width: 10,
+                ),
+                Bubble(
+                  style: styleSomebody,
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    child: Text('Hi, ${mainBloc.user.firstname}, '
+                        'how can I help you?\nYou can select any options below\nbelow if it'
+                        ' applies to you',
+                      style: TextStyle(
+                        fontSize: 14,
+                        height: 1.5,
+                        fontFamily: 'Lato',
+                        color: chatTextColor,
+                        fontWeight: FontWeight.normal,
+                      ),),
+                  ),
+                ),
+
+              ],
             ),
-            Bubble(
-              style: styleMe,
-              child: Text('Good to know! See you morning time',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontFamily: 'Lato',
-                  color: chatTextColor,
-                  fontWeight: FontWeight.normal,
-                ),),
+            SizedBox(
+              height: 10,
             ),
-            Bubble(
-              style: styleSomebody,
-              child: Text('Any requirement needed while coming?',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontFamily: 'Lato',
-                  color: chatTextColor,
-                  fontWeight: FontWeight.normal,
-                ),),
+            Row(
+              children: [
+                Container(
+                  padding: EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: containerBgColor,
+                    borderRadius: BorderRadius.all(Radius.circular(12))
+                  ),
+                  child: Text(
+                    "Pain In The Body",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontFamily: 'Lato',
+                      color: HexColor('#666666'),
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.all(20),
+                  margin: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      color: containerBgColor,
+                      borderRadius: BorderRadius.all(Radius.circular(12))
+                  ),
+                  child: Text(
+                    "Missed Appointment",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontFamily: 'Lato',
+                      color: HexColor('#666666'),
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+              ],
             ),
-            Bubble(
-              style: styleSomebody,
-              margin: BubbleEdges.only(top: 2.0),
-              nip: BubbleNip.no,
-              child: Text('Not at all. Just come with your card',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontFamily: 'Lato',
-                  color: chatTextColor,
-                  fontWeight: FontWeight.normal,
-                ),),
-            ),
-            Bubble(
-              style: styleMe,
-              child: Text('Okay, Thanks',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontFamily: 'Lato',
-                  color: chatTextColor,
-                  fontWeight: FontWeight.normal,
-                ),),
-            ),
-            Bubble(
-              style: styleMe,
-              nip: BubbleNip.no,
-              margin: BubbleEdges.only(top: 2.0),
-              child: Text('See you soon!', style: TextStyle(
-                fontSize: 14,
-                fontFamily: 'Lato',
-                color: chatTextColor,
-                fontWeight: FontWeight.normal,
-              ),),
+            Row(
+              children: [
+                Container(
+                  padding: EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                      color: containerBgColor,
+                      borderRadius: BorderRadius.all(Radius.circular(12))
+                  ),
+                  child: Text(
+                    "Leave A Review",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontFamily: 'Lato',
+                      color: HexColor('#666666'),
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.all(20),
+                  margin: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      color: containerBgColor,
+                      borderRadius: BorderRadius.all(Radius.circular(12))
+                  ),
+                  child: Text(
+                    "Complaint",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontFamily: 'Lato',
+                      color: HexColor('#666666'),
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+              ],
             ),
             Spacer(),
             Row(
