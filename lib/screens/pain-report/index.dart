@@ -175,6 +175,11 @@ class _PainReportPageState extends State<PainReportPage> {
       painRateIndex=-1;
     });
     showModalBottomSheet(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(topLeft:
+          Radius.circular(40),
+              topRight: Radius.circular(40)),
+        ),
         isScrollControlled: true,
         context: context,
         builder: (context) {

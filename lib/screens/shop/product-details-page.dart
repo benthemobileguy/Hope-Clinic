@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hope_clinic/model/market-shop.dart';
 import 'package:hope_clinic/screens/components/main-button.dart';
+import 'package:hope_clinic/screens/shop/reserved-products-page.dart';
 import 'package:hope_clinic/services/shop/index.dart';
 import 'package:hope_clinic/theme/style.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -214,6 +215,11 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
       setState(() {
         isLoading = false;
       });
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context)
+              => ReservedProductsPage()));
     } catch (e) {
       print(e.toString());
       setState(() {
@@ -224,6 +230,11 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
 
   void addQuantityModal() async {
     showModalBottomSheet(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(topLeft:
+          Radius.circular(40),
+              topRight: Radius.circular(40)),
+        ),
         context: context,
         isScrollControlled: true,
         builder: (context) {

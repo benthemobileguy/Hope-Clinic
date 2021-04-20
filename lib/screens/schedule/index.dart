@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hope_clinic/screens/book-appointment/index.dart';
+import 'package:hope_clinic/screens/pain-report/index.dart';
 import 'package:provider/provider.dart';
 import 'package:hope_clinic/bloc/index.dart';
 import 'package:hope_clinic/theme/style.dart';
@@ -295,7 +296,7 @@ class _SchedulePageState extends State<SchedulePage> {
                               context,
                               MaterialPageRoute(
                                   builder: (context)
-                                  => BookAppointment()));
+                                  => PainReportPage()));
                         },
                         child: Container(
                           height: 130,

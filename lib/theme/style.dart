@@ -4,6 +4,7 @@ final Color primaryColor = HexColor("#077965");
 final Color primaryColorDark = HexColor("#000000");
 final Color customGreen = HexColor("#0AC690");
 final Color chatTextColor = HexColor("#002D25");
+final Color customTextColor = HexColor("#969696");
 final Color customYellow = HexColor("#EAC43C");
 final Color accentColor = HexColor("#D7F4EF");
 final Color containerBgColor = HexColor("#EEEEEE");

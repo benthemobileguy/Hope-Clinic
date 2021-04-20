@@ -33,9 +33,13 @@ dev_dependencies:
   http: ^0.12.1
   geoflutterfire: ^2.2.1
   firebase_core: ^0.5.0
+  progress_dialog: ^1.2.1
+  image_picker: ^0.6.4
+  circular_profile_avatar: ^1.0.8
   flutter_rating_bar: ^3.0.1+1
   cached_network_image: ^2.2.0+1
   provider: ^3.2.0
+  dio: ^3.0.10
   bubble: ^1.1.9+1
   emojis: ^0.9.3
   video_player: ^1.0.1

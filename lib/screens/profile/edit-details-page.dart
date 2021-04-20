@@ -236,7 +236,6 @@ class _EditDetailsPageState extends State<EditDetailsPage> {
 
   void editProfile() async{
     if(_formKey.currentState.validate()){
-      print("hvjvvjhjvj");
      setState(() {
        isLoading = true;
      });

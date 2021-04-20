@@ -110,8 +110,7 @@ class _ShopPageState extends State<ShopPage> {
                   size: 100.0,
                 ),
               ),
-            ):
-            Expanded(child:
+            ): Expanded(child:
             ShopItem(shopItem:
             shopList,)),
           ],

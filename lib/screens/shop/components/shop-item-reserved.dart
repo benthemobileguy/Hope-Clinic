@@ -172,7 +172,6 @@ class _ShopItemReservedState extends State<ShopItemReserved> {
           mainBloc.reservedItem[index]
               .id.toString());
       mainBloc.removeReservedItem(index);
-      Navigator.pop(context);
       setState(() {
         mainBloc.reservedItem[index].isLoading = false;
       });

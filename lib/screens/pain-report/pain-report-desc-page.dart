@@ -18,18 +18,19 @@ class _PainReportDescPageState extends State<PainReportDescPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _controller.addListener((){
-     if(_controller.text!=""){
-       setState(() {
-       isDescEntered = true;
-       });
-     }else{
-       setState(() {
-       isDescEntered = false;
-       });
-     }
+    _controller.addListener(() {
+      if (_controller.text != "") {
+        setState(() {
+          isDescEntered = true;
+        });
+      } else {
+        setState(() {
+          isDescEntered = false;
+        });
+      }
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,14 +86,14 @@ class _PainReportDescPageState extends State<PainReportDescPage> {
                 cursorColor: textColor,
                 maxLines: 10,
                 decoration: InputDecoration(
-                  fillColor: containerBgColor,
-                  filled: true,
-                  hintStyle: TextStyle(
-                    fontSize: 15,
-                    fontFamily: 'Lato',
-                    color: textColor,
-                    fontWeight: FontWeight.w400,
-                  ),
+                    fillColor: containerBgColor,
+                    filled: true,
+                    hintStyle: TextStyle(
+                      fontSize: 15,
+                      fontFamily: 'Lato',
+                      color: textColor,
+                      fontWeight: FontWeight.w400,
+                    ),
                     border: OutlineInputBorder(
                         borderSide: BorderSide(color: containerBgColor),
                         borderRadius: BorderRadius.circular(12.0)),
@@ -107,7 +108,7 @@ class _PainReportDescPageState extends State<PainReportDescPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                   !isSendingReport ?Text(
+                    Text(
                       "Send Report",
                       textAlign: TextAlign.start,
                       style: TextStyle(
@@ -116,22 +117,13 @@ class _PainReportDescPageState extends State<PainReportDescPage> {
                         color: Colors.white,
                         fontWeight: FontWeight.w700,
                       ),
-                    ):SizedBox(
-                height: 20,
-                width: 20,
-                child: CircularProgressIndicator(
-                  strokeWidth: 2,
-                  valueColor:
-                  new AlwaysStoppedAnimation<Color>(
-                      Colors.white),
-                ),
-              ),
+                    )
                   ],
                 ),
-                onPressed:isDescEntered
+                onPressed: isDescEntered
                     ? () {
-                  addReport();
-                }
+                        addReport();
+                      }
                     : null,
               ),
             ),
@@ -145,118 +137,119 @@ class _PainReportDescPageState extends State<PainReportDescPage> {
   }
 
   void addReport() {
-setState(() {
-  isSendingReport = true;
-  isDescEntered = false;
-});
-Future.delayed(const Duration(seconds: 5), () {
-showSuccessModal();
-setState(() {
-  isSendingReport = false;
-  isDescEntered = true;
-});
-});
+// setState(() {
+//   isSendingReport = true;
+//   isDescEntered = false;
+// });
+    showSuccessModal();
   }
 
   void showSuccessModal() {
     showModalBottomSheet(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(topLeft:
+          Radius.circular(40),
+              topRight: Radius.circular(40)),
+        ),
+
         isScrollControlled: true,
         context: context,
         builder: (context) {
-          return StatefulBuilder(
-              builder: (BuildContext context, StateSetter setState /*You can rename this!*/) {
-                return Container(
-                  padding: EdgeInsets.all(14),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
+          return StatefulBuilder(builder: (BuildContext context,
+              StateSetter setState /*You can rename this!*/) {
+            return Container(
+
+              padding: EdgeInsets.all(14),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Row(
                     children: [
-                      Row(
+                      Text(
+                        "Appointment",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontFamily: 'Lato',
+                          color: HexColor("#505050"),
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      Spacer(),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Container(
+                          child: new Icon(
+                            Mdi.close,
+                            color: HexColor("#505050"),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  Text(
+                    "Pain Reported",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontFamily: 'Lato',
+                      color: normalTexth1,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    "Great, kindly proceed to schedule your appointment",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      fontSize: 12.5,
+                      fontFamily: 'Lato',
+                      color: HexColor("#999999"),
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  Container(
+                    height: 60,
+                    child: MainButton(
+                      color: primaryColor,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "Appointment",
-                            textAlign: TextAlign.center,
+                            "Book An Appointment",
+                            textAlign: TextAlign.start,
                             style: TextStyle(
-                              fontSize: 16,
+                              fontSize: 14,
                               fontFamily: 'Lato',
-                              color: HexColor("#505050"),
+                              color: Colors.white,
                               fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                          Spacer(),
-                          GestureDetector(
-                            onTap: (){
-                              Navigator.pop(context);
-                            },
-                            child: Container(
-                              child: new Icon(
-                                Mdi.close,
-                                color: HexColor("#505050"),
-                              ),
                             ),
                           )
                         ],
                       ),
-                      SizedBox(
-                        height: 16,
-                      ),
-                      Text(
-                        "Pain Reported",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 18.5,
-                          fontFamily: 'Lato',
-                          color: normalTexth1,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        "Great, your schedule calendar has also been sent to your mail. We will contact you shortly",
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                          fontSize: 12.5,
-                          fontFamily: 'Lato',
-                          color: HexColor("#999999"),
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-
-                      SizedBox(
-                        height: 16,
-                      ),
-                      Container(
-                        height: 60,
-                        child: MainButton(
-                          color: primaryColor,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                             Text(
-                                "Book An Appointment",
-                                textAlign: TextAlign.start,
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontFamily: 'Lato',
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              )
-                            ],
-                          ),
-                          onPressed: (){
-                            Navigator.pushReplacement(context,
-                                MaterialPageRoute(builder: (context)
-                                => BookAppointment()));
-                          },
-                        ),
-                      ),
-                    ],
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => BookAppointment()));
+                      },
+                    ),
                   ),
-                );
-              });
+                ],
+              ),
+            );
+          });
         });
   }
 }

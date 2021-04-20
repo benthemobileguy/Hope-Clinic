@@ -60,7 +60,9 @@ class _BaseState extends State<Base> {
                 padding: const EdgeInsets.all(5.0),
                 child:ImageIcon(
                   AssetImage(
-                    "images/icons/home.png",
+                    _currentIndex!=0?
+                    "images/icons/home.png"
+                        :"images/icons/home_filled.png",
                   ),
                   size: 25,
                 )

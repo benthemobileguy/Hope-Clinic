@@ -653,7 +653,9 @@ class _BookAppointmentState extends State<BookAppointment> {
     //     curve: Curves.linear);
     showModalBottomSheet(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30)),
+          borderRadius: BorderRadius.only(topLeft:
+          Radius.circular(40),
+              topRight: Radius.circular(40)),
         ),
         isScrollControlled: true,
         context: context,
@@ -859,6 +861,11 @@ class _BookAppointmentState extends State<BookAppointment> {
 
   void showConfirmBottomSheet() {
     showModalBottomSheet(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(topLeft:
+          Radius.circular(40),
+              topRight: Radius.circular(40)),
+        ),
       isScrollControlled: true,
         context: context,
         builder: (context) {
