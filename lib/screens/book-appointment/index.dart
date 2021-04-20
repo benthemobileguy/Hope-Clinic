@@ -207,14 +207,26 @@ class _BookAppointmentState extends State<BookAppointment> {
                    height: 30,
                  ),
                  Center(
-                   child: Text(
-                     "See Hospital Account Details",
-                     textAlign: TextAlign.start,
-                     style: TextStyle(
-                       fontSize: 14,
-                       fontFamily: 'Lato',
-                       color: textColor,
-                       fontWeight: FontWeight.w700,
+                   child: GestureDetector(
+                     onTap: (){
+                       showFullBottomSheet();
+                     },
+                     child: Container(
+                       padding: EdgeInsets.all(6),
+                       decoration: BoxDecoration(
+                         borderRadius:BorderRadius.all(Radius.circular(8)),
+                         color: primaryColor
+                       ),
+                       child: Text(
+                         "See Hospital Account Details",
+                         textAlign: TextAlign.start,
+                         style: TextStyle(
+                           fontSize: 14,
+                           fontFamily: 'Lato',
+                           color: Colors.white,
+                           fontWeight: FontWeight.w700,
+                         ),
+                       ),
                      ),
                    ),
                  ),
@@ -941,4 +953,6 @@ class _BookAppointmentState extends State<BookAppointment> {
               });
         });
   }
+
+  void showFullBottomSheet() {}
 }
