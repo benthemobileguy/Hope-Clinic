@@ -218,6 +218,9 @@ class _BookAppointmentState extends State<BookAppointment> {
                      ),
                    ),
                  ),
+                 SizedBox(
+                   height: 30,
+                 ),
                  Center(
                    child: Text(
                      "AVAILABLE PLANS FOR YOU",
