@@ -23,7 +23,7 @@ class _FullImageScreenState extends State<FullImageScreen> {
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
     if(!isInitialised){
-      mainBloc = Provider.of<MainBloc>(context);
+      mainBloc = Provider.of<MainBloc>(context, listen:false);
       if(!mainBloc.healthTips[widget.healthIndex].files[widget.index].contains(".jpg")){
         _controller = VideoPlayerController.network(
             mainBloc.healthTips[widget.healthIndex].files[widget.index]);

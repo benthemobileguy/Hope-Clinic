@@ -32,7 +32,7 @@ class _ProfilePageState extends State<ProfilePage> {
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
-    mainBloc = Provider.of<MainBloc>(context);
+    mainBloc = Provider.of<MainBloc>(context, listen:false);
     print(mainBloc.user.profilePhotoUrl);
   }
   @override

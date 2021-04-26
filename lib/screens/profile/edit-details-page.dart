@@ -36,7 +36,7 @@ class _EditDetailsPageState extends State<EditDetailsPage> {
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
-     mainBloc = Provider.of<MainBloc>(context);
+     mainBloc = Provider.of<MainBloc>(context, listen:false);
     _emailController.text = mainBloc.user.email;
     _phoneNoController.text = mainBloc.user.phoneNumber;
     _dobController.text = mainBloc.user.dob;

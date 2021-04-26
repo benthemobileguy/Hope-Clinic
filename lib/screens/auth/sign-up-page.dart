@@ -50,7 +50,7 @@ class _RegisterPageState extends State<SignUpPage> {
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
-    mainBloc = Provider.of<MainBloc>(context);
+    mainBloc = Provider.of<MainBloc>(context, listen:false);
   }
   @override
   void initState() {

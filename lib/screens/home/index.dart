@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
-    bloc = Provider.of<MainBloc>(context);
+    bloc = Provider.of<MainBloc>(context, listen:false);
   }
 
   @override

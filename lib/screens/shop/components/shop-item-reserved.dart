@@ -22,7 +22,7 @@ class _ShopItemReservedState extends State<ShopItemReserved> {
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
-    mainBloc = Provider.of<MainBloc>(context);
+    mainBloc = Provider.of<MainBloc>(context, listen:false);
     marketService = new MarketService(context: context);
   }
   @override

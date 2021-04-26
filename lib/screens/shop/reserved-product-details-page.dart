@@ -23,7 +23,7 @@ class _ReservedProductsDetailsPageState extends State<ReservedProductsDetailsPag
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
-    mainBloc = Provider.of<MainBloc>(context);
+    mainBloc = Provider.of<MainBloc>(context, listen:false);
     marketService = new MarketService(context: context);
   }
   @override

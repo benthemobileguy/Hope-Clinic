@@ -33,7 +33,7 @@ class ApiException implements Exception {
 
   void logOut() {
     prefManager.clearSharedPreferences().then((value){
-      Provider.of<MainBloc>(context).bearerToken= null;
+      Provider.of<MainBloc>(context, listen:false).bearerToken= null;
       Navigator.pushReplacement(context,
           MaterialPageRoute(builder: (context)
           => SignInPage()));

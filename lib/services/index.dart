@@ -30,7 +30,7 @@ class ApiService {
   Future<dynamic> get(String url) async {
     print('Api service is called to make get request');
 
-    MainBloc bloc = Provider.of<MainBloc>(context);
+    MainBloc bloc = Provider.of<MainBloc>(context, listen:false);
     Map<String, String> _headers = await headers(bloc: bloc);
     http.Response response =
     await http.get(Uri.parse(Constants().API_BASE_URL + url), headers: _headers);
@@ -75,7 +75,7 @@ class ApiService {
   Future<Map<String, dynamic>> delete(String url,
       {redirectOn401: true}) async {
     print('Api service is called to make delete request');
-    MainBloc bloc = Provider.of<MainBloc>(context);
+    MainBloc bloc = Provider.of<MainBloc>(context, listen:false);
     Map<String, String> _headers = await headers(bloc: bloc);
 
     http.Response response = await http.delete(
@@ -143,7 +143,7 @@ class ApiService {
   Future<Map<String, dynamic>> post(String url, dynamic body,
       {redirectOn401: true}) async {
     print('Api service is called to make post request');
-    MainBloc bloc = Provider.of<MainBloc>(context);
+    MainBloc bloc = Provider.of<MainBloc>(context, listen:false);
     Map<String, String> _headers = await headers(bloc: bloc);
 
     http.Response response = await http.post(
@@ -204,7 +204,7 @@ class ApiService {
   Future<Map<String, dynamic>> put(String url, dynamic body,
       {redirectOn401: true}) async {
     print('Api service is called to make put request');
-    MainBloc bloc = Provider.of<MainBloc>(context);
+    MainBloc bloc = Provider.of<MainBloc>(context, listen:false);
     Map<String, String> _headers = await headers(bloc: bloc);
 
     http.Response response = await http.put(

@@ -14,7 +14,7 @@ class AuthenticationService extends ApiService {
   Future<Map<String, dynamic>> login
       (String email, String password) async {
   PrefManager prefManager = PrefManager();
-    bloc = Provider.of<MainBloc>(context);
+    bloc = Provider.of<MainBloc>(context, listen:false);
     Map<String, String> data = new Map();
     data = {
       "email": email,
@@ -48,7 +48,7 @@ class AuthenticationService extends ApiService {
     return _response;
   }
   Future<Map<String, dynamic>> verifyOTP(Map<String, dynamic> data) async {
-    bloc = Provider.of<MainBloc>(context);
+    bloc = Provider.of<MainBloc>(context, listen:false);
     Map<String, dynamic> _response = await post('verify-account', data);
     return _response;
   }

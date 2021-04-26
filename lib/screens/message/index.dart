@@ -14,12 +14,13 @@ class MessageScreen extends StatefulWidget {
 class _MessageScreenState extends State<MessageScreen> {
   TextEditingController messageController = TextEditingController();
   MainBloc mainBloc;
+  String messageType = "";
   int msgTypeIndex = -1;
   @override
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
-    mainBloc = Provider.of<MainBloc>(context);
+    mainBloc = Provider.of<MainBloc>(context, listen: false);
   }
   @override
   Widget build(BuildContext context) {

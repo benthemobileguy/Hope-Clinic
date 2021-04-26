@@ -54,7 +54,7 @@ class _BookAppointmentState extends State<BookAppointment> {
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
-    bloc = Provider.of<MainBloc>(context);
+    bloc = Provider.of<MainBloc>(context, listen:false);
   }
   EventList<Event> _markedDateMap = new EventList<Event>();
   @override
