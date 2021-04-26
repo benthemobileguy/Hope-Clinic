@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hope_clinic/bloc/index.dart';
+import 'package:hope_clinic/services/appointment/index.dart';
+import 'package:hope_clinic/services/authentication-service.dart';
 import 'package:hope_clinic/theme/style.dart';
 import 'package:bubble/bubble.dart';
 import 'package:hope_clinic/utils/alert-manager.dart';
@@ -16,6 +18,13 @@ class _MessageScreenState extends State<MessageScreen> {
   MainBloc mainBloc;
   String messageType = "";
   int msgTypeIndex = -1;
+  AppointmentService appointmentService;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    appointmentService = new AppointmentService(context: context);
+  }
   @override
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
@@ -107,6 +116,7 @@ class _MessageScreenState extends State<MessageScreen> {
                     onTap: (){
                       setState(() {
                         msgTypeIndex = 1;
+                        messageType = "pain-in-the-body";
                       });
                     },
                     child: Container(
@@ -135,6 +145,7 @@ class _MessageScreenState extends State<MessageScreen> {
                     onTap: (){
                       setState(() {
                         msgTypeIndex = 2;
+                        messageType = "missed-appointment";
                       });
                     },
                     child: Container(
@@ -166,6 +177,7 @@ class _MessageScreenState extends State<MessageScreen> {
                     onTap: (){
                       setState(() {
                         msgTypeIndex = 3;
+                        messageType = "leave-a-review";
                       });
                     },
                     child: Container(
@@ -192,6 +204,7 @@ class _MessageScreenState extends State<MessageScreen> {
                     onTap: (){
                       setState(() {
                         msgTypeIndex = 4;
+                        messageType = "complaint";
                       });
                     },
                     child: Container(
@@ -258,7 +271,8 @@ class _MessageScreenState extends State<MessageScreen> {
                             msgTypeIndex = -1;
                             messageController.clear();
                           });
-                          AlertManager.showShortToast("Your message has been sent!");
+                          sendMessage();
+
                         }
 
                       } else{
@@ -279,5 +293,11 @@ class _MessageScreenState extends State<MessageScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> sendMessage() async {
+    Map<String,dynamic> data = new Map();
+    Map<String,dynamic> _res = await appointmentService.sendMessage(data);
+    AlertManager.showShortToast("Your message has been sent!");
   }
 }

@@ -87,4 +87,9 @@ class  AppointmentService extends ApiService {
     bloc.dateSlots = _dateSlots;
     return _dateSlots;
   }
+  Future<Map<String, dynamic>> sendMessage(Map<String, dynamic> data) async {
+    Map<String, dynamic> _response = await post('message/create', data);
+
+    return _response;
+  }
 }
