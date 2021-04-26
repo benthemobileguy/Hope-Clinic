@@ -5,13 +5,13 @@ import 'package:hope_clinic/bloc/index.dart';
 import 'package:hope_clinic/screens/splash-screen.dart';
 import 'package:hope_clinic/theme/style.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   // Register all the models and services before the app starts
 
-  await DotEnv().load('.env');
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((_) {
     runZoned<Future<Null>>(() async {

@@ -285,7 +285,7 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   void getImageFromCamera() async{
-    var selectedImg = await picker.getImage(source: ImageSource.camera);
+    var selectedImg = await picker.getImage(source: ImageSource.camera, maxHeight: 480, maxWidth: 640);
     if (selectedImg != null) {
       pr = new ProgressDialog(context, type: ProgressDialogType.Normal);
       //Dialog Style
@@ -313,7 +313,7 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   void getImageFromGallery() async{
-    var selectedImg = await picker.getImage(source: ImageSource.gallery);
+    var selectedImg = await picker.getImage(source: ImageSource.gallery,maxHeight: 480, maxWidth: 640);
     if (selectedImg != null) {
       pr = new ProgressDialog(context, type: ProgressDialogType.Normal);
       //Dialog Style
@@ -341,7 +341,6 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Future<List<dynamic>> uploadtoServer(PickedFile image) async {
-    print("path: "+ image.path.toString());
     Dio dio = new Dio();
     String fileName = image.path
         .split('/')
@@ -358,17 +357,13 @@ class _ProfilePageState extends State<ProfilePage> {
               "user/upload/image",
           data: formData,
           options: Options(
-              followRedirects: false,
-              validateStatus: (status){
-                return status <  500;
-              },
               responseType: ResponseType.json,
               headers: {
                 "Authorization": "Bearer ${mainBloc.bearerToken}",
                 "Accept": "application/json",
               }
           ));
-       print(response.toString());
+       print("res"+response.data.toString());
        print(response.statusCode.toString());
        if(response.data[0]["status"] == true){
          setState(() {
@@ -380,6 +375,7 @@ class _ProfilePageState extends State<ProfilePage> {
          mainBloc.user = User.fromJson(response.data[1]);
        }
       pr.hide();
+      print("This is the form data response: ${response.data}");
       return response.data;
     } catch (e) {
       print(e.toString());

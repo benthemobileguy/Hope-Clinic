@@ -33,7 +33,7 @@ class ApiService {
     MainBloc bloc = Provider.of<MainBloc>(context);
     Map<String, String> _headers = await headers(bloc: bloc);
     http.Response response =
-    await http.get(Constants().API_BASE_URL + url, headers: _headers);
+    await http.get(Uri.parse(Constants().API_BASE_URL + url), headers: _headers);
     final responseJson = json.decode(response.body);
     print(responseJson.toString());
     int statusCode = response.statusCode;
@@ -79,7 +79,7 @@ class ApiService {
     Map<String, String> _headers = await headers(bloc: bloc);
 
     http.Response response = await http.delete(
-      Constants().API_BASE_URL + url,
+      Uri.parse(Constants().API_BASE_URL + url),
       headers: _headers,
     );
     final responseJson = json.decode(response.body);
@@ -147,7 +147,7 @@ class ApiService {
     Map<String, String> _headers = await headers(bloc: bloc);
 
     http.Response response = await http.post(
-      Constants().API_BASE_URL + url,
+      Uri.parse(Constants().API_BASE_URL + url),
       headers: _headers,
       body: json.encode(body),
     );
@@ -208,7 +208,7 @@ class ApiService {
     Map<String, String> _headers = await headers(bloc: bloc);
 
     http.Response response = await http.put(
-      Constants().API_BASE_URL + url,
+      Uri.parse(Constants().API_BASE_URL + url),
       headers: _headers,
       body: json.encode(body),
     );
