@@ -20,8 +20,8 @@ class MessageScreen extends StatefulWidget {
 class _MessageScreenState extends State<MessageScreen> {
   TextEditingController messageController = TextEditingController();
   MainBloc mainBloc;
+  ScrollController _scrollController = new ScrollController();
 
-  List<Message> messages = [];
   String messageType = "";
   int msgTypeIndex = -1;
   AppointmentService appointmentService;
@@ -37,6 +37,9 @@ class _MessageScreenState extends State<MessageScreen> {
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
     mainBloc = Provider.of<MainBloc>(context, listen: false);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _scrollController.animateTo(_scrollController.position.maxScrollExtent, duration: const Duration(milliseconds: 500), curve: Curves.easeOut);
+    });
   }
 
   @override
@@ -88,6 +91,7 @@ class _MessageScreenState extends State<MessageScreen> {
           children: [
             Expanded (
               child: ListView(
+                controller: _scrollController,
                 children: [
                   SizedBox(
                     height: 20,
@@ -195,7 +199,7 @@ class _MessageScreenState extends State<MessageScreen> {
     Map<String, dynamic> _res = await appointmentService.sendMessage(data);
     if (_res["status"] == "success") {
      setState(() {
-       messages.add(Message(type: messageType, message: messageController.text));
+       mainBloc.message.add(Message(type: messageType, message: messageController.text));
        msgTypeIndex = -1;
      });
      messageController.clear();
@@ -401,7 +405,7 @@ class _MessageScreenState extends State<MessageScreen> {
   List<Widget> _getListings(BubbleStyle styleMe) { // <<<<< Note this change for the return type
     List listings = <Widget>[];
     int i = 0;
-    for (i = 0; i < messages.length; i++) {
+    for (i = 0; i < mainBloc.message.length; i++) {
       listings.add(
         Column(
           children: [
@@ -416,7 +420,7 @@ class _MessageScreenState extends State<MessageScreen> {
                   borderRadius: BorderRadius.all(Radius.circular(8))
               ),
               child: Text(
-                messages[i].type,
+                mainBloc.message[i].type,
                 style: TextStyle(
                   fontSize: 14,
                   height: 1.5,
@@ -426,12 +430,15 @@ class _MessageScreenState extends State<MessageScreen> {
                 ),
               ),
             ),
+            SizedBox(
+              height: 10,
+            ),
             Bubble(
               style: styleMe,
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 20),
                 child: Text(
-                  messages[i].message,
+                  mainBloc.message[i].message,
                   style: TextStyle(
                     fontSize: 14,
                     height: 1.5,

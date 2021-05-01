@@ -17,7 +17,9 @@ class Dateslots {
     if (json['timeslots'] != null) {
       timeslots = new List<Timeslots>();
       json['timeslots'].forEach((v) {
-        timeslots.add(new Timeslots.fromJson(v));
+        if(timeslots!=null){
+          timeslots.add(new Timeslots.fromJson(v));
+        }
       });
     }
   }

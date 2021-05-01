@@ -29,7 +29,6 @@ class ApiService {
 
   Future<dynamic> get(String url) async {
     print('Api service is called to make get request');
-
     MainBloc bloc = Provider.of<MainBloc>(context, listen:false);
     Map<String, String> _headers = await headers(bloc: bloc);
     http.Response response =

@@ -33,6 +33,7 @@ class _HomePageState extends State<HomePage> {
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
     bloc = Provider.of<MainBloc>(context, listen:false);
+    print(bloc.bearerToken);
   }
 
   @override
@@ -501,7 +502,8 @@ class _HomePageState extends State<HomePage> {
     Future.wait([
       bloc.fetchUpcomingAppointment(context),
       bloc.fetchDaysLeftCount(context),
-      bloc.fetchHealthTips(context)
+      bloc.fetchHealthTips(context),
+      bloc.fetchMessages(context)
     ]).then((value) {
       setState(() {
         isDataLoaded = true;

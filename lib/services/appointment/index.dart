@@ -3,6 +3,7 @@ import 'package:hope_clinic/bloc/index.dart';
 import 'package:hope_clinic/model/date-slots.dart';
 import 'package:hope_clinic/model/days-left-count.dart';
 import 'package:hope_clinic/model/health-tips.dart';
+import 'package:hope_clinic/model/message.dart';
 import 'package:hope_clinic/model/next-appointment.dart';
 import 'package:hope_clinic/model/plans.dart';
 import 'package:hope_clinic/model/upcoming-appointment.dart';
@@ -91,5 +92,16 @@ class  AppointmentService extends ApiService {
     Map<String, dynamic> _response = await post('message/create', data);
 
     return _response;
+  }
+  /// get user messages
+  Future<List<Message>> getUserMessages() async {
+    bloc = Provider.of<MainBloc>(context, listen: false);
+    Map<String, dynamic> _data =
+    await get('message/current/user');
+    print(_data);
+    List<Message> _message;
+    _message = Message.fromJsonList(_data['data']['data']);
+    bloc.message = _message;
+    return _message;
   }
 }

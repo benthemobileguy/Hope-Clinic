@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hope_clinic/model/date-slots.dart';
 import 'package:hope_clinic/model/days-left-count.dart';
 import 'package:hope_clinic/model/health-tips.dart';
+import 'package:hope_clinic/model/message.dart';
 import 'package:hope_clinic/model/next-appointment.dart';
 import 'package:hope_clinic/model/plans.dart';
 import 'package:hope_clinic/model/upcoming-appointment.dart';
@@ -12,6 +13,7 @@ class AppointmentBloc extends ChangeNotifier {
   DaysLeftCount _daysLeftCount;
   List<Plans> _plans;
   List<HealthTips> _healthTips;
+  List<Message> _message;
   List<Dateslots> _dateSlots;
   UpcomingAppointment _upcomingAppointment;
   UpcomingAppointment get upcomingAppointment {
@@ -23,6 +25,10 @@ class AppointmentBloc extends ChangeNotifier {
   }
   set dateSlots(List<Dateslots> _data) {
     this._dateSlots = _data;
+    notifyListeners();
+  }
+  set message(List<Message> _data) {
+    this._message = _data;
     notifyListeners();
   }
   set plans(List<Plans> _data) {
@@ -38,6 +44,9 @@ class AppointmentBloc extends ChangeNotifier {
   }
   List<Dateslots> get dateSlots {
     return _dateSlots;
+  }
+  List<Message> get message {
+    return _message;
   }
   set upcomingAppointment(UpcomingAppointment _data) {
     this._upcomingAppointment = _data;
@@ -113,5 +122,14 @@ class AppointmentBloc extends ChangeNotifier {
     this._dateSlots= _dateSlots;
     notifyListeners();
     return _dateSlots;
+  }
+  ///fetch messages
+  Future<List<Message>> fetchMessages(BuildContext context) async {
+    AppointmentService appointmentService = new  AppointmentService(
+        context: context);
+    List<Message> _messages = await appointmentService.getUserMessages();
+    this._message= _messages;
+    notifyListeners();
+    return _messages;
   }
 }

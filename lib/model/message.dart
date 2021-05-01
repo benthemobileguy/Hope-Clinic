@@ -26,7 +26,9 @@ class Message {
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
   }
-
+  static List<Message> fromJsonList(List<dynamic> _list) {
+    return _list.map((_msg) => Message.fromJson(_msg)).toList();
+  }
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
@@ -59,8 +61,5 @@ class Links {
     data['label'] = this.label;
     data['active'] = this.active;
     return data;
-  }
-  static List<Message> fromJsonList(List<dynamic> _list) {
-    return _list.map((_msg) => Message.fromJson(_msg)).toList();
   }
 }
