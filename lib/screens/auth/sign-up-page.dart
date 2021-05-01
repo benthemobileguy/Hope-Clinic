@@ -1040,7 +1040,7 @@ class _RegisterPageState extends State<SignUpPage> {
     data = {
       "firstname": _firstNameController.text.trim(),
       "lastname": _lastNameController.text.trim(),
-      "phone_number": _phoneNoController.text.trim(),
+      "phone_number": "234${_phoneNoController.text.trim().substring(1,11)}",
       "email": _emailController.text.trim(),
       "dob": dobController.text,
       "password": _confirmPassController.text.trim(),
@@ -1064,11 +1064,6 @@ class _RegisterPageState extends State<SignUpPage> {
       });
     } catch (e) {
       print(e.toString());
-      Fluttertoast.showToast(
-        msg: "The email has already been taken!",
-        timeInSecForIosWeb: 2,
-        toastLength: Toast.LENGTH_LONG,
-      );
       setState(() {
         _isLoading = false;
       });

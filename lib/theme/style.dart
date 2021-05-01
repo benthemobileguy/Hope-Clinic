@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hope_clinic/utils/color.dart';
 final Color primaryColor = HexColor("#077965");
 final Color primaryColorDark = HexColor("#000000");
+final Color bubbleMsg =HexColor("#D9E3E2");
 final Color customGreen = HexColor("#0AC690");
 final Color chatTextColor = HexColor("#002D25");
 final Color customTextColor = HexColor("#969696");
