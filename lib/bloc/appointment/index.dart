@@ -119,6 +119,7 @@ class AppointmentBloc extends ChangeNotifier {
     AppointmentService appointmentService = new  AppointmentService(
         context: context);
     List<Dateslots> _dateSlots = await appointmentService.getDateSlots();
+    print(_dateSlots);
     this._dateSlots= _dateSlots;
     notifyListeners();
     return _dateSlots;

@@ -56,14 +56,37 @@ class _BookAppointmentState extends State<BookAppointment> {
     super.didChangeDependencies();
     bloc = Provider.of<MainBloc>(context, listen:false);
   }
-  EventList<Event> _markedDateMap = new EventList<Event>();
+  EventList<Event> _markedDateMap = new EventList<Event>(
+    events: {
+      new DateTime(2019, 2, 10): [
+        new Event(
+          date: new DateTime(2019, 2, 10),
+          title: 'Event 1',
+          icon: _eventIcon,
+          dot: Container(
+            margin: EdgeInsets.symmetric(horizontal: 1.0),
+            color: Colors.red,
+            height: 5.0,
+            width: 5.0,
+          ),
+        ),
+        new Event(
+          date: new DateTime(2019, 2, 10),
+          title: 'Event 2',
+          icon: _eventIcon,
+        ),
+        new Event(
+          date: new DateTime(2019, 2, 10),
+          title: 'Event 3',
+          icon: _eventIcon,
+        ),
+      ],
+    },
+  );
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    print(DateTime.now());
-
-
   }
   @override
   Widget build(BuildContext context) {
@@ -142,8 +165,8 @@ class _BookAppointmentState extends State<BookAppointment> {
           color: normalText,
           fontWeight: FontWeight.w700,
         ),
-        minSelectedDate: _currentDate.subtract(Duration(days: 1)),
-        maxSelectedDate: _currentDate.add(Duration(days: 3600)),
+        // minSelectedDate: _currentDate.subtract(Duration(days: 1)),
+        // maxSelectedDate: _currentDate.add(Duration(days: 3600)),
         inactiveDaysTextStyle: TextStyle(
           color: Colors.grey,
           fontSize: 16,
@@ -726,7 +749,8 @@ class _BookAppointmentState extends State<BookAppointment> {
                        ],
                      ),
                      onPressed:
-                         isDataLoaded&&_markedDateMap!=null &&
+                         isDataLoaded&&_markedDateMap!=null
+                             &&
                      _markedDateMap.events.containsKey(_currentDate2)
                          ? () {
                      showTimeSlots();
@@ -985,6 +1009,23 @@ class _BookAppointmentState extends State<BookAppointment> {
                     ),
                     SizedBox(
                       height: 30,
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(12)),
+                        border: Border.all(width: 1,color: Color.fromRGBO(3, 85, 71, 0.3)),
+
+                      ),
+                      child:  Text(
+                        '8',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontFamily: 'Lato',
+                          color: normalTextBold,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
                     ),
                     Container(
                       height: 60,

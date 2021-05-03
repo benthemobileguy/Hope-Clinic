@@ -82,7 +82,6 @@ class  AppointmentService extends ApiService {
     bloc = Provider.of<MainBloc>(context, listen: false);
     Map<String, dynamic> _data =
     await get('dateslot');
-    print(_data);
     List<Dateslots> _dateSlots;
     _dateSlots = Dateslots.fromJsonList(_data['data']['dateslots']);
     bloc.dateSlots = _dateSlots;

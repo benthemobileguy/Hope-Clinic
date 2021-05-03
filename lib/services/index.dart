@@ -33,6 +33,7 @@ class ApiService {
     Map<String, String> _headers = await headers(bloc: bloc);
     http.Response response =
     await http.get(Uri.parse(Constants().API_BASE_URL + url), headers: _headers);
+    print(Constants().API_BASE_URL + url);
     final responseJson = json.decode(response.body);
     print(responseJson.toString());
     int statusCode = response.statusCode;
