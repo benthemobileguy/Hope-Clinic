@@ -1021,7 +1021,7 @@ class _BookAppointmentState extends State<BookAppointment> {
                         itemBuilder: (BuildContext context, int index) {
                           return Container(
                             height: 55,
-                            width: 65,
+                            width: 70,
                             padding: EdgeInsets.all(12),
                             margin: EdgeInsets.only(right: 6),
                             decoration: BoxDecoration(
