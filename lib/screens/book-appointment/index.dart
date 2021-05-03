@@ -27,6 +27,8 @@ class _BookAppointmentState extends State<BookAppointment> {
   bool isDataLoaded = false;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   int slotIndex = -1;
+
+  List<String> times = ["8", "9", "10", "11", "12", "1", "2", "3", "4", "5"];
   StateSetter timeStateSetter;
   String serverDateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z";
   DateTime _currentDate = DateTime.now();
@@ -1011,21 +1013,57 @@ class _BookAppointmentState extends State<BookAppointment> {
                       height: 30,
                     ),
                     Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(12)),
-                        border: Border.all(width: 1,color: Color.fromRGBO(3, 85, 71, 0.3)),
+                      height: 55,
+                      width: double.infinity,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: times.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Container(
+                            height: 55,
+                            width: 65,
+                            padding: EdgeInsets.all(12),
+                            margin: EdgeInsets.only(right: 6),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(12)),
+                              border: Border.all(width: 1,color: Color.fromRGBO(3, 85, 71, 0.3)),
 
+                            ),
+                            child:  Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  times[index],
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontFamily: 'Lato',
+                                    color: normalTextBold,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 2.0, bottom: 3),
+                                  child: Text(
+                                    'AM',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontFamily: 'Lato',
+                                      color: HexColor('#787878'),
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
                       ),
-                      child:  Text(
-                        '8',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontFamily: 'Lato',
-                          color: normalTextBold,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
+                    ),
+                    SizedBox(
+                      height: 30,
                     ),
                     Container(
                       height: 60,
