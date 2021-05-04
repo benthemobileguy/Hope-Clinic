@@ -25,6 +25,8 @@ class _RegisterPageState extends State<SignUpPage> {
   int sexBtnIndex = -1;
   int pageindex = 0;
   int selectStatusIndex = -1;
+
+  String account_type;
   MainBloc mainBloc;
   bool _isLoading = false;
   TextEditingController dobController = TextEditingController();
@@ -1042,6 +1044,7 @@ class _RegisterPageState extends State<SignUpPage> {
       "lastname": _lastNameController.text.trim(),
       "phone_number": "234${_phoneNoController.text.trim().substring(1,11)}",
       "email": _emailController.text.trim(),
+      "account_type": accountType;
       "dob": dobController.text,
       "password": _confirmPassController.text.trim(),
       "role": "patient"

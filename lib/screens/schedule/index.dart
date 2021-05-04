@@ -16,7 +16,33 @@ class SchedulePage extends StatefulWidget {
 class _SchedulePageState extends State<SchedulePage> {
   CalendarCarousel  _calendarCarouselNoHeader;
   DateTime _targetDateTime = DateTime.now();
-  EventList<Event> _markedDateMap = new EventList<Event>();
+  EventList<Event> _markedDateMap = new EventList<Event>(
+    events: {
+      new DateTime(2019, 2, 10): [
+        new Event(
+          date: new DateTime(2019, 2, 10),
+          title: 'Event 1',
+          icon: _eventIcon,
+          dot: Container(
+            margin: EdgeInsets.symmetric(horizontal: 1.0),
+            color: Colors.red,
+            height: 5.0,
+            width: 5.0,
+          ),
+        ),
+        new Event(
+          date: new DateTime(2019, 2, 10),
+          title: 'Event 2',
+          icon: _eventIcon,
+        ),
+        new Event(
+          date: new DateTime(2019, 2, 10),
+          title: 'Event 3',
+          icon: _eventIcon,
+        ),
+      ],
+    },
+  );
   MainBloc mainBloc;
   String serverDateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z";
   DateTime _currentDate = DateTime.now();

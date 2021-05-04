@@ -27,6 +27,7 @@ class _BookAppointmentState extends State<BookAppointment> {
   bool isDataLoaded = false;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   int slotIndex = -1;
+  int timeIndex = -1;
 
   List<String> times = ["8", "9", "10", "11", "12", "1", "2", "3", "4", "5"];
   StateSetter timeStateSetter;
@@ -1019,44 +1020,52 @@ class _BookAppointmentState extends State<BookAppointment> {
                         scrollDirection: Axis.horizontal,
                         itemCount: times.length,
                         itemBuilder: (BuildContext context, int index) {
-                          return Container(
-                            height: 55,
-                            width: 70,
-                            padding: EdgeInsets.all(12),
-                            margin: EdgeInsets.only(right: 6),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(Radius.circular(12)),
-                              border: Border.all(width: 1,color: Color.fromRGBO(3, 85, 71, 0.3)),
+                          return GestureDetector(
+                            onTap: (){
+                              setState(() {
+                                timeIndex= index;
+                              });
+                            },
+                            child: Container(
+                              height: 55,
+                              width: 70,
+                              padding: EdgeInsets.all(12),
+                              margin: EdgeInsets.only(right: 6),
+                              decoration: BoxDecoration(
+                                color: timeIndex!=index?Colors.white:primaryColor,
+                                borderRadius: BorderRadius.all(Radius.circular(12)),
+                                border: Border.all(width: 1,color: Color.fromRGBO(3, 85, 71, 0.3)),
 
-                            ),
-                            child:  Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  times[index],
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontFamily: 'Lato',
-                                    color: normalTextBold,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 2.0, bottom: 3),
-                                  child: Text(
-                                    'AM',
+                              ),
+                              child:  Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    times[index],
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-                                      fontSize: 12,
+                                      fontSize: 18,
                                       fontFamily: 'Lato',
-                                      color: HexColor('#787878'),
-                                      fontWeight: FontWeight.w400,
+                                      color: timeIndex!=index?normalTextBold:Colors.white,
+                                      fontWeight: FontWeight.w700,
                                     ),
                                   ),
-                                ),
-                              ],
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 2.0, bottom: 3),
+                                    child: Text(
+                                      index<=3?'AM':'PM',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontFamily: 'Lato',
+                                        color: timeIndex!=index?normalTextBold:Colors.white,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           );
                         },
