@@ -249,7 +249,7 @@ class _BookAppointmentState extends State<BookAppointment> {
                          color: primaryColor
                        ),
                        child: Text(
-                         "See Hospital Account Details",
+                         "See Clinic Account Details",
                          textAlign: TextAlign.start,
                          style: TextStyle(
                            fontSize: 14,

@@ -5,8 +5,10 @@ import 'package:hope_clinic/screens/auth/sign-in-page.dart';
 import 'package:hope_clinic/screens/components/default-text-form-field.dart';
 import 'package:hope_clinic/screens/components/main-button.dart';
 import 'package:hope_clinic/screens/home/base.dart';
+import 'package:hope_clinic/services/api-exception.dart';
 import 'package:hope_clinic/services/authentication-service.dart';
 import 'package:hope_clinic/theme/style.dart';
+import 'package:hope_clinic/utils/alert-manager.dart';
 import 'package:hope_clinic/utils/color.dart';
 import 'package:hope_clinic/utils/pref-manager.dart';
 import 'package:hope_clinic/utils/validator.dart';
@@ -26,7 +28,7 @@ class _RegisterPageState extends State<SignUpPage> {
   int pageindex = 0;
   int selectStatusIndex = -1;
 
-  String account_type;
+  String accountType;
   MainBloc mainBloc;
   bool _isLoading = false;
   TextEditingController dobController = TextEditingController();
@@ -106,75 +108,77 @@ class _RegisterPageState extends State<SignUpPage> {
                   SizedBox(
                     height: 30,
                   ),
-              GestureDetector(
-                onTap: (){
-                  setState(() {
-                    selectStatusIndex = 0;
-                  });
+                  GestureDetector(
+                    onTap: (){
+                      setState(() {
+                        selectStatusIndex = 0;
+                        accountType = "new";
+                      });
 
-                },
-                child: Container(
-                  padding: EdgeInsets.all(14),
-                  decoration: BoxDecoration(
-                    color: selectStatusIndex!=0?greenLight:primaryColor,
-                    borderRadius: BorderRadius.circular(14),
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(14),
+                      decoration: BoxDecoration(
+                        color: selectStatusIndex!=0?greenLight:primaryColor,
+                        borderRadius: BorderRadius.circular(14),
+                      ),
+                      child: Row(
+                        children: [
+                          Container(
+                            width:24,
+                            height:24,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: selectStatusIndex!=0?Colors.white:primaryColor,
+                                border: Border.all(color: selectStatusIndex!=0?
+                                primaryColor:Colors.white,width: selectStatusIndex!=0?1:2)
+                            ),
+                          ),
+                          SizedBox(
+                            width: 16,
+                          ),
+                          Flexible(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "First Time Patient",
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: 'Lato',
+                                    color: selectStatusIndex!=0?normalTextBold:Colors.white,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 6,
+                                ),
+                                Text(
+                                  "You have never gone to the Hope chiropractic clinic before.",
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    fontFamily: 'Lato',
+                                    color: selectStatusIndex!=0?HexColor("#787878"):ashGreen,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                  child: Row(
-                    children: [
-                      Container(
-                        width:24,
-                        height:24,
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: selectStatusIndex!=0?Colors.white:primaryColor,
-                            border: Border.all(color: selectStatusIndex!=0?
-                            primaryColor:Colors.white,width: selectStatusIndex!=0?1:2)
-                        ),
-                      ),
-                      SizedBox(
-                        width: 16,
-                      ),
-                      Flexible(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "First Time Patient",
-                              textAlign: TextAlign.start,
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontFamily: 'Lato',
-                                color: selectStatusIndex!=0?normalTextBold:Colors.white,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 6,
-                            ),
-                            Text(
-                              "You have never gone to the Hope chiropractic clinic before.",
-                              textAlign: TextAlign.start,
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontFamily: 'Lato',
-                                color: selectStatusIndex!=0?HexColor("#787878"):ashGreen,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                  SizedBox(
+                    height: 25,
                   ),
-                ),
-              ),
-              SizedBox(
-                height: 25,
-              ),
                   GestureDetector(
                     onTap: (){
                       setState(() {
                         selectStatusIndex = 1;
+                        accountType = "old";
                       });
                     },
                     child: Container(
@@ -232,7 +236,7 @@ class _RegisterPageState extends State<SignUpPage> {
                       ),
                     ),
                   ),
-              Spacer(),
+                  Spacer(),
                   Container(
                     height: 60,
                     child: MainButton(
@@ -248,10 +252,10 @@ class _RegisterPageState extends State<SignUpPage> {
                         ),
                       ),
                       onPressed: selectStatusIndex!=-1?() {
-                       controller.nextPage(
-                         duration: Duration(milliseconds: 500),
-                         curve: Curves.ease,
-                       );
+                        controller.nextPage(
+                          duration: Duration(milliseconds: 500),
+                          curve: Curves.ease,
+                        );
 
                       }:null,
                     ),
@@ -1044,7 +1048,7 @@ class _RegisterPageState extends State<SignUpPage> {
       "lastname": _lastNameController.text.trim(),
       "phone_number": "234${_phoneNoController.text.trim().substring(1,11)}",
       "email": _emailController.text.trim(),
-      "account_type": accountType;
+      "account_type": accountType,
       "dob": dobController.text,
       "password": _confirmPassController.text.trim(),
       "role": "patient"
@@ -1065,8 +1069,9 @@ class _RegisterPageState extends State<SignUpPage> {
       setState(() {
         _isLoading = false;
       });
-    } catch (e) {
+    } on ApiException catch (e) {
       print(e.toString());
+      AlertManager.showShortToast("The email has been taken");
       setState(() {
         _isLoading = false;
       });
