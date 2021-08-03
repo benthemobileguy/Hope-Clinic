@@ -133,4 +133,5 @@ class AppointmentBloc extends ChangeNotifier {
     notifyListeners();
     return _messages;
   }
+
 }

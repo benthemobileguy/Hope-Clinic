@@ -193,7 +193,7 @@ class _MessageScreenState extends State<MessageScreen> {
     Map<String, dynamic> data = new Map();
     data = {
       "type": messageType,
-      "receiver_id": 16,
+      "receiver_id":mainBloc.user.id,
       "message": messageController.text
     };
     Map<String, dynamic> _res = await appointmentService.sendMessage(data);
